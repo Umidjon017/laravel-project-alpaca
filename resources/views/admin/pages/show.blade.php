@@ -32,10 +32,10 @@
                                     @foreach ($localizations as $locale)
                                         <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{ $locale->name }}-tab">
                                             <h6 class="mb-1">Title</h6>
-                                            <p>{!! $page->getTranslatedAttributes($locale->id)->title !!}</p>
+                                            <p>{!! $page->getTranslatedAttributes($locale->id)->title ?? ' ' !!}</p>
                                             <hr>
                                             <h6 class="mb-1">Content</h6>
-                                            <p>{!! $page->getTranslatedAttributes($locale->id)->content !!}</p>
+                                            <p>{!! $page->getTranslatedAttributes($locale->id)->content ?? ' ' !!}</p>
                                         </div>
                                     @endforeach
                                 </div>
@@ -100,21 +100,21 @@
                                         <div class="example">
                                             <div>
                                                 <h6> Title </h6>
-                                                <p class="mb-1"> {!! $info->getTranslatedAttributes($locale->id)->title !!} </p>
+                                                <p class="mb-1"> {!! $info->getTranslatedAttributes(session('locale_id'))->title !!} </p>
                                             </div>
 
                                             <hr>
 
                                             <div>
                                                 <h6> Description </h6>
-                                                <p class="mb-1"> {!! $info->getTranslatedAttributes($locale->id)->description !!} </p>
+                                                <p class="mb-1"> {!! $info->getTranslatedAttributes(session('locale_id'))->description !!} </p>
                                             </div>
 
                                             <hr>
 
                                             <div>
                                                 <h6> Body </h6>
-                                                <p class="mb-1"> {!! $info->getTranslatedAttributes($locale->id)->body !!} </p>
+                                                <p class="mb-1"> {!! $info->getTranslatedAttributes(session('locale_id'))->body !!} </p>
                                             </div>
 
                                             <hr>
@@ -152,21 +152,21 @@
                                             <div class="example">
                                                 <div>
                                                     <h6> Full name </h6>
-                                                    <p class="mb-1"> {!! $comment->getTranslatedAttributes($locale->id)->full_name !!} </p>
+                                                    <p class="mb-1"> {!! $comment->getTranslatedAttributes(session('locale_id'))->full_name !!} </p>
                                                 </div>
 
                                                 <hr>
 
                                                 <div>
                                                     <h6> Position </h6>
-                                                    <p class="mb-1"> {!! $comment->getTranslatedAttributes($locale->id)->position !!} </p>
+                                                    <p class="mb-1"> {!! $comment->getTranslatedAttributes(session('locale_id'))->position !!} </p>
                                                 </div>
 
                                                 <hr>
 
                                                 <div>
                                                     <h6> Text </h6>
-                                                    <p class="mb-1"> {!! $comment->getTranslatedAttributes($locale->id)->text !!} </p>
+                                                    <p class="mb-1"> {!! $comment->getTranslatedAttributes(session('locale_id'))->text !!} </p>
                                                 </div>
 
                                                 <hr>

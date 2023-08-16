@@ -18,9 +18,9 @@
                       <thead>
                         <tr class="text-center">
                           <th class="text-start"> # </th>
-                          <th> {{ _('Title') }} </th>
-                          <th> {{ _('Status') }} </th>
-                          <th class="w-25"> {{ _('Action') }} </th>
+                          <th> {{ __('Title') }} </th>
+                          <th> {{ __('Status') }} </th>
+                          <th class="w-25"> {{ __('Action') }} </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -29,7 +29,7 @@
                           <td> {{ $loop->iteration }} </td>
                           <td> {{ $page->getTranslatedAttributes(session('locale_id'))->title ?? 'No title'}} </td>
                           <td>
-                            @if ($page->status == true)
+                            @if ($page->status == 1)
                             <span class="badge bg-success fs-6"> {{ __('Active') }} </span>
                             @else
                             <span class="badge bg-danger"> {{ __('Inactive') }} </span>

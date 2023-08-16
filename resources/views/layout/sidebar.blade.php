@@ -30,6 +30,12 @@
             <span class="link-title">Page ID: {{ $page->id }}</span>
           </a>
         </li> --}}
+        <li class="nav-item {{ request()->routeIs('admin.localizations.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.localizations.index') }}" class="nav-link">
+              <i class="link-icon" data-feather="box"></i>
+              <span class="link-title">Languages</span>
+            </a>
+        </li>
     </ul>
   </div>
 </nav>

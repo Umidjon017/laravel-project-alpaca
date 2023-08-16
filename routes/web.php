@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\InfoBlockController;
+use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Admin\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,8 @@ Auth::routes();
 Route::prefix('admin')->name('admin.')->group(function () {
     // Dashboard
     Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+    // Localization
+    Route::resource('/localizations', LocalizationController::class)->except('create', 'edit', 'show');
     // Pages
     // Route::get('pages/sub/{slug}', function (string $item) {
     //   return Page::where('slug', $item)->get();

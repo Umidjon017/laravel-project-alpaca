@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\StoreCommentRequest;
+use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Localization;
 use App\Models\Page;
