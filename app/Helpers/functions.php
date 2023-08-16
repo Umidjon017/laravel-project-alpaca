@@ -1,29 +1,20 @@
 <?php
 
-if(!function_exists('slider_file_path')){
+use App\Models\Gallery;
+use App\Models\Page;
 
-    function slider_file_path(): string
+if(!function_exists('page_file_path')) {
+
+    function page_file_path(): string
     {
-        return '/' . \App\Models\Slider::FILE_PATH;
+        return '/' . Page::FILE_PATH;
     }
-
 }
 
-if(!function_exists('post_file_path')){
+if(!function_exists('gallery_file_path')) {
 
-    function post_file_path(): string
+    function gallery_file_path(): string
     {
-        return '/' . \App\Models\Post::FILE_PATH;
+        return '/' . Gallery::FILE_PATH;
     }
-
 }
-
-if(!function_exists('project_file_path')){
-
-    function project_file_path(): string
-    {
-        return '/' . \App\Models\Project::FILE_PATH;
-    }
-
-}
-

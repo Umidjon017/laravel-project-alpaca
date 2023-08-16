@@ -22,13 +22,13 @@ class LocalizationSeeder extends Seeder
             ],
             [
                 'id'=>2,
-                'name'=>'kz'
+                'name'=>'ir'
             ],
         ];
-        
+
         foreach($languages as $lang){
             Localization::create($lang);
         }
-        
+
     }
 }
