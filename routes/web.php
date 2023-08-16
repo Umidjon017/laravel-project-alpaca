@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\InfoBlockController;
 use App\Http\Controllers\Admin\PageController;
-use App\Models\Page;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +23,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::prefix('admin')->name('admin.')->group(function () {
-  // Dashboard
-  Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
-  // Pages
-  // Route::get('pages/sub/{slug}', function (string $item) {
-  //   return Page::where('slug', $item)->get();
-  // })->name('pages.subpage');
-  Route::controller(PageController::class)->group(function() {
-    // Gallery
-    Route::post('/pages/gallery', 'storeGallery')->name('pages.gallery.store');
-  });
-  Route::resource('/pages', PageController::class);
+    // Dashboard
+    Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+    Route::resource('/gallery', GalleryController::class);
+    Route::get('/infos/create/{id}', [InfoBlockController::class, 'create'])->name('infos.create');
+    Route::resource('/infos', InfoBlockController::class)->only('index', 'store');
+    // Pages
+    // Route::get('pages/sub/{slug}', function (string $item) {
+    //   return Page::where('slug', $item)->get();
+    // })->name('pages.subpage');
+    Route::resource('/pages', PageController::class);
 });

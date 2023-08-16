@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\InfoBlock;
 use App\Models\Page;
 use App\Models\Gallery;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use App\Models\Localization;
 use Illuminate\Http\Request;
@@ -28,14 +30,14 @@ class PageController extends Controller
         return view('admin.pages.create', compact('localizations'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
       $data = $request->all();
 
       try{
           DB::transaction(function() use ($request) {
             if ($request->hasFile('image')) {
-              $data['image'] = $this->fileUploadToPage($request->file('image'));
+              $data['image'] = $this->fileUpload($request->file('image'));
             }
 
             $localizationId = Localization::first()->id;
@@ -63,38 +65,15 @@ class PageController extends Controller
     {
       $localizations = Cache::get('localizations');
       $galleries = Gallery::where('page_id', $page->id)->get();
+      $infos = InfoBlock::where('page_id', $page->id)->with('translations')->get();
 
-      return view('admin.pages.show', compact('localizations', 'page', 'galleries'));
+      return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos'));
     }
 
-    public function storeGallery(Request $request)
-    {
-      $data = $request->all();
-
-      if ($request->hasFile('images')) {
-        foreach ($request->images as $image) {
-          $galleryImages = $this->fileUploadToGallery($image);
-          Gallery::create([
-            'page_id' => $request->page_id,
-            'images' => $galleryImages
-          ]);
-        }
-      }
-
-      return back()->with('success', 'Gallery component added successfully!');
-    }
-
-    public function fileUploadToPage($file): string
+    public function fileUpload($file): string
     {
       $filename = time().'_'.$file->getClientOriginalName();
       $file->move(public_path(Page::FILE_PATH), $filename);
-      return $filename;
-    }
-
-    public function fileUploadToGallery($file): string
-    {
-      $filename = time().'_'.$file->getClientOriginalName();
-      $file->move(public_path(Gallery::FILE_PATH), $filename);
       return $filename;
     }
 }

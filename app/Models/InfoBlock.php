@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Page extends Model
+class InfoBlock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['slug', 'image', 'status'];
+    protected $fillable = ['page_id', 'link', 'image'];
 
-    const FILE_PATH = 'admin/images/pages/';
+    const FILE_PATH = 'admin/images/pages/infos/';
 
     protected static function boot()
     {
@@ -33,11 +34,6 @@ class Page extends Model
         return true;
     }
 
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
-
     public function getTranslatedAttributes($localeId)
     {
         return $this->translations->where('localization_id', $localeId)->first();
@@ -45,16 +41,11 @@ class Page extends Model
 
     public function translations(): HasMany
     {
-        return $this->hasMany(PageTranslation::class);
+        return $this->hasMany(InfoBlockTranslation::class);
     }
 
-    public function galleries(): HasMany
+    public function page(): BelongsTo
     {
-        return $this->hasMany(Gallery::class, 'page_id');
-    }
-
-    public function infos(): HasMany
-    {
-        return $this->hasMany(InfoBlock::class, 'page_id');
+        return $this->belongsTo(Page::class, 'page_id');
     }
 }

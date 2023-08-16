@@ -29,14 +29,13 @@
       @endforeach
     </div>
   </div>
-  <hr>
 
-  <div class="mb-3">
+  <div class="mt-3">
     <label for="image" class="form-label">{{ __('Images') }}</label>
     <input type="file" name="image" multiple class="form-control" @isset($page) {{ $page->image }} @endisset>
   </div>
 
-  <div class="mb-3">
+  <div class="mt-3 mb-3">
     <label for="exampleFormControlSelect1" class="form-label">{{ __('Status') }}(*)</label>
     <select class="form-select" id="exampleFormControlSelect1" required name="status">
       <option value="">{{ __('Select') }} status</option>

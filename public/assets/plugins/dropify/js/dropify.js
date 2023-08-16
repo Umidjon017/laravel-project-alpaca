@@ -252,7 +252,7 @@ Dropify.prototype.onFileReady = function(event, previewable, src)
 };
 
 /**
- * Set file informations
+ * Set file infos
  *
  * @param {File} file
  */
@@ -361,7 +361,7 @@ Dropify.prototype.clearElement = function()
 };
 
 /**
- * Reset file informations
+ * Reset file infos
  */
 Dropify.prototype.resetFile = function()
 {
