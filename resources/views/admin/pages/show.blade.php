@@ -43,7 +43,7 @@
                                 <div class="mt-3">
                                     <h6>Status</h6>
                                     <p>
-                                        @if ($page->status == true)
+                                        @if ($page->status == 1)
                                             <span class="badge bg-success"> {{ __('Active') }} </span>
                                         @else
                                             <span class="badge bg-danger"> {{ __('Inactive') }} </span>
@@ -139,6 +139,58 @@
                     </div>
                     {{-- Info Block end --}}
 
+                    {{-- Comment Block start --}}
+                    <div class="raw">
+                        <div class="d-flex justify-content-evenly">
+                            @foreach ($comments as $comment)
+                                <div class="col-5">
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="card-title"> Comment block {{ $loop->iteration }} </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="example">
+                                                <div>
+                                                    <h6> Full name </h6>
+                                                    <p class="mb-1"> {!! $comment->getTranslatedAttributes($locale->id)->full_name !!} </p>
+                                                </div>
+
+                                                <hr>
+
+                                                <div>
+                                                    <h6> Position </h6>
+                                                    <p class="mb-1"> {!! $comment->getTranslatedAttributes($locale->id)->position !!} </p>
+                                                </div>
+
+                                                <hr>
+
+                                                <div>
+                                                    <h6> Text </h6>
+                                                    <p class="mb-1"> {!! $comment->getTranslatedAttributes($locale->id)->text !!} </p>
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="me-3">
+                                                    <h6 class="mb-1">Logo</h6>
+                                                    <img src="{{ asset(comment_file_path().$comment->logo) }}" alt="" width="200">
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="me-3">
+                                                    <h6 class="mb-1">Image</h6>
+                                                    <img src="{{ asset(comment_file_path().$comment->image) }}" alt="" width="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    {{-- Comment Block end --}}
+
                     {{-- Add Other Blocks start --}}
                     <div class="raw">
                         <div class="col-6">
@@ -151,6 +203,7 @@
                                         <h6 class="mb-1"> Add Gallery block </h6>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGallery">Add</button>
                                     </div>
+                                    @include('admin.pages.gallery.create')
 
                                     <hr>
 
@@ -158,7 +211,13 @@
                                         <h6 class="mb-1"> Add Info block </h6>
                                         <a href="{{ route('admin.infos.create', $page->id) }}" class="btn btn-primary">Add</a>
                                     </div>
-                                    @include('admin.pages.gallery.create')
+
+                                    <hr>
+
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="mb-1"> Add Comment block </h6>
+                                        <a href="{{ route('admin.comments.create', $page->id) }}" class="btn btn-primary">Add</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\InfoBlock;
-use App\Models\Page;
-use App\Models\Gallery;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Str;
-use App\Models\Localization;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\Gallery;
+use App\Models\InfoBlock;
+use App\Models\Localization;
+use App\Models\Page;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use App\Http\Requests\Admin\PageStoreRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -66,8 +66,9 @@ class PageController extends Controller
       $localizations = Cache::get('localizations');
       $galleries = Gallery::where('page_id', $page->id)->get();
       $infos = InfoBlock::where('page_id', $page->id)->with('translations')->get();
+      $comments = Comment::where('page_id', $page->id)->with('translations')->get();
 
-      return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos'));
+      return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos', 'comments'));
     }
 
     public function fileUpload($file): string
