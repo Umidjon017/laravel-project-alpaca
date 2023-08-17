@@ -13,22 +13,26 @@
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Title') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" placeholder="Enter title">
+                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($info) value="{{ $info->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Enter title">
                     @error('translations.*.title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Description') }}</label>
-                    <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][description]" rows="10"></textarea>
+                    <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][description]" rows="10"> @isset($info) {{ $info->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Body') }}</label>
-                    <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][body]" rows="10"></textarea>
+                    <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][body]" rows="10"> @isset($info) {{ $info->getTranslatedAttributes($locale->id)->body }} @endisset </textarea>
                 </div>
-                @foreach($page->get() as $p)
+                @isset($page) @foreach($page->get() as $p)
                 <input type="hidden" name="page_id" value="{{ $p->id }}" />
-                @endforeach
+                @endforeach @endisset
+
+                @isset($info)
+                    <input type="hidden" name="translations[{{ $locale->id }}][id]" value="{{ $info->getTranslatedAttributes($locale->id)->id }}" />
+                @endisset
             </div>
         @endforeach
     </div>
@@ -36,16 +40,20 @@
 
 <div class="mt-3">
     <label for="link" class="form-label">{{ __('Link') }}</label>
-    <input type="text" name="link" class="form-control">
+    <input type="text" name="link" class="form-control" @isset($info) value="{{ $info->link }}" @endisset>
 </div>
 
 <div class="mt-3 mb-3">
     <label for="image" class="form-label">{{ __('Image') }}</label>
-    <input type="file" name="image" multiple class="form-control">
+    <input type="file" name="image" multiple class="form-control" @isset($info) value="{{ $info->image }}" @endisset>
+</div>
+
+<div class="raw">
+    <img src="{{ asset(info_file_path().$info->image) }}" alt="Info image">
 </div>
 
 <div class="d-flex justify-content-between">
-    <button type="submit" class="btn btn-primary me-2"> {{ __('Add') }} </button>
+    <button type="submit" class="btn btn-primary me-2"> @if(isset($info)) {{ __('Save') }} @else {{ __('Add') }} @endif </button>
 </div>
 
 @push('plugin-scripts')
