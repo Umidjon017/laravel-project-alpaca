@@ -8,6 +8,7 @@ use App\Models\Gallery;
 use App\Models\InfoBlock;
 use App\Models\Localization;
 use App\Models\Page;
+use App\Models\TextBlock;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -68,8 +69,9 @@ class PageController extends Controller
       $galleries = Gallery::where('page_id', $page->id)->get();
       $infos = InfoBlock::where('page_id', $page->id)->with('translations')->get();
       $comments = Comment::where('page_id', $page->id)->with('translations')->get();
+      $texts = TextBlock::where('page_id', $page->id)->with('translations')->get();
 
-      return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos', 'comments'));
+      return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos', 'comments', 'texts'));
     }
 
     public function edit(Page $page): View

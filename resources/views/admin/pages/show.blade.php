@@ -191,6 +191,38 @@
                     </div>
                     {{-- Comment Block end --}}
 
+                    {{-- Text Block start --}}
+                    <div class="raw">
+                        <div class="d-flex justify-content-evenly">
+                            @foreach ($texts as $text)
+                                <div class="col-5">
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h6>Text block {{ $loop->iteration }}</h6>
+                                                <form action="{{ route('admin.texts.destroy', $text->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm float-end ms-2">Delete</button>
+                                                </form>
+                                                <a href="{{ route('admin.texts.edit', $text->id) }}" class="btn btn-success btn-sm float-end text-capitalize">Edit</a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="example">
+                                                <div>
+                                                    <h6> Text </h6>
+                                                    <p class="mb-1"> {!! $text->getTranslatedAttributes(session('locale_id'))->text !!} </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    {{-- Text Block end --}}
+
                     {{-- Add Other Blocks start --}}
                     <div class="raw">
                         <div class="col-6">
@@ -217,6 +249,13 @@
                                     <div class="d-flex justify-content-between">
                                         <h6 class="mb-1"> Add Comment block </h6>
                                         <a href="{{ route('admin.comments.create', $page->slug) }}" class="btn btn-primary">Add</a>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="mb-1"> Add Text block </h6>
+                                        <a href="{{ route('admin.texts.create', $page->slug) }}" class="btn btn-primary">Add</a>
                                     </div>
                                 </div>
                             </div>

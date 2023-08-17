@@ -35,8 +35,6 @@ class CommentController extends Controller
                 }
 
                 $data['page_id'] = $request->page_id;
-
-                $localizationId = Localization::first()->id;
                 $info = Comment::create($data);
 
                 foreach($request->translations as $key=>$value){

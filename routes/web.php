@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\InfoBlockController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\TextBlockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,4 +40,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Comments
     Route::get('/{slug}/comments/create', [CommentController::class, 'create'])->name('comments.create');
     Route::resource('/comments', CommentController::class)->only('store');
+    // Text Block
+    Route::get('/{slug}/texts/create', [TextBlockController::class, 'create'])->name('texts.create');
+    Route::resource('/texts', TextBlockController::class)->only('store', 'edit', 'update', 'destroy');
 });
