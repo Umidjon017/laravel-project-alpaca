@@ -7,6 +7,7 @@ use App\Models\Localization;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 
 class LocalizationController extends Controller
@@ -21,13 +22,15 @@ class LocalizationController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $localization = Localization::create($request->all());
+        Artisan::call('optimize:clear');
 
         return back()->with('success', 'Added new language successfully!');
     }
 
-    public function update(Request $request, Localization $locale): RedirectResponse
+    public function update(Request $request, Localization $localization): RedirectResponse
     {
-        $locale->update($request->all());
+        $localization->update($request->all());
+        Artisan::call('optimize:clear');
 
         return back()->with('success', 'Edited successfully!');
     }
