@@ -34,9 +34,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Gallery
     Route::resource('/gallery', GalleryController::class)->only('store');
     // Info Block
-    Route::get('/infos/create/{id}', [InfoBlockController::class, 'create'])->name('infos.create');
-    Route::resource('/infos', InfoBlockController::class)->only('create', 'store');
+    Route::get('/{slug}/infos/create', [InfoBlockController::class, 'create'])->name('infos.create');
+    Route::resource('/infos', InfoBlockController::class)->only('store');
     // Comments
-    Route::get('/comments/create/{id}', [CommentController::class, 'create'])->name('comments.create');
-    Route::resource('/comments', CommentController::class)->only('create', 'store');
+    Route::get('/{slug}/comments/create', [CommentController::class, 'create'])->name('comments.create');
+    Route::resource('/comments', CommentController::class)->only('store');
 });

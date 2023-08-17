@@ -209,14 +209,14 @@
 
                                     <div class="d-flex justify-content-between">
                                         <h6 class="mb-1"> Add Info block </h6>
-                                        <a href="{{ route('admin.infos.create', $page->id) }}" class="btn btn-primary">Add</a>
+                                        <a href="{{ route('admin.infos.create', $page->slug) }}" class="btn btn-primary">Add</a>
                                     </div>
 
                                     <hr>
 
                                     <div class="d-flex justify-content-between">
                                         <h6 class="mb-1"> Add Comment block </h6>
-                                        <a href="{{ route('admin.comments.create', $page->id) }}" class="btn btn-primary">Add</a>
+                                        <a href="{{ route('admin.comments.create', $page->slug) }}" class="btn btn-primary">Add</a>
                                     </div>
                                 </div>
                             </div>

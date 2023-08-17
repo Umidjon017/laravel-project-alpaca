@@ -35,9 +35,10 @@ class LocalizationController extends Controller
         return back()->with('success', 'Edited successfully!');
     }
 
-    public function destroy(Localization $locale): RedirectResponse
+    public function destroy(Localization $localization): RedirectResponse
     {
-        $locale->delete();
+        $localization->delete();
+        Artisan::call('optimize:clear');
 
         return back()->with('success', 'Deleted successfully!');
     }
