@@ -29,13 +29,10 @@ class Comment extends Model
         });
     }
 
-    public function deleteImage(): bool
+    public function deleteFile(string $name): bool
     {
-        if (file_exists(self::FILE_PATH.$this->logo)) {
-            unlink(self::FILE_PATH.$this->logo);
-        }
-        if (file_exists(self::FILE_PATH.$this->image)) {
-            unlink(self::FILE_PATH.$this->image);
+        if (file_exists(self::FILE_PATH.$this->{$name})) {
+            unlink(self::FILE_PATH.$this->{$name});
         }
         return true;
     }

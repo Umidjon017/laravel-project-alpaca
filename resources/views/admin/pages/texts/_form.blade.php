@@ -28,7 +28,7 @@
 </div>
 
 <div class="d-flex justify-content-between mt-3">
-    <button type="submit" class="btn btn-primary me-2"> {{ __('Add') }} </button>
+    <button type="submit" class="btn btn-primary me-2"> @isset($text) {{ __('Save') }} @endisset {{ __('Add') }} </button>
 </div>
 
 @push('plugin-scripts')

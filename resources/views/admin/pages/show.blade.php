@@ -141,12 +141,20 @@
 
                     {{-- Comment Block start --}}
                     <div class="raw">
-                        <div class="d-flex justify-content-evenly">
+                        <div class="d-flex justify-content-evenly flex-wrap">
                             @foreach ($comments as $comment)
                                 <div class="col-5">
                                     <div class="card mt-3">
                                         <div class="card-header">
-                                            <h6 class="card-title"> Comment block {{ $loop->iteration }} </h6>
+                                            <div class="card-title">
+                                                <h6>Comment block {{ $loop->iteration }}</h6>
+                                                <form action="{{ route('admin.comments.destroy', $comment->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm float-end ms-2">Delete</button>
+                                                </form>
+                                                <a href="{{ route('admin.comments.edit', $comment->id) }}" class="btn btn-success btn-sm float-end text-capitalize">Edit</a>
+                                            </div>
                                         </div>
                                         <div class="card-body">
                                             <div class="example">

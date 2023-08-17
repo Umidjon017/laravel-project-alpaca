@@ -39,7 +39,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/infos', InfoBlockController::class)->only('store');
     // Comments
     Route::get('/{slug}/comments/create', [CommentController::class, 'create'])->name('comments.create');
-    Route::resource('/comments', CommentController::class)->only('store');
+    Route::resource('/comments', CommentController::class)->only('store', 'edit', 'update', 'destroy');
     // Text Block
     Route::get('/{slug}/texts/create', [TextBlockController::class, 'create'])->name('texts.create');
     Route::resource('/texts', TextBlockController::class)->only('store', 'edit', 'update', 'destroy');
