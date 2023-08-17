@@ -8,6 +8,7 @@ use App\Models\Gallery;
 use App\Models\InfoBlock;
 use App\Models\Localization;
 use App\Models\Page;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -69,6 +70,25 @@ class PageController extends Controller
       $comments = Comment::where('page_id', $page->id)->with('translations')->get();
 
       return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos', 'comments'));
+    }
+
+    public function edit(Page $page): View
+    {
+        $localizations = Cache::get('localizations');
+
+        return view('admin.pages.edit', compact('localizations', 'page'));
+    }
+
+    public function destroy(Page $page)
+    {
+        $page->delete();
+        $page->deleteImage();
+        if (count($page->galleries()->get()) > 0 || count($page->infos()->get()) > 0 || count($page->comments()->get()) > 0)
+        {
+            Gallery::where('page_id', $page->id)->delete();
+            InfoBlock::where('page_id', $page->id)->delete();
+            Comment::where('page_id', $page->id)->delete(0);
+        }
     }
 
     public function fileUpload($file): string

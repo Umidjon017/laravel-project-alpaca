@@ -57,4 +57,9 @@ class Page extends Model
     {
         return $this->hasMany(InfoBlock::class, 'page_id');
     }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'page_id');
+    }
 }

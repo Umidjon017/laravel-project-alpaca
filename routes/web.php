@@ -30,9 +30,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Localization
     Route::resource('/localizations', LocalizationController::class)->except('create', 'edit', 'show');
     // Pages
-    // Route::get('pages/sub/{slug}', function (string $item) {
-    //   return Page::where('slug', $item)->get();
-    // })->name('pages.subpage');
     Route::resource('/pages', PageController::class);
     // Gallery
     Route::resource('/gallery', GalleryController::class)->only('store');
