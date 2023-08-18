@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appeal;
 use App\Models\Comment;
 use App\Models\Gallery;
 use App\Models\InfoBlock;
@@ -71,11 +72,14 @@ class PageController extends Controller
       $galleries = Gallery::where('page_id', $page->id)->get();
       $infos = InfoBlock::where('page_id', $page->id)->with('translations')->get();
       $comments = Comment::where('page_id', $page->id)->with('translations')->get();
+      $appeals = Appeal::where('page_id', $page->id)->with('translations')->get();
       $texts = TextBlock::where('page_id', $page->id)->with('translations')->get();
       $videos = VideoPlayer::where('page_id', $page->id)->get();
       $clients = OurClient::where('page_id', $page->id)->with('translations')->get();
 
-      return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos', 'comments', 'texts', 'videos', 'clients'));
+      return view('admin.pages.show', compact(
+          'localizations','page', 'galleries', 'infos', 'comments', 'appeals', 'texts',
+          'videos', 'clients'));
     }
 
     public function edit(Page $page): View

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AppealController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\InfoBlockController;
@@ -51,4 +52,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Our Clients
     Route::get('/{slug}/clients/create', [OurClientController::class, 'create'])->name('clients.create');
     Route::resource('/clients', OurClientController::class)->only('store', 'edit', 'update', 'destroy');
+    // Appeals
+    Route::get('/{slug}/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
+    Route::resource('/appeals', AppealController::class)->only('store', 'edit', 'update', 'destroy');
 });
