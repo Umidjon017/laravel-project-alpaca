@@ -4,6 +4,7 @@ use App\Models\Comment;
 use App\Models\Gallery;
 use App\Models\InfoBlock;
 use App\Models\Page;
+use App\Models\VideoPlayer;
 
 if(!function_exists('page_file_path')) {
 
@@ -34,5 +35,13 @@ if(!function_exists('comment_file_path')) {
     function comment_file_path(): string
     {
         return '/' . Comment::FILE_PATH;
+    }
+}
+
+if(!function_exists('videos_file_path')) {
+
+    function videos_file_path(): string
+    {
+        return '/' . VideoPlayer::FILE_PATH;
     }
 }

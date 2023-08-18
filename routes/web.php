@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\InfoBlockController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TextBlockController;
+use App\Http\Controllers\Admin\VideoPlayerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,4 +44,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Text Block
     Route::get('/{slug}/texts/create', [TextBlockController::class, 'create'])->name('texts.create');
     Route::resource('/texts', TextBlockController::class)->only('store', 'edit', 'update', 'destroy');
+    // Video Player
+    Route::get('/{slug}/videos/create', [VideoPlayerController::class, 'create'])->name('videos.create');
+    Route::resource('/videos', VideoPlayerController::class)->only('store', 'edit', 'update', 'destroy');
 });

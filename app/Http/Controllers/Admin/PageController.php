@@ -9,6 +9,7 @@ use App\Models\InfoBlock;
 use App\Models\Localization;
 use App\Models\Page;
 use App\Models\TextBlock;
+use App\Models\VideoPlayer;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -70,8 +71,9 @@ class PageController extends Controller
       $infos = InfoBlock::where('page_id', $page->id)->with('translations')->get();
       $comments = Comment::where('page_id', $page->id)->with('translations')->get();
       $texts = TextBlock::where('page_id', $page->id)->with('translations')->get();
+      $videos = VideoPlayer::where('page_id', $page->id)->get();
 
-      return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos', 'comments', 'texts'));
+      return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos', 'comments', 'texts', 'videos'));
     }
 
     public function edit(Page $page): View
