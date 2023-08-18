@@ -3,6 +3,7 @@
 use App\Models\Comment;
 use App\Models\Gallery;
 use App\Models\InfoBlock;
+use App\Models\OurClient;
 use App\Models\Page;
 use App\Models\VideoPlayer;
 
@@ -43,5 +44,13 @@ if(!function_exists('videos_file_path')) {
     function videos_file_path(): string
     {
         return '/' . VideoPlayer::FILE_PATH;
+    }
+}
+
+if(!function_exists('clients_file_path')) {
+
+    function clients_file_path(): string
+    {
+        return '/' . OurClient::FILE_PATH;
     }
 }

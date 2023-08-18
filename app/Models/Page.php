@@ -67,4 +67,9 @@ class Page extends Model
     {
         return $this->hasMany(VideoPlayer::class, 'page_id');
     }
+
+    public function ourClients(): HasMany
+    {
+        return $this->hasMany(OurClient::class, 'page_id');
+    }
 }

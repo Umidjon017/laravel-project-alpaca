@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Gallery;
 use App\Models\InfoBlock;
 use App\Models\Localization;
+use App\Models\OurClient;
 use App\Models\Page;
 use App\Models\TextBlock;
 use App\Models\VideoPlayer;
@@ -72,8 +73,9 @@ class PageController extends Controller
       $comments = Comment::where('page_id', $page->id)->with('translations')->get();
       $texts = TextBlock::where('page_id', $page->id)->with('translations')->get();
       $videos = VideoPlayer::where('page_id', $page->id)->get();
+      $clients = OurClient::where('page_id', $page->id)->with('translations')->get();
 
-      return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos', 'comments', 'texts', 'videos'));
+      return view('admin.pages.show', compact('localizations', 'page', 'galleries', 'infos', 'comments', 'texts', 'videos', 'clients'));
     }
 
     public function edit(Page $page): View

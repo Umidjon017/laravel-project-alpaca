@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\InfoBlockController;
 use App\Http\Controllers\Admin\LocalizationController;
+use App\Http\Controllers\Admin\OurClientController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TextBlockController;
 use App\Http\Controllers\Admin\VideoPlayerController;
@@ -47,4 +48,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Video Player
     Route::get('/{slug}/videos/create', [VideoPlayerController::class, 'create'])->name('videos.create');
     Route::resource('/videos', VideoPlayerController::class)->only('store', 'edit', 'update', 'destroy');
+    // Our Clients
+    Route::get('/{slug}/clients/create', [OurClientController::class, 'create'])->name('clients.create');
+    Route::resource('/clients', OurClientController::class)->only('store', 'edit', 'update', 'destroy');
 });
