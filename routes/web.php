@@ -38,21 +38,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Gallery
     Route::resource('/gallery', GalleryController::class)->only('store');
     // Info Block
-    Route::get('/{slug}/infos/create', [InfoBlockController::class, 'create'])->name('infos.create');
+    Route::get('/{id}/infos/create', [InfoBlockController::class, 'create'])->name('infos.create');
     Route::resource('/infos', InfoBlockController::class)->only('store', 'edit', 'update', 'destroy');
     // Comments
-    Route::get('/{slug}/comments/create', [CommentController::class, 'create'])->name('comments.create');
+    Route::get('/{id}/comments/create', [CommentController::class, 'create'])->name('comments.create');
     Route::resource('/comments', CommentController::class)->only('store', 'edit', 'update', 'destroy');
     // Text Block
-    Route::get('/{slug}/texts/create', [TextBlockController::class, 'create'])->name('texts.create');
+    Route::get('/{id}/texts/create', [TextBlockController::class, 'create'])->name('texts.create');
     Route::resource('/texts', TextBlockController::class)->only('store', 'edit', 'update', 'destroy');
     // Video Player
-    Route::get('/{slug}/videos/create', [VideoPlayerController::class, 'create'])->name('videos.create');
+    Route::get('/{id}/videos/create', [VideoPlayerController::class, 'create'])->name('videos.create');
     Route::resource('/videos', VideoPlayerController::class)->only('store', 'edit', 'update', 'destroy');
     // Our Clients
-    Route::get('/{slug}/clients/create', [OurClientController::class, 'create'])->name('clients.create');
+    Route::get('/{id}/clients/create', [OurClientController::class, 'create'])->name('clients.create');
     Route::resource('/clients', OurClientController::class)->only('store', 'edit', 'update', 'destroy');
     // Appeals
-    Route::get('/{slug}/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
+    Route::get('/{id}/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
     Route::resource('/appeals', AppealController::class)->only('store', 'edit', 'update', 'destroy');
 });

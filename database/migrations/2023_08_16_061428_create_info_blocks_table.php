@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('info_blocks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('page_id')->constrained('pages')->cascadeOnDelete();
+            $table->foreignId('page_id')->constrained('pages')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('link');
             $table->string('image');
             $table->timestamps();

@@ -39,7 +39,7 @@
     <label for="exampleFormControlSelect1" class="form-label">{{ __('Status') }}(*)</label>
     <select class="form-select" id="exampleFormControlSelect1" required name="status">
       <option value="">{{ __('Select') }} status</option>
-      <option value="1" @isset($page) {{ $page->status == 1 ? "selected" : '' }} @endisset>{{ __('Active') }}</option>
+      <option value="1" selected @isset($page) {{ $page->status == 1 ? "selected" : '' }} @endisset>{{ __('Active') }}</option>
       <option value="2" @isset($page) {{ $page->status == 2 ? "selected" : '' }} @endisset>{{ __('Inactive') }}</option>
     </select>
   </div>

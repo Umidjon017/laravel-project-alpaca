@@ -25,13 +25,40 @@ class Gallery extends Model
         });
     }
 
+    public function getImagePath(): string
+    {
+        return public_path(gallery_file_path()) . $this->image;
+    }
+
+    public function getImageSrc(): string
+    {
+        return asset(gallery_file_path()) . $this->image;
+    }
+
+    public function isPhotoExists(): bool
+    {
+        return file_exists($this->getImagePath());
+    }
+
     public function deleteImage(): bool
     {
-        if (file_exists(self::FILE_PATH.$this->image)) {
-            unlink(self::FILE_PATH.$this->image);
+        if ($this->isPhotoExists()) {
+            unlink($this->getImagePath());
+        }
+        else {
+            return false;
         }
         return true;
     }
+
+
+//    public function deleteImage(): bool
+//    {
+//        if (file_exists(self::FILE_PATH.$this->image)) {
+//            unlink(self::FILE_PATH.$this->image);
+//        }
+//        return true;
+//    }
 
     public function page(): BelongsTo
     {

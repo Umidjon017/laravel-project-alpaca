@@ -36,13 +36,13 @@
                             @endif
                           </td>
                           <td class="d-flex align-items-center">
-                            <a href="{{ route('admin.pages.show', $page->slug) }}" class="btn btn-primary" style="margin-right: 10px;">
+                            <a href="{{ route('admin.pages.show', $page->id) }}" class="btn btn-primary" style="margin-right: 10px;">
                               View
                             </a>
-                            <a href="{{ route('admin.pages.edit', $page->slug) }}" class="btn btn-success" style="margin-right: 10px;">
+                            <a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-success" style="margin-right: 10px;">
                               Edit
                             </a>
-                            <form action="{{ route('admin.pages.destroy', $page->slug) }}" method="POST">
+                            <form action="{{ route('admin.pages.destroy', $page->id) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-danger">Delete</button>

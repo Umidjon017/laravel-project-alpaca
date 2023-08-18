@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('slug');
             $table->string('image')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();

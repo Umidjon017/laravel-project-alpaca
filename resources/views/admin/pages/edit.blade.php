@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Edit Page</h6>
-                    <form action="{{ route('admin.pages.update', $page->slug) }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+                    <form action="{{ route('admin.pages.update', $page->id) }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                         @csrf
                         @method('PUT')
                         @include('admin.pages._form')

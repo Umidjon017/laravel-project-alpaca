@@ -7,17 +7,14 @@ use App\Models\Appeal;
 use App\Models\Comment;
 use App\Models\Gallery;
 use App\Models\InfoBlock;
-use App\Models\Localization;
 use App\Models\OurClient;
 use App\Models\Page;
 use App\Models\TextBlock;
 use App\Models\VideoPlayer;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -35,19 +32,15 @@ class PageController extends Controller
         return view('admin.pages.create', compact('localizations'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-      $data = $request->all();
-
-      try{
+        try{
           DB::transaction(function() use ($request) {
+              $data = $request->all();
+
             if ($request->hasFile('image')) {
               $data['image'] = $this->fileUpload($request->file('image'));
             }
-
-            $localizationId = Localization::first()->id;
-
-            $data['slug'] = Str::slug($request->translations[$localizationId]['title']);
 
             $page = Page::create($data);
 
@@ -91,14 +84,24 @@ class PageController extends Controller
 
     public function destroy(Page $page)
     {
-        $page->delete();
-        $page->deleteImage();
-        if (count($page->galleries()->get()) > 0 || count($page->infos()->get()) > 0 || count($page->comments()->get()) > 0)
-        {
-            Gallery::where('page_id', $page->id)->delete();
-            InfoBlock::where('page_id', $page->id)->delete();
-            Comment::where('page_id', $page->id)->delete(0);
+        if ($page->image == null) {
+            $page->delete();
+        } else {
+            $page->delete();
+            $page->deleteImage();
+
+            foreach ($page->galleries as $gallery) {
+                unlink(public_path(gallery_file_path()) . $gallery->images);
+            }
         }
+//        if (count($page->galleries()->get()) > 0 || count($page->infos()->get()) > 0 || count($page->comments()->get()) > 0)
+//        {
+//            Gallery::where('page_id', $page->id)->delete();
+//            InfoBlock::where('page_id', $page->id)->delete();
+//            Comment::where('page_id', $page->id)->delete(0);
+//        }
+
+        return redirect()->back()->with('success', 'Page deleted successfully');
     }
 
     public function fileUpload($file): string
