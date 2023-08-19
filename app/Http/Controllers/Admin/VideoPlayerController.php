@@ -50,8 +50,12 @@ class VideoPlayerController extends Controller
 
     public function destroy(VideoPlayer $video)
     {
-        $video->delete();
-        $video->deletePoster();
+        if ($video->video_poster == null) {
+            $video->delete();
+        } else {
+            $video->delete();
+            $video->deletePoster();
+        }
 
         return redirect()->back()->with('success', 'Video Player deleted successfully');
     }
@@ -59,7 +63,7 @@ class VideoPlayerController extends Controller
     public function fileUpload($file): string
     {
         $filename = time().'_'.$file->getClientOriginalName();
-        $file->move(public_path(VideoPlayer::FILE_PATH), $filename);
+        $file->move(public_path(videos_file_path()), $filename);
         return $filename;
     }
 }

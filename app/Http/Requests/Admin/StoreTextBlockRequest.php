@@ -11,9 +11,9 @@ class StoreTextBlockRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,17 @@ class StoreTextBlockRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'translations.*.text' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'translations.*.text.required' => 'The text field is required.'
         ];
     }
 }

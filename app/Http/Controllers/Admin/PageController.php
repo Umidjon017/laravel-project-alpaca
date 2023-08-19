@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UpdatePageRequest;
 use App\Models\Appeal;
 use App\Models\Comment;
 use App\Models\Gallery;
@@ -82,24 +83,44 @@ class PageController extends Controller
         return view('admin.pages.edit', compact('localizations', 'page'));
     }
 
+    public function update(UpdatePageRequest $request, Page $page)
+    {
+        try {
+            DB::transaction(function() use ($request, $page){
+                $data = $request->all();
+
+                if ($request->hasFile('image')) {
+                    $page->deleteImage();
+                    $data['image'] = $this->fileUpload($request->file('image'));
+                }
+
+                $page->update($data);
+
+                foreach($request->translations as $key => $value){
+                    $page->translations()->updateOrCreate(['id' => $value['id']], [
+                        'localization_id'=>$key,
+                        'title'=>$value['title'],
+                        'content'=>$value['content'],
+                    ]);
+                }
+            });
+
+        } catch(\Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('admin.pages.index')->with('success', 'Page edited successfully!');
+    }
+
     public function destroy(Page $page)
     {
         if ($page->image == null) {
-            $page->delete();
+            $this->deletePageWithRelations($page);
         } else {
-            $page->delete();
+            $this->deletePageWithRelations($page);
             $page->deleteImage();
 
-            foreach ($page->galleries as $gallery) {
-                unlink(public_path(gallery_file_path()) . $gallery->images);
-            }
         }
-//        if (count($page->galleries()->get()) > 0 || count($page->infos()->get()) > 0 || count($page->comments()->get()) > 0)
-//        {
-//            Gallery::where('page_id', $page->id)->delete();
-//            InfoBlock::where('page_id', $page->id)->delete();
-//            Comment::where('page_id', $page->id)->delete(0);
-//        }
 
         return redirect()->back()->with('success', 'Page deleted successfully');
     }
@@ -109,5 +130,37 @@ class PageController extends Controller
       $filename = time().'_'.$file->getClientOriginalName();
       $file->move(public_path(Page::FILE_PATH), $filename);
       return $filename;
+    }
+
+    /**
+     * @param Page $page
+     * @return void
+     */
+    public function deletePageWithRelations(Page $page): void
+    {
+        foreach ($page->galleries as $gallery) {
+            if (file_exists(public_path(gallery_file_path()) . $gallery->images)) {
+                unlink(public_path(gallery_file_path()) . $gallery->images);
+            }
+        }
+        foreach ($page->infos as $info) {
+            if (file_exists(public_path(info_file_path()) . $info->image)) {
+                unlink(public_path(info_file_path()) . $info->image);
+            }
+        }
+        foreach ($page->comments as $comment) {
+            if (file_exists(public_path(comment_file_path()) . $comment->logo)) {
+                unlink(public_path(comment_file_path()) . $comment->logo);
+            }
+            if (file_exists(public_path(comment_file_path()) . $comment->image)) {
+                unlink(public_path(comment_file_path()) . $comment->image);
+            }
+        }
+        foreach ($page->videoPlayers as $video) {
+            if (file_exists(public_path(videos_file_path()) . $video->video_poster)) {
+                unlink(public_path(videos_file_path()) . $video->video_poster);
+            }
+        }
+        $page->delete();
     }
 }

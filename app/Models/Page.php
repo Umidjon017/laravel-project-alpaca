@@ -19,11 +19,6 @@ class Page extends Model
         return public_path(page_file_path()) . $this->image;
     }
 
-    public function getImageSrc(): string
-    {
-        return asset(page_file_path()) . $this->image;
-    }
-
     public function isPhotoExists(): bool
     {
         return file_exists($this->getImagePath());

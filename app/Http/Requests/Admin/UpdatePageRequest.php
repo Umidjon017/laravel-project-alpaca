@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTextBlockRequest extends FormRequest
+class UpdatePageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,8 @@ class UpdateTextBlockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'translations.*.text' => 'required',
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'translations.*.text.required' => 'The text field is required.'
+            'translations' => 'nullable',
+            'image' => 'nullable'
         ];
     }
 }

@@ -48,11 +48,13 @@
     <input type="file" name="image" multiple class="form-control" @isset($info) value="{{ $info->image }}" @endisset>
 </div>
 
-<div class="raw">
-    <img src="{{ asset(info_file_path().$info->image) }}" alt="Info image">
-</div>
+@isset($info)
+    <div class="raw">
+        <img src="{{ asset(info_file_path().$info->image) }}" alt="Info image">
+    </div>
+@endisset
 
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-between mt-3">
     <button type="submit" class="btn btn-primary me-2"> @if(isset($info)) {{ __('Save') }} @else {{ __('Add') }} @endif </button>
 </div>
 

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('localization_id')->constrained('localizations')->cascadeOnDelete();
             $table->text('text');
             $table->string('full_name');
-            $table->string('position');
+            $table->string('position')->nullable();
             $table->timestamps();
         });
     }

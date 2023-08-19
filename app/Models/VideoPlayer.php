@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
 
 class VideoPlayer extends Model
 {
@@ -14,21 +15,23 @@ class VideoPlayer extends Model
 
     const FILE_PATH = 'admin/images/pages/videos/';
 
-    protected static function boot()
+    public function getPosterPath(): string
     {
-        parent::boot();
+        return public_path(videos_file_path()) . $this->video_poster;
+    }
 
-        static::deleting(function($item) {
-            if(file_exists(self::FILE_PATH.$item->video_poster)){
-                unlink(self::FILE_PATH.$item->video_poster);
-            }
-        });
+    public function isPosterExists(): bool
+    {
+        return file_exists($this->getPosterPath());
     }
 
     public function deletePoster(): bool
     {
-        if (file_exists(self::FILE_PATH.$this->video_poster)) {
-            unlink(self::FILE_PATH.$this->video_poster);
+        if ($this->isPosterExists()) {
+            unlink($this->getPosterPath());
+        }
+        else {
+            return false;
         }
         return true;
     }

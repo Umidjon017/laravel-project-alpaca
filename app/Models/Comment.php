@@ -15,24 +15,23 @@ class Comment extends Model
 
     const FILE_PATH = 'admin/images/pages/comments/';
 
-    protected static function boot()
+    public function getFilePath(string $file): string
     {
-        parent::boot();
-
-        static::deleting(function($item) {
-            if(file_exists(self::FILE_PATH.$item->logo)){
-                unlink(self::FILE_PATH.$item->logo);
-            }
-            if(file_exists(self::FILE_PATH.$item->image)){
-                unlink(self::FILE_PATH.$item->image);
-            }
-        });
+        return public_path(comment_file_path()) . $this->{$file};
     }
 
-    public function deleteFile(string $name): bool
+    public function isFileExists(string $file): bool
     {
-        if (file_exists(self::FILE_PATH.$this->{$name})) {
-            unlink(self::FILE_PATH.$this->{$name});
+        return file_exists($this->getFilePath($file));
+    }
+
+    public function deleteFile(string $file): bool
+    {
+        if ($this->isFileExists($file)) {
+            unlink($this->getFilePath($file));
+        }
+        else {
+            return false;
         }
         return true;
     }

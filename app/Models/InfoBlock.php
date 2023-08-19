@@ -15,21 +15,23 @@ class InfoBlock extends Model
 
     const FILE_PATH = 'admin/images/pages/infos/';
 
-    protected static function boot()
+    public function getImagePath(): string
     {
-        parent::boot();
+        return public_path(info_file_path()) . $this->image;
+    }
 
-        static::deleting(function($item) {
-            if(file_exists(self::FILE_PATH.$item->image)){
-                unlink(self::FILE_PATH.$item->image);
-            }
-        });
+    public function isPhotoExists(): bool
+    {
+        return file_exists($this->getImagePath());
     }
 
     public function deleteImage(): bool
     {
-        if (file_exists(self::FILE_PATH.$this->image)) {
-            unlink(self::FILE_PATH.$this->image);
+        if ($this->isPhotoExists()) {
+            unlink($this->getImagePath());
+        }
+        else {
+            return false;
         }
         return true;
     }

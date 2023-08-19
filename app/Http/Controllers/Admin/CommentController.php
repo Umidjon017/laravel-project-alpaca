@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreCommentRequest;
+use App\Http\Requests\Admin\UpdateCommentRequest;
 use App\Models\Comment;
 use App\Models\Page;
 use Illuminate\Contracts\View\View;
@@ -20,7 +22,7 @@ class CommentController extends Controller
         return view('admin.pages.comments.create', compact('localizations', 'page'));
     }
 
-    public function store(Request $request)
+    public function store(StoreCommentRequest $request)
     {
         try{
             DB::transaction(function() use ($request) {
@@ -60,7 +62,7 @@ class CommentController extends Controller
         return view('admin.pages.comments.edit', compact('localizations','comment'));
     }
 
-    public function update(Request $request, Comment $comment): RedirectResponse
+    public function update(UpdateCommentRequest $request, Comment $comment): RedirectResponse
     {
         try {
             DB::transaction(function() use ($request, $comment){
@@ -97,9 +99,13 @@ class CommentController extends Controller
 
     public function destroy(Comment $comment): RedirectResponse
     {
-        $comment->delete();
-        $comment->deleteFile('logo');
-        $comment->deleteFile('image');
+        if ($comment->image == null || $comment->logo == null) {
+            $comment->delete();
+        } else {
+            $comment->delete();
+            $comment->deleteFile('logo');
+            $comment->deleteFile('image');
+        }
 
         return redirect()->back()->with('success', 'Comment block deleted successfully!');
     }

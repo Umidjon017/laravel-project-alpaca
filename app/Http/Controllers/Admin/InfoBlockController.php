@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreInfoBlockRequest;
+use App\Http\Requests\Admin\UpdateInfoBlockRequest;
 use App\Models\InfoBlock;
 use App\Models\Localization;
 use App\Models\Page;
@@ -21,7 +23,7 @@ class InfoBlockController extends Controller
         return view('admin.pages.infos.create', compact('localizations', 'page'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(StoreInfoBlockRequest $request): RedirectResponse
     {
         try{
             DB::transaction(function() use ($request) {
@@ -57,7 +59,7 @@ class InfoBlockController extends Controller
         return view('admin.pages.infos.edit', compact('localizations','info'));
     }
 
-    public function update(Request $request, InfoBlock $info): RedirectResponse
+    public function update(UpdateInfoBlockRequest $request, InfoBlock $info): RedirectResponse
     {
         try {
             DB::transaction(function() use ($request, $info){
@@ -89,8 +91,12 @@ class InfoBlockController extends Controller
 
     public function destroy(InfoBlock $info): RedirectResponse
     {
-        $info->delete();
-        $info->deleteImage();
+        if ($info->image == null) {
+            $info->delete();
+        } else {
+            $info->delete();
+            $info->deleteImage();
+        }
 
         return redirect()->back()->with('success', 'Info block deleted successfully!');
     }

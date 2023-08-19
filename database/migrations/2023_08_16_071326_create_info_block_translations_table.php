@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('info_block_id')->constrained('info_blocks')->cascadeOnDelete();
             $table->foreignId('localization_id')->constrained('localizations')->cascadeOnDelete();
-            $table->string('title');
-            $table->text('description');
-            $table->longText('body');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->longText('body')->nullable();
             $table->timestamps();
         });
     }

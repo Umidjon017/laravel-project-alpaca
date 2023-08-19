@@ -51,13 +51,15 @@
     <input type="file" name="image" class="form-control" @isset($comment) value="{{ $comment->image }}" @endisset>
 </div>
 
+@isset($comment)
 <div class="raw">
     <img src="{{ asset(comment_file_path().$comment->logo) }}" alt="Comment logo">
 
     <img src="{{ asset(comment_file_path().$comment->image) }}" alt="Comment image">
 </div>
+@endisset
 
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-between mt-3">
     <button type="submit" class="btn btn-primary me-2"> @if(isset($comment)) {{ __('Save') }} @else {{ __('Add') }} @endif </button>
 </div>
 

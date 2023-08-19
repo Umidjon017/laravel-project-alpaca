@@ -30,11 +30,6 @@ class Gallery extends Model
         return public_path(gallery_file_path()) . $this->image;
     }
 
-    public function getImageSrc(): string
-    {
-        return asset(gallery_file_path()) . $this->image;
-    }
-
     public function isPhotoExists(): bool
     {
         return file_exists($this->getImagePath());
