@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOurClientRequest extends FormRequest
+class UpdateOurClientLogoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,19 +21,10 @@ class StoreOurClientRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'translations.*.title' => 'required',
-            'translations.*.description' => 'required',
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'translations.*.title' => 'Title is required',
-            'translations.*.description' => 'Description is required',
+            //
         ];
     }
 }

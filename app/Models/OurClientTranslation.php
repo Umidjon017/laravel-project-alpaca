@@ -10,7 +10,7 @@ class OurClientTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['our_client_id', 'localization_id', 'full_name', 'position', 'text'];
+    protected $fillable = ['our_client_id', 'localization_id', 'title', 'description'];
 
     public function OurClient(): BelongsTo
     {

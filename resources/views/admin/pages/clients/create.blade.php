@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Add Clients</h6>
+                    <h6 class="card-title">Add Client Block</h6>
                     <form action="{{ route('admin.clients.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                         @csrf
                         @include('admin.pages.clients._form')

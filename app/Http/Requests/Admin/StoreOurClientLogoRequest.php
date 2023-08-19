@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOurClientRequest extends FormRequest
+class StoreOurClientLogoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,15 @@ class StoreOurClientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'translations.*.title' => 'required',
-            'translations.*.description' => 'required',
+            'logo' => 'required|mimes:png,jpg,jpeg,gif'
         ];
     }
 
     public function messages(): array
     {
         return [
-            'translations.*.title' => 'Title is required',
-            'translations.*.description' => 'Description is required',
+            'logo.required' => 'Logo is required',
+            'logo.mimes' => 'Logo must be a png, jpg, jpeg or gif'
         ];
     }
 }

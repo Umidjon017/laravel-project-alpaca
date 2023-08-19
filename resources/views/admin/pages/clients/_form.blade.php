@@ -12,20 +12,16 @@
         @foreach ($localizations as $locale)
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Full name') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][full_name]" class="form-control @error('translations.*.full_name') is-invalid @enderror" @isset($client) value="{{ $client->getTranslatedAttributes($locale->id)->full_name }}" @endisset placeholder="Enter full_name">
-                    @error('translations.*.full_name')
+                    <label class="form-label">{{ __('Title') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($client) value="{{ $client->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Enter title">
+                    @error('translations.*.title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Text') }}</label>
-                    <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][text]" rows="10"> @isset($client) {{ $client->getTranslatedAttributes($locale->id)->text }} @endisset </textarea>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">{{ __('Position') }}</label>
-                    <input type="text" name="translations[{{ $locale->id }}][position]" class="form-control @error('translations.*.position') is-invalid @enderror" @isset($client) value="{{ $client->getTranslatedAttributes($locale->id)->position }}" @endisset placeholder="Enter position">
-                    @error('translations.*.position')
+                    <label class="form-label">{{ __('Description (*)') }}</label>
+                    <textarea class="form-control ckeditor @error('translations.*.description') is-invalid @enderror" name="translations[{{ $locale->id }}][description]" rows="10"> @isset($client) {{ $client->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
+                    @error('translations.*.description')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
@@ -41,25 +37,7 @@
     </div>
 </div>
 
-<div class="mt-3 mb-3">
-    <label for="logo" class="form-label">{{ __('Logo') }}</label>
-    <input type="file" name="logo" class="form-control" @isset($client) value="{{ $client->logo }}" @endisset>
-</div>
-
-<div class="mt-3 mb-3">
-    <label for="image" class="form-label">{{ __('Image') }}</label>
-    <input type="file" name="image" class="form-control" @isset($client) value="{{ $client->image }}" @endisset>
-</div>
-
-@isset($client)
-    <div class="raw">
-        <img src="{{ asset(clients_file_path().$client->logo) }}" alt="Client logo">
-
-        <img src="{{ asset(clients_file_path().$client->image) }}" alt="Client image">
-    </div>
-@endisset
-
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-between mt-3">
     <button type="submit" class="btn btn-primary me-2"> @if(isset($client)) {{ __('Save') }} @else {{ __('Add') }} @endif </button>
 </div>
 

@@ -11,31 +11,7 @@ class OurClient extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'image', 'logo'];
-
-    const FILE_PATH = 'admin/images/pages/clients/';
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function($item) {
-            if(file_exists(self::FILE_PATH.$item->image)){
-                unlink(self::FILE_PATH.$item->image);
-            }
-            if(file_exists(self::FILE_PATH.$item->logo)){
-                unlink(self::FILE_PATH.$item->logo);
-            }
-        });
-    }
-
-    public function deleteFile(string $name): bool
-    {
-        if (file_exists(self::FILE_PATH.$this->{$name})) {
-            unlink(self::FILE_PATH.$this->{$name});
-        }
-        return true;
-    }
+    protected $fillable = ['page_id'];
 
     public function getTranslatedAttributes($localeId)
     {

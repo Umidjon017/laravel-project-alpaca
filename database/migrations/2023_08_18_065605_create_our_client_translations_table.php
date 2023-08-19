@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('our_client_id')->constrained('our_clients')->cascadeOnDelete();
             $table->foreignId('localization_id')->constrained('localizations')->cascadeOnDelete();
-            $table->string('full_name');
-            $table->string('position');
-            $table->text('text');
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ class UpdateOurClientRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,10 +21,19 @@ class UpdateOurClientRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'translations.*.title' => 'required',
+            'translations.*.description' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'translations.*.title' => 'Title is required',
+            'translations.*.description' => 'Description is required',
         ];
     }
 }

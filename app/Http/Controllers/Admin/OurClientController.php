@@ -26,23 +26,14 @@ class OurClientController extends Controller
             DB::transaction(function() use ($request) {
                 $data = $request->all();
 
-                if ($request->hasFile('logo')) {
-                    $data['logo'] = $this->fileUpload($request->file('logo'));
-                }
-
-                if ($request->hasFile('image')) {
-                    $data['image'] = $this->fileUpload($request->file('image'));
-                }
-
                 $data['page_id'] = $request->page_id;
                 $info = OurClient::create($data);
 
                 foreach($request->translations as $key=>$value){
                     $info->translations()->create([
                         'localization_id'=>$key,
-                        'text'=>$value['text'],
-                        'full_name'=>$value['full_name'],
-                        'position'=>$value['position'],
+                        'title'=>$value['title'],
+                        'description'=>$value['description'],
                     ]);
                 }
             });
@@ -66,24 +57,13 @@ class OurClientController extends Controller
             DB::transaction(function() use ($request, $client){
                 $data = $request->all();
 
-                if ($request->hasFile('logo')) {
-                    $client->deleteFile('logo');
-                    $data['logo'] = $this->fileUpload($request->file('logo'));
-                }
-
-                if ($request->hasFile('image')) {
-                    $client->deleteFile('image');
-                    $data['image'] = $this->fileUpload($request->file('image'));
-                }
-
                 $client->update($data);
 
                 foreach($request->translations as $key => $value){
                     $client->translations()->updateOrCreate(['id' => $value['id']], [
                         'localization_id'=>$key,
-                        'text'=>$value['text'],
-                        'full_name'=>$value['full_name'],
-                        'position'=>$value['position'],
+                        'title'=>$value['title'],
+                        'description'=>$value['description'],
                     ]);
                 }
             });
@@ -98,16 +78,7 @@ class OurClientController extends Controller
     public function destroy(OurClient $client)
     {
         $client->delete();
-        $client->deleteFile('logo');
-        $client->deleteFile('image');
 
         return redirect()->back()->with('success', 'Our client block deleted successfully!');
-    }
-
-    public function fileUpload($file): string
-    {
-        $filename = time().'_'.$file->getClientOriginalName();
-        $file->move(public_path(OurClient::FILE_PATH), $filename);
-        return $filename;
     }
 }

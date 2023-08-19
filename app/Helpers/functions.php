@@ -5,6 +5,7 @@ use App\Models\DirectSpeech;
 use App\Models\Gallery;
 use App\Models\InfoBlock;
 use App\Models\OurClient;
+use App\Models\OurClientLogo;
 use App\Models\Page;
 use App\Models\VideoPlayer;
 
@@ -48,11 +49,11 @@ if(!function_exists('videos_file_path')) {
     }
 }
 
-if(!function_exists('clients_file_path')) {
+if(!function_exists('client_logos_file_path')) {
 
-    function clients_file_path(): string
+    function client_logos_file_path(): string
     {
-        return '/' . OurClient::FILE_PATH;
+        return '/' . OurClientLogo::FILE_PATH;
     }
 }
 
