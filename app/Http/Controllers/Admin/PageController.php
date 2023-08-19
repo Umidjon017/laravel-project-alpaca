@@ -139,8 +139,8 @@ class PageController extends Controller
     public function deletePageWithRelations(Page $page): void
     {
         foreach ($page->galleries as $gallery) {
-            if (file_exists(public_path(gallery_file_path()) . $gallery->images)) {
-                unlink(public_path(gallery_file_path()) . $gallery->images);
+            if (file_exists(public_path(gallery_file_path()) . $gallery->image)) {
+                unlink(public_path(gallery_file_path()) . $gallery->image);
             }
         }
         foreach ($page->infos as $info) {

@@ -10,20 +10,9 @@ class Gallery extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'images'];
+    protected $fillable = ['page_id', 'image'];
 
     const FILE_PATH = 'admin/images/pages/gallery/';
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function($item) {
-            if(file_exists(self::FILE_PATH.$item->image)){
-                unlink(self::FILE_PATH.$item->image);
-            }
-        });
-    }
 
     public function getImagePath(): string
     {
@@ -45,15 +34,6 @@ class Gallery extends Model
         }
         return true;
     }
-
-
-//    public function deleteImage(): bool
-//    {
-//        if (file_exists(self::FILE_PATH.$this->image)) {
-//            unlink(self::FILE_PATH.$this->image);
-//        }
-//        return true;
-//    }
 
     public function page(): BelongsTo
     {

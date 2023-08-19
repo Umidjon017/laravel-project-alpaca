@@ -36,7 +36,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Pages
     Route::resource('/pages', PageController::class);
     // Gallery
-    Route::resource('/gallery', GalleryController::class)->only('store');
+    Route::resource('/gallery', GalleryController::class)->only('store', 'update', 'destroy');
     // Info Block
     Route::get('/{id}/infos/create', [InfoBlockController::class, 'create'])->name('infos.create');
     Route::resource('/infos', InfoBlockController::class)->only('store', 'edit', 'update', 'destroy');
