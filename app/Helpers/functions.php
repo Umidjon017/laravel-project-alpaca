@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Comment;
+use App\Models\DirectSpeech;
 use App\Models\Gallery;
 use App\Models\InfoBlock;
 use App\Models\OurClient;
@@ -52,5 +53,13 @@ if(!function_exists('clients_file_path')) {
     function clients_file_path(): string
     {
         return '/' . OurClient::FILE_PATH;
+    }
+}
+
+if(!function_exists('direct_speech_file_path')) {
+
+    function direct_speech_file_path(): string
+    {
+        return '/' . DirectSpeech::FILE_PATH;
     }
 }

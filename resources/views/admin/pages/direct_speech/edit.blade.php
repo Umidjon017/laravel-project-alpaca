@@ -7,10 +7,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Add Comment Block</h6>
-                    <form action="{{ route('admin.comments.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+                    <h6 class="card-title">Edit Direct Speech Block</h6>
+                    <form action="{{ route('admin.direct_speech.update', $directSpeech->id) }}" enctype="multipart/form-data" method="POST" class="forms-sample">
                         @csrf
-                        @include('admin.pages.comments._form')
+                        @method('PUT')
+                        @include('admin.pages.direct_speech._form')
                     </form>
                 </div>
             </div>

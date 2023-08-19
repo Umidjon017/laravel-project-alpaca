@@ -3,26 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreCommentRequest;
-use App\Http\Requests\Admin\UpdateCommentRequest;
-use App\Models\Comment;
+use App\Http\Requests\Admin\StoreDirectSpeechRequest;
+use App\Http\Requests\Admin\UpdateDirectSpeechRequest;
+use App\Models\DirectSpeech;
 use App\Models\Page;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-class CommentController extends Controller
+class DirectSpeechController extends Controller
 {
     public function create(Page $page): View
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.comments.create', compact('localizations', 'page'));
+        return view('admin.pages.direct_speech.create', compact('localizations', 'page'));
     }
 
-    public function store(StoreCommentRequest $request)
+    public function store(StoreDirectSpeechRequest $request)
     {
         try{
             DB::transaction(function() use ($request) {
@@ -37,7 +35,7 @@ class CommentController extends Controller
                 }
 
                 $data['page_id'] = $request->page_id;
-                $info = Comment::create($data);
+                $info = DirectSpeech::create($data);
 
                 foreach($request->translations as $key=>$value){
                     $info->translations()->create([
@@ -52,36 +50,36 @@ class CommentController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Comment block added successfully!');
+        return redirect()->route('admin.pages.index')->with('success', 'Direct speech block added successfully!');
     }
 
-    public function edit(Comment $comment): View
+    public function edit(DirectSpeech $directSpeech)
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.comments.edit', compact('localizations','comment'));
+        return view('admin.pages.direct_speech.edit', compact('localizations','directSpeech'));
     }
 
-    public function update(UpdateCommentRequest $request, Comment $comment): RedirectResponse
+    public function update(UpdateDirectSpeechRequest $request, DirectSpeech $directSpeech)
     {
         try {
-            DB::transaction(function() use ($request, $comment){
+            DB::transaction(function() use ($request, $directSpeech){
                 $data = $request->all();
 
                 if ($request->hasFile('logo')) {
-                    $comment->deleteFile('logo');
+                    $directSpeech->deleteFile('logo');
                     $data['logo'] = $this->fileUpload($request->file('logo'));
                 }
 
                 if ($request->hasFile('image')) {
-                    $comment->deleteFile('image');
+                    $directSpeech->deleteFile('image');
                     $data['image'] = $this->fileUpload($request->file('image'));
                 }
 
-                $comment->update($data);
+                $directSpeech->update($data);
 
                 foreach($request->translations as $key => $value){
-                    $comment->translations()->updateOrCreate(['id' => $value['id']], [
+                    $directSpeech->translations()->updateOrCreate(['id' => $value['id']], [
                         'localization_id'=>$key,
                         'text'=>$value['text'],
                         'full_name'=>$value['full_name'],
@@ -94,21 +92,21 @@ class CommentController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Comment block edited successfully!');
+        return redirect()->route('admin.pages.index')->with('success', 'Direct speech block edited successfully!');
     }
 
-    public function destroy(Comment $comment): RedirectResponse
+    public function destroy(DirectSpeech $directSpeech)
     {
-        if ($comment->logo == null) {
-            $comment->delete();
-            $comment->deleteFile('image');
-        } elseif ($comment->image == null) {
-            $comment->delete();
-            $comment->deleteFile('logo');
+        if ($directSpeech->logo == null) {
+            $directSpeech->delete();
+            $directSpeech->deleteFile('image');
+        } elseif ($directSpeech->image == null) {
+            $directSpeech->delete();
+            $directSpeech->deleteFile('logo');
         } else {
-            $comment->delete();
-            $comment->deleteFile('logo');
-            $comment->deleteFile('image');
+            $directSpeech->delete();
+            $directSpeech->deleteFile('logo');
+            $directSpeech->deleteFile('image');
         }
 
         return redirect()->back()->with('success', 'Comment block deleted successfully!');
@@ -117,7 +115,7 @@ class CommentController extends Controller
     public function fileUpload($file): string
     {
         $filename = time().'_'.$file->getClientOriginalName();
-        $file->move(public_path(Comment::FILE_PATH), $filename);
+        $file->move(public_path(DirectSpeech::FILE_PATH), $filename);
         return $filename;
     }
 }

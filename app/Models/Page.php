@@ -27,7 +27,7 @@ class Page extends Model
     public function deleteImage(): bool
     {
         if ($this->isPhotoExists()) {
-            unlink($this->getImagePath());
+            @unlink($this->getImagePath());
         }
         else {
             return false;
@@ -68,5 +68,10 @@ class Page extends Model
     public function ourClients(): HasMany
     {
         return $this->hasMany(OurClient::class, 'page_id');
+    }
+
+    public function directSpeeches(): HasMany
+    {
+        return $this->hasMany(DirectSpeech::class, 'page_id');
     }
 }

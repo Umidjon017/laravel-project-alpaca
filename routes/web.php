@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AppealController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\DirectSpeechController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\InfoBlockController;
 use App\Http\Controllers\Admin\LocalizationController;
@@ -55,4 +56,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Appeals
     Route::get('/{id}/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
     Route::resource('/appeals', AppealController::class)->only('store', 'edit', 'update', 'destroy');
+    // Direct Speech
+    Route::get('/{id}/direct_speech/create', [DirectSpeechController::class, 'create'])->name('direct_speech.create');
+    Route::resource('/direct_speech', DirectSpeechController::class)->only('store', 'edit', 'update', 'destroy');
 });
