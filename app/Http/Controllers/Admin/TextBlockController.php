@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreTextBlockRequest;
+use App\Http\Requests\Admin\UpdateTextBlockRequest;
 use App\Models\Localization;
 use App\Models\Page;
 use App\Models\TextBlock;
@@ -21,7 +23,7 @@ class TextBlockController extends Controller
         return view('admin.pages.texts.create', compact('localizations', 'page'));
     }
 
-    public function store(Request $request)
+    public function store(StoreTextBlockRequest $request)
     {
         try{
             DB::transaction(function() use ($request) {
@@ -51,7 +53,7 @@ class TextBlockController extends Controller
         return view('admin.pages.texts.edit', compact('localizations','text'));
     }
 
-    public function update(Request $request, TextBlock $text): RedirectResponse
+    public function update(UpdateTextBlockRequest $request, TextBlock $text): RedirectResponse
     {
         try {
             DB::transaction(function() use ($request, $text){

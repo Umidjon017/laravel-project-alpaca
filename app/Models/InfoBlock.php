@@ -28,7 +28,7 @@ class InfoBlock extends Model
     public function deleteImage(): bool
     {
         if ($this->isPhotoExists()) {
-            unlink($this->getImagePath());
+            @unlink($this->getImagePath());
         }
         else {
             return false;

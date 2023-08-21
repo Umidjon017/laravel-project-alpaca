@@ -28,7 +28,7 @@ class Comment extends Model
     public function deleteFile(string $file): bool
     {
         if ($this->isFileExists($file)) {
-            unlink($this->getFilePath($file));
+            @unlink($this->getFilePath($file));
         }
         else {
             return false;

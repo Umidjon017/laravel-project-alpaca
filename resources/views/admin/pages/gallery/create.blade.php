@@ -14,10 +14,10 @@
 
                     <div class="form-group">
                         <label for="image-upload" id="image-label">
-                            {{ __('Upload or drop your images here') }}
+                            {{ __('Upload or drop your images here (*)') }}
                         </label>
                         <div id="image-preview" class="image-preview">
-                            <input type="file" name="images[]" class="form-control" multiple/>
+                            <input type="file" name="images[]" class="form-control" multiple required/>
                         </div>
                         @error('images')
                         <div class="alert alert-danger">

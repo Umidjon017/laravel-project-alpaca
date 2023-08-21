@@ -28,7 +28,7 @@ class VideoPlayer extends Model
     public function deletePoster(): bool
     {
         if ($this->isPosterExists()) {
-            unlink($this->getPosterPath());
+            @unlink($this->getPosterPath());
         }
         else {
             return false;

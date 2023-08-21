@@ -24,14 +24,15 @@ class StoreGalleryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required',
+            'image' => ['required', 'image'],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'image' => 'Image is required',
+            'image.required' => 'Image is required',
+            'image.image' => 'File must be an image',
         ];
     }
 }

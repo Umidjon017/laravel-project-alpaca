@@ -1,11 +1,11 @@
 <div class="form-group">
-    <label for="video-poster">
-        {{ __('Upload or drop video poster here') }}
+    <label for="video-player">
+        {{ __('Enter video url (*)') }}
     </label>
-    <div id="video-poster" class="image-preview">
-        <input type="file" name="video_poster" class="form-control" @isset($video) value="{{$video->video_poster}}" @endisset />
+    <div id="video-player" class="video-player-preview">
+        <input type="text" name="video_url" class="form-control" @isset($video) value="{{$video->video_url}}" @endisset required />
     </div>
-    @error('video_poster')
+    @error('video_url')
     <div class="alert alert-danger">
         {{ $message }}
     </div>
@@ -15,13 +15,13 @@
 <br>
 
 <div class="form-group">
-    <label for="video-player">
-        {{ __('Enter video url') }}
+    <label for="video-poster">
+        {{ __('Upload or drop video poster here') }}
     </label>
-    <div id="video-player" class="video-player-preview">
-        <input type="text" name="video_url" class="form-control" @isset($video) value="{{$video->video_url}}" @endisset />
+    <div id="video-poster" class="image-preview">
+        <input type="file" name="video_poster" class="form-control" @isset($video) value="{{$video->video_poster}}" @endisset />
     </div>
-    @error('video_url')
+    @error('video_poster')
     <div class="alert alert-danger">
         {{ $message }}
     </div>
