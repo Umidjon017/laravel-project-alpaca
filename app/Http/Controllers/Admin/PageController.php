@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdatePageRequest;
 use App\Models\Appeal;
+use App\Models\CheckboxBlock;
 use App\Models\Comment;
 use App\Models\DirectSpeech;
 use App\Models\Gallery;
@@ -74,10 +75,11 @@ class PageController extends Controller
       $clients = OurClient::where('page_id', $page->id)->with('translations')->get();
       $ourClientLogos = OurClientLogo::where('page_id', $page->id)->get();
       $directSpeeches = DirectSpeech::where('page_id', $page->id)->with('translations')->get();
+      $checkboxBlocks = CheckboxBlock::where('page_id', $page->id)->with('translations')->get();
 
       return view('admin.pages.show', compact(
           'localizations','page', 'galleries', 'infos', 'comments', 'appeals', 'texts',
-          'videos', 'clients', 'ourClientLogos', 'directSpeeches'));
+          'videos', 'clients', 'ourClientLogos', 'directSpeeches', 'checkboxBlocks'));
     }
 
     public function edit(Page $page): View

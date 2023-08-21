@@ -85,6 +85,14 @@
                     <a href="{{ route('admin.direct_speech.create', $page->id) }}"
                        class="btn btn-primary"> Add </a>
                 </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
+                    <h6 class="mb-1"> Add Checkbox block </h6>
+                    <a href="{{ route('admin.checkbox.create', $page->id) }}"
+                       class="btn btn-primary"> Add </a>
+                </div>
             </div>
         </div>
     </div>

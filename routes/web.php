@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AppealController;
+use App\Http\Controllers\Admin\CheckboxBlockController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DirectSpeechController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -62,4 +63,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Direct Speech
     Route::get('/{id}/direct_speech/create', [DirectSpeechController::class, 'create'])->name('direct_speech.create');
     Route::resource('/direct_speech', DirectSpeechController::class)->only('store', 'edit', 'update', 'destroy');
+    // Checkbox Block
+    Route::get('/{id}/checkbox/create', [CheckboxBlockController::class, 'create'])->name('checkbox.create');
+    Route::resource('/checkbox', CheckboxBlockController::class)->only('store', 'edit', 'update', 'destroy');
 });

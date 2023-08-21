@@ -3,37 +3,36 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreAppealRequest;
-use App\Http\Requests\Admin\UpdateAppealRequest;
-use App\Models\Appeal;
+use App\Http\Requests\Admin\StoreCheckboxBlockRequest;
+use App\Http\Requests\Admin\UpdateCheckboxBlockRequest;
+use App\Models\CheckboxBlock;
 use App\Models\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-class AppealController extends Controller
+class CheckboxBlockController extends Controller
 {
     public function create(Page $page): View
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.appeals.create', compact('localizations', 'page'));
+        return view('admin.pages.checkbox.create', compact('localizations', 'page'));
     }
 
-    public function store(StoreAppealRequest $request)
+    public function store(StoreCheckboxBlockRequest $request)
     {
         try{
             DB::transaction(function() use ($request) {
                 $data = $request->all();
 
                 $data['page_id'] = $request->page_id;
-                $info = Appeal::create($data);
+                $info = CheckboxBlock::create($data);
 
                 foreach($request->translations as $key=>$value) {
                     $info->translations()->create([
                         'localization_id'=>$key,
                         'title'=>$value['title'],
-                        'description'=>$value['description'],
                     ]);
                 }
             });
@@ -41,29 +40,28 @@ class AppealController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Appeal block added successfully!');
+        return redirect()->route('admin.pages.index')->with('success', 'Checkbox block added successfully!');
     }
 
-    public function edit(Appeal $appeal): View
+    public function edit(CheckboxBlock $checkbox)
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.appeals.edit', compact('localizations','appeal'));
+        return view('admin.pages.checkbox.edit', compact('localizations','checkbox'));
     }
 
-    public function update(UpdateAppealRequest $request, Appeal $appeal)
+    public function update(UpdateCheckboxBlockRequest $request, CheckboxBlock $checkbox)
     {
         try {
-            DB::transaction(function() use ($request, $appeal){
+            DB::transaction(function() use ($request, $checkbox){
                 $data = $request->all();
 
-                $appeal->update($data);
+                $checkbox->update($data);
 
                 foreach($request->translations as $key => $value){
-                    $appeal->translations()->updateOrCreate(['id' => $value['id']], [
+                    $checkbox->translations()->updateOrCreate(['id' => $value['id']], [
                         'localization_id'=>$key,
                         'title'=>$value['title'],
-                        'description'=>$value['description'],
                     ]);
                 }
             });
@@ -72,13 +70,13 @@ class AppealController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Appeal block edited successfully!');
+        return redirect()->route('admin.pages.index')->with('success', 'Checkbox block edited successfully!');
     }
 
-    public function destroy(Appeal $appeal)
+    public function destroy(CheckboxBlock $checkbox)
     {
-        $appeal->delete();
+        $checkbox->delete();
 
-        return back()->with('success', 'Appeal block deleted successfully!');
+        return back()->with('success', 'Checkbox block deleted successfully!');
     }
 }

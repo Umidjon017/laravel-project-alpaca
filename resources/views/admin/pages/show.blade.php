@@ -54,6 +54,10 @@
                     @include('admin.pages._show_incs.direct-speech')
                     {{-- Direct Speech Block end --}}
 
+                    {{-- Checkbox Block start --}}
+                    @include('admin.pages._show_incs.checkbox-block')
+                    {{-- Checkbox Block end --}}
+
                     {{-- Add Other Blocks start --}}
                     @include('admin.pages._show_incs.add-other-blocks')
                     {{-- Add Other Blocks end --}}
