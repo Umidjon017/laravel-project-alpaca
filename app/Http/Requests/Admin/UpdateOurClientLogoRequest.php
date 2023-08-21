@@ -21,10 +21,20 @@ class UpdateOurClientLogoRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'logo' => 'required|image|max:5000|mimes:png,jpg,jpeg,gif',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'logo.required' => 'Logo is required',
+            'logo.image' => 'Logo must be a file',
+            'logo.max' => 'Logo must be less than 5 mb',
+            'logo.mimes' => 'Logo must be a png, jpg, jpeg or gif',
         ];
     }
 }

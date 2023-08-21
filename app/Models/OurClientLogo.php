@@ -12,11 +12,11 @@ class OurClientLogo extends Model
 
     protected $fillable = ['page_id', 'logo'];
 
-    const FILE_PATH = 'admin/images/pages/clients/';
+    const FILE_PATH = 'admin/images/pages/clients_logo/';
 
     public function getImagePath(): string
     {
-        return public_path(client_logos_file_path()) . $this->logo;
+        return public_path(clients_logo_file_path()) . $this->logo;
     }
 
     public function isPhotoExists(): bool
@@ -29,10 +29,7 @@ class OurClientLogo extends Model
         if ($this->isPhotoExists()) {
             unlink($this->getImagePath());
         }
-        else {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     public function page(): BelongsTo

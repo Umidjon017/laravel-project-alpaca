@@ -10,6 +10,7 @@ use App\Models\DirectSpeech;
 use App\Models\Gallery;
 use App\Models\InfoBlock;
 use App\Models\OurClient;
+use App\Models\OurClientLogo;
 use App\Models\Page;
 use App\Models\TextBlock;
 use App\Models\VideoPlayer;
@@ -71,11 +72,12 @@ class PageController extends Controller
       $texts = TextBlock::where('page_id', $page->id)->with('translations')->get();
       $videos = VideoPlayer::where('page_id', $page->id)->get();
       $clients = OurClient::where('page_id', $page->id)->with('translations')->get();
+      $ourClientLogos = OurClientLogo::where('page_id', $page->id)->get();
       $directSpeeches = DirectSpeech::where('page_id', $page->id)->with('translations')->get();
 
       return view('admin.pages.show', compact(
           'localizations','page', 'galleries', 'infos', 'comments', 'appeals', 'texts',
-          'videos', 'clients', 'directSpeeches'));
+          'videos', 'clients', 'ourClientLogos', 'directSpeeches'));
     }
 
     public function edit(Page $page): View
@@ -169,6 +171,11 @@ class PageController extends Controller
             }
             if (file_exists(public_path(direct_speech_file_path()) . $directSpeech->image)) {
                 unlink(public_path(direct_speech_file_path()) . $directSpeech->image);
+            }
+        }
+        foreach ($page->ourClientsLogo as $logo) {
+            if (file_exists(public_path(clients_logo_file_path()) . $logo->logo)) {
+                unlink(public_path(clients_logo_file_path()) . $logo->logo);
             }
         }
         $page->delete();

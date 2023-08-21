@@ -11,7 +11,7 @@ class StoreOurClientLogoRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -21,18 +21,20 @@ class StoreOurClientLogoRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'logo' => 'required|mimes:png,jpg,jpeg,gif'
+            'logo' => 'required|image|max:5000|mimes:png,jpg,jpeg,gif',
         ];
     }
 
-    public function messages(): array
+    public function messages()
     {
         return [
             'logo.required' => 'Logo is required',
-            'logo.mimes' => 'Logo must be a png, jpg, jpeg or gif'
+            'logo.image' => 'Logo must be a file',
+            'logo.max' => 'Logo must be less than 5 mb',
+            'logo.mimes' => 'Logo must be a png, jpg, jpeg or gif',
         ];
     }
 }

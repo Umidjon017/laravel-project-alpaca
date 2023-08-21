@@ -3,38 +3,57 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreOurClientLogoRequest;
-use App\Http\Requests\Admin\UpdateOurClientLogoRequest;
 use App\Models\OurClientLogo;
-use App\Models\Page;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class OurClientLogoController extends Controller
 {
-    public function create(Page $page)
+    public function store(Request $request): RedirectResponse
     {
-        $localizations = Cache::get('localizations');
+        if ($request->hasFile('logo')) {
+            foreach ($request->logo as $image) {
+                $logos = $this->fileUpload($image);
+                OurClientLogo::create([
+                    'page_id' => $request->page_id,
+                    'logo' => $logos
+                ]);
+            }
+        }
 
-        return view('admin.pages.clients.create', compact('localizations', 'page'));
+        return back()->with('success', 'Our Clients Logo block added successfully!');
     }
 
-    public function store(StoreOurClientLogoRequest $request)
+    public function update(Request $request, OurClientLogo $clients_logo): RedirectResponse
     {
-        dd($request->all());
+        if ($request->hasFile('logo')) {
+            $clients_logo->deleteImage();
+
+            foreach ($request->logo as $logo) {
+                $ourClientLogos = $this->fileUpload($logo);
+                $clients_logo->update([
+                    'page_id' => $request->page_id,
+                    'logo' => $ourClientLogos
+                ]);
+            }
+        }
+
+        return back()->with('success', 'Our Client Logo block edited successfully!');
     }
 
-    public function edit(OurClientLogo $ourClientLogo)
+    public function destroy(OurClientLogo $clients_logo): RedirectResponse
     {
-        //
+        $clients_logo->delete();
+        $clients_logo->deleteImage();
+
+        return back()->with('success', 'Our Client Logo block deleted successfully!');
     }
 
-    public function update(UpdateOurClientLogoRequest $request, OurClientLogo $ourClientLogo)
+    public function fileUpload($file): string
     {
-        //
-    }
+        $filename = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path(OurClientLogo::FILE_PATH), $filename);
 
-    public function destroy(OurClientLogo $ourClientLogo)
-    {
-        //
+        return $filename;
     }
 }

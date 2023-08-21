@@ -70,6 +70,11 @@ class Page extends Model
         return $this->hasMany(OurClient::class, 'page_id');
     }
 
+    public function ourClientsLogo(): HasMany
+    {
+        return $this->hasMany(OurClientLogo::class, 'page_id');
+    }
+
     public function directSpeeches(): HasMany
     {
         return $this->hasMany(DirectSpeech::class, 'page_id');

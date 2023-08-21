@@ -49,9 +49,9 @@ if(!function_exists('videos_file_path')) {
     }
 }
 
-if(!function_exists('client_logos_file_path')) {
+if(!function_exists('clients_logo_file_path')) {
 
-    function client_logos_file_path(): string
+    function clients_logo_file_path(): string
     {
         return '/' . OurClientLogo::FILE_PATH;
     }

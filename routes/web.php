@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\InfoBlockController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\OurClientController;
+use App\Http\Controllers\Admin\OurClientLogoController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TextBlockController;
 use App\Http\Controllers\Admin\VideoPlayerController;
@@ -53,6 +54,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Our Clients
     Route::get('/{id}/clients/create', [OurClientController::class, 'create'])->name('clients.create');
     Route::resource('/clients', OurClientController::class)->only('store', 'edit', 'update', 'destroy');
+    // Our Clients Logo
+    Route::resource('/clients_logo', OurClientLogoController::class)->only('store', 'update', 'destroy');
     // Appeals
     Route::get('/{id}/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
     Route::resource('/appeals', AppealController::class)->only('store', 'edit', 'update', 'destroy');

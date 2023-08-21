@@ -71,6 +71,16 @@
                 <hr>
 
                 <div class="d-flex justify-content-between">
+                    <h6 class="mb-1"> Add Our Clients Logo block </h6>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#addClientLogo"> Add
+                    </button>
+                </div>
+                @include('admin.pages.clients_logo.create')
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> Add Direct Speech block </h6>
                     <a href="{{ route('admin.direct_speech.create', $page->id) }}"
                        class="btn btn-primary"> Add </a>
