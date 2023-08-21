@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreOurClientRequest;
 use App\Http\Requests\Admin\UpdateOurClientRequest;
-use App\Models\OurClient;
-use App\Models\Page;
+use App\Models\Admin\OurClient;
+use App\Models\Admin\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -41,7 +41,7 @@ class OurClientController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Our client block added successfully!');
+        return redirect('admin/pages/'.$request->page_id)->with('success', 'Our client block added successfully!');
     }
 
     public function edit(OurClient $client)

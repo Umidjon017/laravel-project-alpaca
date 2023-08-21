@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h6 class="card-title"> Page {{ $page->getTranslatedAttributes(session('locale_id'))->title }} </h6>
+        <h6 class="card-title"> {{ __('Страница -') }} {{ $page->getTranslatedAttributes(session('locale_id'))->title }} </h6>
     </div>
     <div class="card-body">
         <div class="example">
@@ -15,22 +15,22 @@
             <div class="tab-content border border-top-0 p-3" id="myTabContent">
                 @foreach ($localizations as $locale)
                     <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{ $locale->name }}-tab">
-                        <h6 class="mb-1">Title</h6>
+                        <h6 class="mb-1">{{ __('Заголовок') }}</h6>
                         <p>{!! $page->getTranslatedAttributes($locale->id)->title ?? ' ' !!}</p>
                         <hr>
-                        <h6 class="mb-1">Content</h6>
+                        <h6 class="mb-1">{{ __('Контент') }}</h6>
                         <p>{!! $page->getTranslatedAttributes($locale->id)->content ?? ' ' !!}</p>
                     </div>
                 @endforeach
             </div>
 
             <div class="mt-3">
-                <h6>Status</h6>
+                <h6>{{ __('Статус') }}</h6>
                 <p>
                     @if ($page->status == 1)
-                        <span class="badge bg-success"> {{ __('Active') }} </span>
+                        <span class="badge bg-success"> {{ __('Активный') }} </span>
                     @else
-                        <span class="badge bg-danger"> {{ __('Inactive') }} </span>
+                        <span class="badge bg-danger"> {{ __('Неактивный') }} </span>
                     @endif
                 </p>
             </div>
@@ -38,14 +38,14 @@
             <hr>
 
             <div>
-                <h6 class="mb-1">Image</h6>
+                <h6 class="mb-1">{{ __('Изображение') }}</h6>
                 <img src="{{ asset(page_file_path().$page->image) }}" alt="" width="100">
             </div>
 
             <hr>
 
             <div>
-                <h6 class="mb-1">Slug</h6>
+                <h6 class="mb-1">{{ __('Слуг') }}</h6>
                 <p>{{ $page->slug }}</p>
             </div>
         </div>

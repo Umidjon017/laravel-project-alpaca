@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Add Checkbox</h6>
+                    <h6 class="card-title">{{__('Добавить чекбокс')}}</h6>
                     <form action="{{ route('admin.checkbox.store') }}" method="POST" class="forms-sample">
                         @csrf
                         @include('admin.pages.checkbox._form')

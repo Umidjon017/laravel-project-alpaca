@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Edit Text Block</h6>
+                    <h6 class="card-title">{{__('Редактировать текстовый блок')}}</h6>
                     <form action="{{ route('admin.texts.update', $text->id) }}" method="POST" class="forms-sample">
                         @csrf
                         @method('PUT')

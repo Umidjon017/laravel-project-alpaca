@@ -12,7 +12,7 @@
         @foreach ($localizations as $locale)
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Title') }}(*)</label>
+                    <label class="form-label">{{ __('Заголовок') }}(*)</label>
                     <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($checkbox) value="{{ $checkbox->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Enter title">
                     @error('translations.*.title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Appeal extends Model
+class TextBlock extends Model
 {
     use HasFactory;
 
@@ -20,7 +20,7 @@ class Appeal extends Model
 
     public function translations(): HasMany
     {
-        return $this->hasMany(AppealTranslation::class);
+        return $this->hasMany(TextBlockTranslation::class);
     }
 
     public function page(): BelongsTo

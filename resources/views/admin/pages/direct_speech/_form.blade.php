@@ -12,21 +12,21 @@
         @foreach ($localizations as $locale)
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Full name (*)') }}</label>
+                    <label class="form-label">{{ __('Полное имя (*)') }}</label>
                     <input type="text" name="translations[{{ $locale->id }}][full_name]" class="form-control @error('translations.*.full_name') is-invalid @enderror" @isset($directSpeech) value="{{ $directSpeech->getTranslatedAttributes($locale->id)->full_name }}" @endisset placeholder="Enter full_name">
                     @error('translations.*.full_name')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Text (*)') }}</label>
+                    <label class="form-label">{{ __('Текст (*)') }}</label>
                     <textarea class="form-control ckeditor @error('translations.*.text') is-invalid @enderror" name="translations[{{ $locale->id }}][text]" rows="10"> @isset($directSpeech) {{ $directSpeech->getTranslatedAttributes($locale->id)->text }} @endisset </textarea>
                     @error('translations.*.text')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Position') }}</label>
+                    <label class="form-label">{{ __('Позиция') }}</label>
                     <input type="text" name="translations[{{ $locale->id }}][position]" class="form-control @error('translations.*.position') is-invalid @enderror" @isset($direct_seec) value="{{ $directSpeech->getTranslatedAttributes($locale->id)->position }}" @endisset placeholder="Enter position">
                 </div>
                 @isset($page) @foreach($page->get() as $p)
@@ -42,12 +42,12 @@
 </div>
 
 <div class="mt-3 mb-3">
-    <label for="logo" class="form-label">{{ __('Logo') }}</label>
+    <label for="logo" class="form-label">{{ __('Логотип') }}</label>
     <input type="file" name="logo" class="form-control" @isset($directSpeech) value="{{ $directSpeech->logo }}" @endisset>
 </div>
 
 <div class="mt-3 mb-3">
-    <label for="image" class="form-label">{{ __('Image') }}</label>
+    <label for="image" class="form-label">{{ __('Изображение') }}</label>
     <input type="file" name="image" class="form-control" @isset($directSpeech) value="{{ $directSpeech->image }}" @endisset>
 </div>
 

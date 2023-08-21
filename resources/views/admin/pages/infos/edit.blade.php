@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Edit Info Block</h6>
+                    <h6 class="card-title">{{__('Изменить информационный блок')}}</h6>
                     <form action="{{ route('admin.infos.update', $info->id) }}" enctype="multipart/form-data" method="POST" class="forms-sample">
                         @csrf
                         @method('PUT')

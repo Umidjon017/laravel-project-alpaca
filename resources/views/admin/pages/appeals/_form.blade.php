@@ -12,14 +12,14 @@
         @foreach ($localizations as $locale)
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Title') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($appeal) value="{{ $appeal->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Enter title">
+                    <label class="form-label">{{ __('Заголовок') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($appeal) value="{{ $appeal->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Введите название">
                     @error('translations.*.title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Description') }}</label>
+                    <label class="form-label">{{ __('Описание') }}</label>
                     <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][description]" rows="10"> @isset($appeal) {{ $appeal->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
                 </div>
                 @isset($page) @foreach($page->get() as $p)
@@ -35,7 +35,7 @@
 </div>
 
 <div class="d-flex justify-content-between mt-3">
-    <button type="submit" class="btn btn-primary me-2"> @if(isset($appeal)) {{ __('Save') }} @else {{ __('Add') }} @endif </button>
+    <button type="submit" class="btn btn-primary me-2"> @if(isset($appeal)) {{ __('Сохранить') }} @else {{ __('Добавить') }} @endif </button>
 </div>
 
 @push('plugin-scripts')

@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="formModal"> {{ __('Add Language') }} </h5>
+                <h5 class="modal-title" id="formModal"> {{ __('Добавить язык') }} </h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,7 +13,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name"> {{ __('Language name') }} </label>
+                        <label for="name"> {{ __('Название языка') }} </label>
                         <input id="name" class="form-control" type="text" name="name" />
                         @error('name')
                         <div class="alert alert-danger">
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __('Add') }} </button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __('Добавить') }} </button>
                     </div>
 
                 </div>

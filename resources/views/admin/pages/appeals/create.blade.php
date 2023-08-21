@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Add Appeals</h6>
+                    <h6 class="card-title">{{__('Добавить заявки')}}</h6>
                     <form action="{{ route('admin.appeals.store') }}" method="POST" class="forms-sample">
                         @csrf
                         @include('admin.pages.appeals._form')

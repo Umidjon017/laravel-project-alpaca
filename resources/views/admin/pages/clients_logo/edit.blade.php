@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editFormModal">{{ __('Edit Our Client Logo') }}</h5>
+                <h5 class="modal-title" id="editFormModal">{{ __('Редактировать логотип наших клиентов') }}</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -17,7 +17,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="image-upload">
-                                    {{ __('Upload or drop your Logos here') }}
+                                    {{ __('Загрузите или перетащите сюда свои логотипы') }}
                                 </label>
                                 <div id="image-preview" class="image-preview">
                                     <input type="file" name="logo[]" class="form-control" multiple value="{{$clientLogo->logo}}"/>
@@ -40,7 +40,7 @@
                     <input type="hidden" name="page_id" value="{{ $page->id }}" />
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"> @if(isset($clientLogo)) {{ __('Save') }} @else {{ __('Add') }} @endif </button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"> @if(isset($clientLogo)) {{ __('Сохранить') }} @else {{ __('Add') }} @endif </button>
                     </div>
 
                 </div>

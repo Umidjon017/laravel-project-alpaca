@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="video-player">
-        {{ __('Enter video url (*)') }}
+        {{ __('Введите ссылку на видео (*)') }}
     </label>
     <div id="video-player" class="video-player-preview">
         <input type="text" name="video_url" class="form-control" @isset($video) value="{{$video->video_url}}" @endisset required />
@@ -16,7 +16,7 @@
 
 <div class="form-group">
     <label for="video-poster">
-        {{ __('Upload or drop video poster here') }}
+        {{ __('Загрузите или перетащите сюда свои логотипы') }}
     </label>
     <div id="video-poster" class="image-preview">
         <input type="file" name="video_poster" class="form-control" @isset($video) value="{{$video->video_poster}}" @endisset />
@@ -44,5 +44,5 @@
 <br>
 
 <div class="d-flex justify-content-between">
-    <button type="submit" class="btn btn-primary me-2"> @if(isset($video)) {{ __('Save') }} @else {{ __('Add') }} @endif </button>
+    <button type="submit" class="btn btn-primary me-2"> @if(isset($video)) {{ __('Сохранить') }} @else {{ __('Добавить') }} @endif </button>
 </div>

@@ -12,14 +12,14 @@
         @foreach ($localizations as $locale)
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Title') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($client) value="{{ $client->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Enter title">
+                    <label class="form-label">{{ __('Заголовок') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($client) value="{{ $client->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Введите название">
                     @error('translations.*.title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Description (*)') }}</label>
+                    <label class="form-label">{{ __('Описание (*)') }}</label>
                     <textarea class="form-control ckeditor @error('translations.*.description') is-invalid @enderror" name="translations[{{ $locale->id }}][description]" rows="10"> @isset($client) {{ $client->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
                     @error('translations.*.description')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>

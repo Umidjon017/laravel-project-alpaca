@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdatePageRequest;
-use App\Models\Appeal;
-use App\Models\CheckboxBlock;
-use App\Models\Comment;
-use App\Models\DirectSpeech;
-use App\Models\Gallery;
-use App\Models\InfoBlock;
-use App\Models\OurClient;
-use App\Models\OurClientLogo;
-use App\Models\Page;
-use App\Models\TextBlock;
-use App\Models\VideoPlayer;
+use App\Models\Admin\Appeal;
+use App\Models\Admin\CheckboxBlock;
+use App\Models\Admin\Comment;
+use App\Models\Admin\DirectSpeech;
+use App\Models\Admin\Gallery;
+use App\Models\Admin\InfoBlock;
+use App\Models\Admin\OurClient;
+use App\Models\Admin\OurClientLogo;
+use App\Models\Admin\Page;
+use App\Models\Admin\TextBlock;
+use App\Models\Admin\VideoPlayer;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -60,7 +60,7 @@ class PageController extends Controller
           return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Page created successfully !');
+        return redirect('admin/pages/'.$request->page_id)->with('success', 'Page created successfully !');
     }
 
     public function show(Page $page)

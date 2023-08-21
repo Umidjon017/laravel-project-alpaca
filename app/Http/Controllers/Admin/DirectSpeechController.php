@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreDirectSpeechRequest;
 use App\Http\Requests\Admin\UpdateDirectSpeechRequest;
-use App\Models\DirectSpeech;
-use App\Models\Page;
+use App\Models\Admin\DirectSpeech;
+use App\Models\Admin\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -50,7 +50,7 @@ class DirectSpeechController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Direct speech block added successfully!');
+        return redirect('admin/pages/'.$request->page_id)->with('success', 'Direct speech block added successfully!');
     }
 
     public function edit(DirectSpeech $directSpeech)

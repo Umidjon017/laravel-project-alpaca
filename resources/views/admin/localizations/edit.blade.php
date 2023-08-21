@@ -14,7 +14,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name"> {{ __('Language name') }} </label>
+                        <label for="name"> {{ __('Изменить язык') }} </label>
                         <input id="name" class="form-control" type="text" name="name" value="{{ $locale->name }}" />
                         @error('name')
                         <div class="alert alert-danger">
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __('Save') }} </button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __('Сохранить') }} </button>
                     </div>
 
                 </div>

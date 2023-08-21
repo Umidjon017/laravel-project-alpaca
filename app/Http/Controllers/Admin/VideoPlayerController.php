@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreVideoPlayerRequest;
 use App\Http\Requests\Admin\UpdateVideoPlayerRequest;
-use App\Models\Page;
-use App\Models\VideoPlayer;
+use App\Models\Admin\Page;
+use App\Models\Admin\VideoPlayer;
 use Illuminate\Contracts\View\View;
 
 class VideoPlayerController extends Controller
@@ -26,7 +26,7 @@ class VideoPlayerController extends Controller
 
         VideoPlayer::create($data);
 
-        return redirect()->route('admin.pages.index')->with('success', 'Video Player added successfully!');
+        return redirect('admin/pages/'.$request->page_id)->with('success', 'Video Player added successfully!');
     }
 
     public function update(UpdateVideoPlayerRequest $request, VideoPlayer $video)

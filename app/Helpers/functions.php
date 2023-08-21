@@ -1,13 +1,12 @@
 <?php
 
-use App\Models\Comment;
-use App\Models\DirectSpeech;
-use App\Models\Gallery;
-use App\Models\InfoBlock;
-use App\Models\OurClient;
-use App\Models\OurClientLogo;
-use App\Models\Page;
-use App\Models\VideoPlayer;
+use App\Models\Admin\Comment;
+use App\Models\Admin\DirectSpeech;
+use App\Models\Admin\Gallery;
+use App\Models\Admin\InfoBlock;
+use App\Models\Admin\OurClientLogo;
+use App\Models\Admin\Page;
+use App\Models\Admin\VideoPlayer;
 
 if(!function_exists('page_file_path')) {
 

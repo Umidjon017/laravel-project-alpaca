@@ -12,7 +12,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Page ID: {{ $page->id }}</h6>
+                    <h6 class="card-title">{{ __('Идентификатор страницы:') }} {{ $page->id }}</h6>
 
                     {{-- Page start --}}
                     @include('admin.pages._show_incs.page')

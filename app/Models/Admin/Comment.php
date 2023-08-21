@@ -1,34 +1,34 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class InfoBlock extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'link', 'image'];
+    protected $fillable = ['page_id', 'logo', 'image'];
 
-    const FILE_PATH = 'admin/images/pages/infos/';
+    const FILE_PATH = 'admin/images/pages/comments/';
 
-    public function getImagePath(): string
+    public function getFilePath(string $file): string
     {
-        return public_path(info_file_path()) . $this->image;
+        return public_path(comment_file_path()) . $this->{$file};
     }
 
-    public function isPhotoExists(): bool
+    public function isFileExists(string $file): bool
     {
-        return file_exists($this->getImagePath());
+        return file_exists($this->getFilePath($file));
     }
 
-    public function deleteImage(): bool
+    public function deleteFile(string $file): bool
     {
-        if ($this->isPhotoExists()) {
-            @unlink($this->getImagePath());
+        if ($this->isFileExists($file)) {
+            @unlink($this->getFilePath($file));
         }
         else {
             return false;
@@ -43,7 +43,7 @@ class InfoBlock extends Model
 
     public function translations(): HasMany
     {
-        return $this->hasMany(InfoBlockTranslation::class);
+        return $this->hasMany(CommentTranslations::class);
     }
 
     public function page(): BelongsTo

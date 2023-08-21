@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class TextBlock extends Model
+class CheckboxBlock extends Model
 {
     use HasFactory;
 
@@ -20,7 +20,7 @@ class TextBlock extends Model
 
     public function translations(): HasMany
     {
-        return $this->hasMany(TextBlockTranslation::class);
+        return $this->hasMany(CheckboxBlockTranslation::class);
     }
 
     public function page(): BelongsTo

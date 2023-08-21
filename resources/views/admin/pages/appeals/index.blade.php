@@ -10,16 +10,16 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h6 class="card-title">{{ __('Appeals table') }}</h6>
+                        <h6 class="card-title">{{ __('Заявки страницу') }}</h6>
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
                             <thead>
                             <tr class="text-center">
                                 <th class="text-start"> # </th>
-                                <th> {{ __('Title') }} </th>
-                                <th> {{ __('Description') }} </th>
-                                <th class="w-25"> {{ __('Action') }} </th>
+                                <th> {{ __('Заголовок') }} </th>
+                                <th> {{ __('Описание') }} </th>
+                                <th class="w-25"> {{ __('Действие') }} </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -30,12 +30,12 @@
                                     <td> {!! $appeal->getTranslatedAttributes(session('locale_id'))->description ?? 'No Description' !!} </td>
                                     <td class="d-flex align-items-center">
                                         <a href="{{ route('admin.appeals.edit', $appeal->id) }}" class="btn btn-success" style="margin-right: 10px;">
-                                            Edit
+                                            {{__('Редактировать')}}
                                         </a>
                                         <form action="{{ route('admin.appeals.destroy', $appeal->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>
                                         </form>
                                     </td>
                                 </tr>

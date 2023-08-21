@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Add Text</h6>
+                    <h6 class="card-title">{{__('Добавить текстовый блок')}}</h6>
                     <form action="{{ route('admin.texts.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                         @csrf
                         @include('admin.pages.texts._form')

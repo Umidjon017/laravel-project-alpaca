@@ -1,34 +1,37 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class DirectSpeech extends Model
+class InfoBlock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'logo', 'image'];
+    protected $fillable = ['page_id', 'link', 'image'];
 
-    const FILE_PATH = 'admin/images/pages/direct_speech/';
+    const FILE_PATH = 'admin/images/pages/infos/';
 
-    public function getFilePath(string $file): string
+    public function getImagePath(): string
     {
-        return public_path(direct_speech_file_path()) . $this->{$file};
+        return public_path(info_file_path()) . $this->image;
     }
 
-    public function isFileExists(string $file): bool
+    public function isPhotoExists(): bool
     {
-        return file_exists($this->getFilePath($file));
+        return file_exists($this->getImagePath());
     }
 
-    public function deleteFile(string $file): bool
+    public function deleteImage(): bool
     {
-        if ($this->isFileExists($file)) {
-            @unlink($this->getFilePath($file));
+        if ($this->isPhotoExists()) {
+            @unlink($this->getImagePath());
+        }
+        else {
+            return false;
         }
         return true;
     }
@@ -40,7 +43,7 @@ class DirectSpeech extends Model
 
     public function translations(): HasMany
     {
-        return $this->hasMany(DirectSpeechTranslation::class);
+        return $this->hasMany(InfoBlockTranslation::class);
     }
 
     public function page(): BelongsTo

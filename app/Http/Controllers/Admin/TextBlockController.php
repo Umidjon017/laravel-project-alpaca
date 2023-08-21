@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreTextBlockRequest;
 use App\Http\Requests\Admin\UpdateTextBlockRequest;
-use App\Models\Localization;
-use App\Models\Page;
-use App\Models\TextBlock;
+use App\Models\Admin\Page;
+use App\Models\Admin\TextBlock;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
@@ -43,7 +41,7 @@ class TextBlockController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Text block added successfully!');
+        return redirect('admin/pages/'.$request->page_id)->with('success', 'Text block added successfully!');
     }
 
     public function edit(TextBlock $text): View

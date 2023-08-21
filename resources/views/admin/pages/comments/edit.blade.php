@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Edit Comment Block</h6>
+                    <h6 class="card-title">{{__('Редактировать блок комментариев')}}</h6>
                     <form action="{{ route('admin.comments.update', $comment->id) }}" enctype="multipart/form-data" method="POST" class="forms-sample">
                         @csrf
                         @method('PUT')

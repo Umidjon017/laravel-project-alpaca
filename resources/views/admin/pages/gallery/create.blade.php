@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addFormModal"> {{ __('Add Gallery') }} </h5>
+                <h5 class="modal-title" id="addFormModal"> {{ __('Добавить галерею') }} </h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,7 +14,7 @@
 
                     <div class="form-group">
                         <label for="image-upload" id="image-label">
-                            {{ __('Upload or drop your images here (*)') }}
+                            {{ __('Загрузите или перетащите сюда свои логотипы (*)') }}
                         </label>
                         <div id="image-preview" class="image-preview">
                             <input type="file" name="images[]" class="form-control" multiple required/>
@@ -29,7 +29,7 @@
                     <input type="hidden" name="page_id" value="{{ $page->id }}" />
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __('Add') }} </button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __('Добавить') }} </button>
                     </div>
 
                 </div>

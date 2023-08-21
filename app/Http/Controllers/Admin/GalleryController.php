@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Gallery;
+use App\Models\Admin\Gallery;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 

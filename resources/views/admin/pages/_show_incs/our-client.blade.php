@@ -5,30 +5,30 @@
                 <div class="card mt-3">
                     <div class="card-header">
                         <div class="card-title">
-                            <h6>Our Clients block {{ $loop->iteration }}</h6>
+                            <h6>{{ __('Блок Наши клиенты') }} {{ $loop->iteration }}</h6>
                             <form action="{{ route('admin.clients.destroy', $client->id) }}"
                                   method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm float-end ms-2">
-                                    Delete
+                                    {{ __('Удалить') }}
                                 </button>
                             </form>
                             <a href="{{ route('admin.clients.edit', $client->id) }}"
-                               class="btn btn-success btn-sm float-end text-capitalize">Edit</a>
+                               class="btn btn-success btn-sm float-end text-capitalize">{{ __('Редактировать') }}</a>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="example">
                             <div>
-                                <h6> Title </h6>
+                                <h6> {{ __('Заголовок') }} </h6>
                                 <p class="mb-1"> {!! $client->getTranslatedAttributes(session('locale_id'))->title !!} </p>
                             </div>
 
                             <hr>
 
                             <div>
-                                <h6> Description </h6>
+                                <h6> {{ __('Описание') }} </h6>
                                 <p class="mb-1"> {!! $client->getTranslatedAttributes(session('locale_id'))->description !!} </p>
                             </div>
                         </div>

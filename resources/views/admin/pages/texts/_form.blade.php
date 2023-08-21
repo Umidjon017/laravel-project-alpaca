@@ -12,7 +12,7 @@
         @foreach ($localizations as $locale)
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
-                    <label class="form-label">{{ __('Text (*)') }}</label>
+                    <label class="form-label">{{ __('Текст (*)') }}</label>
                     <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][text]" rows="10">@isset($text){{ $text->getTranslatedAttributes($locale->id)->text }}@endisset()</textarea>
                     @error('translations.*.text')
                     <div class="alert alert-danger">

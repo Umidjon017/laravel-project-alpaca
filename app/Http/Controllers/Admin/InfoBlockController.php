@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreInfoBlockRequest;
 use App\Http\Requests\Admin\UpdateInfoBlockRequest;
-use App\Models\InfoBlock;
-use App\Models\Localization;
-use App\Models\Page;
+use App\Models\Admin\InfoBlock;
+use App\Models\Admin\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
@@ -49,7 +47,7 @@ class InfoBlockController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Information block added successfully!');
+        return redirect('admin/pages/'.$request->page_id)->with('success', 'Information block added successfully!');
     }
 
     public function edit(InfoBlock $info): View
@@ -86,7 +84,7 @@ class InfoBlockController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Info block edited successfully!');
+        return redirect('admin/pages/'.$request->page_id)->with('success', 'Info block edited successfully!');
     }
 
     public function destroy(InfoBlock $info): RedirectResponse

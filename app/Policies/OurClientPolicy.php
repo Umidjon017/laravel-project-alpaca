@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\OurClient;
+use App\Models\Admin\OurClient;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,7 +25,7 @@ class OurClientPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\OurClient  $ourClient
+     * @param  \App\Models\Admin\OurClient  $ourClient
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function view(User $user, OurClient $ourClient)
@@ -48,7 +48,7 @@ class OurClientPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\OurClient  $ourClient
+     * @param  \App\Models\Admin\OurClient  $ourClient
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, OurClient $ourClient)
@@ -60,7 +60,7 @@ class OurClientPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\OurClient  $ourClient
+     * @param  \App\Models\Admin\OurClient  $ourClient
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user, OurClient $ourClient)
@@ -72,7 +72,7 @@ class OurClientPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\OurClient  $ourClient
+     * @param  \App\Models\Admin\OurClient  $ourClient
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function restore(User $user, OurClient $ourClient)
@@ -84,7 +84,7 @@ class OurClientPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\OurClient  $ourClient
+     * @param  \App\Models\Admin\OurClient  $ourClient
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function forceDelete(User $user, OurClient $ourClient)

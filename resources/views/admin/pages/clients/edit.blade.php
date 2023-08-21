@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Edit Our Client Block</h6>
+                    <h6 class="card-title">{{ __('Изменить блок Наши клиенты') }}</h6>
                     <form action="{{ route('admin.clients.update', $client->id) }}" enctype="multipart/form-data" method="POST" class="forms-sample">
                         @csrf
                         @method('PUT')

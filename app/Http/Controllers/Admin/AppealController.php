@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAppealRequest;
 use App\Http\Requests\Admin\UpdateAppealRequest;
-use App\Models\Appeal;
-use App\Models\Page;
+use App\Models\Admin\Appeal;
+use App\Models\Admin\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -48,7 +48,7 @@ class AppealController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Appeal block added successfully!');
+        return redirect('admin/pages/'.$request->page_id)->with('success', 'Appeal block added successfully!');
     }
 
     public function edit(Appeal $appeal): View

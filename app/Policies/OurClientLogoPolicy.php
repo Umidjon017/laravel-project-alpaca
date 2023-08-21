@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\OurClientLogo;
+use App\Models\Admin\OurClientLogo;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,7 +25,7 @@ class OurClientLogoPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\OurClientLogo  $ourClientLogo
+     * @param  \App\Models\Admin\OurClientLogo  $ourClientLogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function view(User $user, OurClientLogo $ourClientLogo)
@@ -48,7 +48,7 @@ class OurClientLogoPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\OurClientLogo  $ourClientLogo
+     * @param  \App\Models\Admin\OurClientLogo  $ourClientLogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, OurClientLogo $ourClientLogo)
@@ -60,7 +60,7 @@ class OurClientLogoPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\OurClientLogo  $ourClientLogo
+     * @param  \App\Models\Admin\OurClientLogo  $ourClientLogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user, OurClientLogo $ourClientLogo)
@@ -72,7 +72,7 @@ class OurClientLogoPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\OurClientLogo  $ourClientLogo
+     * @param  \App\Models\Admin\OurClientLogo  $ourClientLogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function restore(User $user, OurClientLogo $ourClientLogo)
@@ -84,7 +84,7 @@ class OurClientLogoPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\OurClientLogo  $ourClientLogo
+     * @param  \App\Models\Admin\OurClientLogo  $ourClientLogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function forceDelete(User $user, OurClientLogo $ourClientLogo)

@@ -5,17 +5,17 @@
                 <div class="card mt-3">
                     <div class="card-header">
                         <div class="card-title">
-                            <h6>Video Player {{ $loop->iteration }}</h6>
+                            <h6>{{ __('Видео проигрыватель') }} {{ $loop->iteration }}</h6>
                             <form action="{{ route('admin.videos.destroy', $video->id) }}"
                                   method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm float-end ms-2">
-                                    Delete
+                                    {{ __('Удалить') }}
                                 </button>
                             </form>
                             <a href="{{ route('admin.videos.edit', $video->id) }}"
-                               class="btn btn-success btn-sm float-end text-capitalize"> Edit </a>
+                               class="btn btn-success btn-sm float-end text-capitalize"> {{ __('Редактировать') }} </a>
                         </div>
                     </div>
                     <div class="card-body">

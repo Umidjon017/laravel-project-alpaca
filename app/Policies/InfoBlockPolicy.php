@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\InfoBlock;
+use App\Models\Admin\InfoBlock;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,7 +25,7 @@ class InfoBlockPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\InfoBlock  $infoBlock
+     * @param  \App\Models\Admin\InfoBlock  $infoBlock
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function view(User $user, InfoBlock $infoBlock)
@@ -48,7 +48,7 @@ class InfoBlockPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\InfoBlock  $infoBlock
+     * @param  \App\Models\Admin\InfoBlock  $infoBlock
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, InfoBlock $infoBlock)
@@ -60,7 +60,7 @@ class InfoBlockPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\InfoBlock  $infoBlock
+     * @param  \App\Models\Admin\InfoBlock  $infoBlock
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user, InfoBlock $infoBlock)
@@ -72,7 +72,7 @@ class InfoBlockPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\InfoBlock  $infoBlock
+     * @param  \App\Models\Admin\InfoBlock  $infoBlock
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function restore(User $user, InfoBlock $infoBlock)
@@ -84,7 +84,7 @@ class InfoBlockPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\InfoBlock  $infoBlock
+     * @param  \App\Models\Admin\InfoBlock  $infoBlock
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function forceDelete(User $user, InfoBlock $infoBlock)
