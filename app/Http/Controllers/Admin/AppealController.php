@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class AppealController extends Controller
 {
+    public function index(): View
+    {
+        $appeals = Appeal::with('translations')->get();
+
+        return view('admin.pages.appeals.index', compact('appeals'));
+    }
+
     public function create(Page $page): View
     {
         $localizations = Cache::get('localizations');

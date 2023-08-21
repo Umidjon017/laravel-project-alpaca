@@ -27,7 +27,7 @@
                         @foreach ($pages as $page)
                         <tr>
                           <td> {{ $loop->iteration }} </td>
-                          <td> {{ $page->getTranslatedAttributes(session('locale_id'))->title ?? 'No title'}} </td>
+                          <td> {!! $page->getTranslatedAttributes(session('locale_id'))->title ?? 'No title' !!} </td>
                           <td>
                             @if ($page->status == 1)
                             <span class="badge bg-success fs-6"> {{ __('Active') }} </span>

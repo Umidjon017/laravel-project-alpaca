@@ -11,11 +11,11 @@
   </div>
   <div class="sidebar-body">
     <ul class="nav">
-      <li class="nav-item nav-category">Main</li>
+        <li class="nav-item nav-category">Main</li>
         <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
           <a href="{{ route('admin.dashboard') }}" class="nav-link">
             <i class="link-icon" data-feather="box"></i>
-            <span class="link-title">Дашборд</span>
+            <span class="link-title">Dashboard</span>
           </a>
         </li>
         <li class="nav-item {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
@@ -24,12 +24,13 @@
               <span class="link-title">Pages</span>
             </a>
         </li>
-        {{-- <li class="nav-item {{ request()->routeIs('admin.pages.subpages.*') ? 'active' : '' }}">
-          <a href="{{ route('admin.pages.subpage', $page->slug) }}" class="nav-link">
-            <i class="link-icon" data-feather="box"></i>
-            <span class="link-title">Page ID: {{ $page->id }}</span>
-          </a>
-        </li> --}}
+        <li class="nav-item {{ request()->routeIs('admin.appeals.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.appeals.index') }}" class="nav-link">
+              <i class="link-icon" data-feather="box"></i>
+              <span class="link-title">Appeals</span>
+            </a>
+        </li>
+        <li class="nav-item nav-category">Languages</li>
         <li class="nav-item {{ request()->routeIs('admin.localizations.*') ? 'active' : '' }}">
             <a href="{{ route('admin.localizations.index') }}" class="nav-link">
               <i class="link-icon" data-feather="box"></i>

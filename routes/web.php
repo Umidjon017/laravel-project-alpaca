@@ -59,7 +59,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/clients_logo', OurClientLogoController::class)->only('store', 'update', 'destroy');
     // Appeals
     Route::get('/{id}/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
-    Route::resource('/appeals', AppealController::class)->only('store', 'edit', 'update', 'destroy');
+    Route::resource('/appeals', AppealController::class)->only('index', 'store', 'edit', 'update', 'destroy');
     // Direct Speech
     Route::get('/{id}/direct_speech/create', [DirectSpeechController::class, 'create'])->name('direct_speech.create');
     Route::resource('/direct_speech', DirectSpeechController::class)->only('store', 'edit', 'update', 'destroy');
