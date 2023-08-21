@@ -18,10 +18,6 @@
                     @include('admin.pages._show_incs.page')
                     {{-- Page end --}}
 
-                    {{-- Gallery block start --}}
-                    @include('admin.pages._show_incs.gallery')
-                    {{-- Gallery block end --}}
-
                     {{-- Info Block start --}}
                     @include('admin.pages._show_incs.info')
                     {{-- Info Block end --}}
@@ -29,18 +25,6 @@
                     {{-- Comment Block start --}}
                     @include('admin.pages._show_incs.comment')
                     {{-- Comment Block end --}}
-
-                    {{-- Appeal Block start --}}
-                    @include('admin.pages._show_incs.appeal')
-                    {{-- Appeal Block end --}}
-
-                    {{-- Text Block start --}}
-                    @include('admin.pages._show_incs.text')
-                    {{-- Text Block end --}}
-
-                    {{-- Video Player start --}}
-                    @include('admin.pages._show_incs.video-player')
-                    {{-- Video Player end --}}
 
                     {{-- Our Client Block start --}}
                     @include('admin.pages._show_incs.our-client')
@@ -50,13 +34,29 @@
                     @include('admin.pages._show_incs.our-client-logo')
                     {{-- Our Client Block Logos end --}}
 
-                    {{-- Direct Speech Block start --}}
-                    @include('admin.pages._show_incs.direct-speech')
-                    {{-- Direct Speech Block end --}}
+                    {{-- Text Block start --}}
+                    @include('admin.pages._show_incs.text')
+                    {{-- Text Block end --}}
 
                     {{-- Checkbox Block start --}}
                     @include('admin.pages._show_incs.checkbox-block')
                     {{-- Checkbox Block end --}}
+
+                    {{-- Gallery block start --}}
+                    @include('admin.pages._show_incs.gallery')
+                    {{-- Gallery block end --}}
+
+                    {{-- Video Player start --}}
+                    @include('admin.pages._show_incs.video-player')
+                    {{-- Video Player end --}}
+
+                    {{-- Direct Speech Block start --}}
+                    @include('admin.pages._show_incs.direct-speech')
+                    {{-- Direct Speech Block end --}}
+
+                    {{-- Appeal Block start --}}
+                    @include('admin.pages._show_incs.appeal')
+                    {{-- Appeal Block end --}}
 
                     {{-- Add Other Blocks start --}}
                     @include('admin.pages._show_incs.add-other-blocks')
