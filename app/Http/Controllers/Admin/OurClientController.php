@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreOurClientRequest;
 use App\Http\Requests\Admin\UpdateOurClientRequest;
 use App\Models\Admin\OurClient;
+use App\Models\Admin\OurClientLogo;
 use App\Models\Admin\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;

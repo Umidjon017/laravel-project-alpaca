@@ -44,6 +44,21 @@
     </select>
   </div>
 
+<div class="mb-3">
+    <label class="form-label">{{ __('Мета заголовок') }}</label>
+    <input type="text" name="meta_title" class="form-control" @isset($page) value="{{ $page->meta->meta_title }}" @endisset placeholder="Введите Мета-заголовок">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">{{ __('Мета описание') }}</label>
+    <input type="text" name="meta_description" class="form-control" @isset($page) value="{{ $page->meta->meta_description }}" @endisset placeholder="Введите Мета-описание">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">{{ __('Мета ключевые слова') }}</label>
+    <input type="text" name="meta_keywords" class="form-control" @isset($page) value="{{ $page->meta->meta_keywords }}" @endisset placeholder="Введите Мета-ключевые слова">
+</div>
+
   <div class="d-flex justify-content-between">
     <button type="submit" class="btn btn-primary me-2">
       @isset($page) {{ __('Сохранить') }} @else {{ __('Создавать') }} @endisset

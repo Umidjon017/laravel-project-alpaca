@@ -98,17 +98,9 @@ class CommentController extends Controller
 
     public function destroy(Comment $comment): RedirectResponse
     {
-        if ($comment->logo == null) {
-            $comment->delete();
-            $comment->deleteFile('image');
-        } elseif ($comment->image == null) {
-            $comment->delete();
-            $comment->deleteFile('logo');
-        } else {
-            $comment->delete();
-            $comment->deleteFile('logo');
-            $comment->deleteFile('image');
-        }
+        $comment->delete();
+        $comment->deleteFile('image');
+        $comment->deleteFile('logo');
 
         return redirect()->back()->with('success', 'Comment block deleted successfully!');
     }

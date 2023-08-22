@@ -15,6 +15,7 @@ use App\Models\Admin\OurClientLogo;
 use App\Models\Admin\Page;
 use App\Models\Admin\TextBlock;
 use App\Models\Admin\VideoPlayer;
+use App\Models\Localization;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -41,6 +42,9 @@ class PageController extends Controller
         try{
           DB::transaction(function() use ($request) {
               $data = $request->all();
+
+              $localizationId = Localization::first()->id;
+              $data['slug'] = \Str::slug($request->translations[$localizationId]['title']);
 
             if ($request->hasFile('image')) {
               $data['image'] = $this->fileUpload($request->file('image'));
@@ -73,13 +77,13 @@ class PageController extends Controller
       $texts = TextBlock::where('page_id', $page->id)->with('translations')->get();
       $videos = VideoPlayer::where('page_id', $page->id)->get();
       $clients = OurClient::where('page_id', $page->id)->with('translations')->get();
-      $ourClientLogos = OurClientLogo::where('page_id', $page->id)->get();
+//      $ourClientLogos = OurClientLogo::where('page_id', $page->id)->get();
       $directSpeeches = DirectSpeech::where('page_id', $page->id)->with('translations')->get();
       $checkboxBlocks = CheckboxBlock::where('page_id', $page->id)->with('translations')->get();
 
       return view('admin.pages.show', compact(
           'localizations','page', 'galleries', 'infos', 'comments', 'appeals', 'texts',
-          'videos', 'clients', 'ourClientLogos', 'directSpeeches', 'checkboxBlocks'));
+          'videos', 'clients', 'directSpeeches', 'checkboxBlocks'));
     }
 
     public function edit(Page $page): View
@@ -99,6 +103,9 @@ class PageController extends Controller
                     $page->deleteImage();
                     $data['image'] = $this->fileUpload($request->file('image'));
                 }
+
+                $localizationId = Localization::first()->id;
+                $data['slug'] = \Str::slug($request->translations[$localizationId]['title']);
 
                 $page->update($data);
 

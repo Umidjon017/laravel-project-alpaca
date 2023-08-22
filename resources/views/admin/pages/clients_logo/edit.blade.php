@@ -20,9 +20,19 @@
                                     {{ __('Загрузите или перетащите сюда свои логотипы') }}
                                 </label>
                                 <div id="image-preview" class="image-preview">
-                                    <input type="file" name="logo[]" class="form-control" multiple value="{{$clientLogo->logo}}"/>
+                                    <input type="file" name="logo" class="form-control" value="{{$clientLogo->logo}}"/>
                                 </div>
                                 @error('logo')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-3">
+                                <label class="form-label" for="link"> {{ __('Добавить ссылку') }} (*) </label>
+                                <input type="text" id="link" name="link" class="form-control" value="{{$clientLogo->link}}"/>
+                                @error('link')
                                 <div class="alert alert-danger">
                                     {{ $message }}
                                 </div>
@@ -31,13 +41,13 @@
                         </div>
 
                         @isset($clientLogo)
-                            <div class="col-12">
-                                <img src="{{asset(clients_logo_file_path() . $clientLogo->logo)}}" alt="Clients Logo image">
+                            <div class="raw">
+                                <img src="{{asset(clients_logo_file_path() . $clientLogo->logo)}}" alt="Clients Logo image" width="200">
                             </div>
                         @endisset
                     </div>
 
-                    <input type="hidden" name="page_id" value="{{ $page->id }}" />
+                    <input type="hidden" name="page_id" value="{{ $p->id }}" />
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary m-t-15 waves-effect"> @if(isset($clientLogo)) {{ __('Сохранить') }} @else {{ __('Add') }} @endif </button>

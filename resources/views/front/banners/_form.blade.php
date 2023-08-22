@@ -32,7 +32,7 @@
 
     <div class="mt-3">
         <label class="form-label" for="image-upload"> {{ __('Загрузите или перетащите сюда свои логотипы') }} (*) </label>
-        <input type="file" id="image-preview" name="image" class="form-control" @isset($banner) value="{{$banner->image}}" @endisset required/>
+        <input type="file" id="image-preview" name="image" class="form-control" @isset($banner) value="{{$banner->image}}" @endisset/>
         @error('image')
         <div class="alert alert-danger">
             {{ $message }}

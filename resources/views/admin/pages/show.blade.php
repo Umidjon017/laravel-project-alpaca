@@ -30,10 +30,6 @@
                     @include('admin.pages._show_incs.our-client')
                     {{-- Our Client Block end --}}
 
-                    {{-- Our Client Block Logos start --}}
-                    @include('admin.pages._show_incs.our-client-logo')
-                    {{-- Our Client Block Logos end --}}
-
                     {{-- Text Block start --}}
                     @include('admin.pages._show_incs.text')
                     {{-- Text Block end --}}

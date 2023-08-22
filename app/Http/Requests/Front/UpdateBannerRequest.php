@@ -25,7 +25,6 @@ class UpdateBannerRequest extends FormRequest
     {
         return [
             'link' => 'required',
-            'image' => 'required',
             'translations' => 'required',
         ];
     }
@@ -33,7 +32,6 @@ class UpdateBannerRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'image' => 'Image is required',
             'link' => 'Link is required',
             'translations.*.title.required' => 'Title is required',
             'translations.*.description.required' => 'Description is required',

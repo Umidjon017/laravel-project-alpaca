@@ -30,16 +30,6 @@
                 <hr>
 
                 <div class="d-flex justify-content-between">
-                    <h6 class="mb-1"> {{__('Добавить блок с логотипом наших клиентов')}} </h6>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#addClientLogo"> {{ __('Добавить') }}
-                    </button>
-                </div>
-                @include('admin.pages.clients_logo.create')
-
-                <hr>
-
-                <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить текстовый блок')}} </h6>
                     <a href="{{ route('admin.texts.create', $page->id) }}" class="btn btn-primary">{{ __('Добавить') }}</a>
                 </div>

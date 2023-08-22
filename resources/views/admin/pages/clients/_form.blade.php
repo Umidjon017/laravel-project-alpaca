@@ -20,7 +20,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Описание (*)') }}</label>
-                    <textarea class="form-control ckeditor @error('translations.*.description') is-invalid @enderror" name="translations[{{ $locale->id }}][description]" rows="10"> @isset($client) {{ $client->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
+                    <textarea class="form-control @error('translations.*.description') is-invalid @enderror" name="translations[{{ $locale->id }}][description]" rows="4"> @isset($client) {{ $client->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
                     @error('translations.*.description')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
@@ -38,13 +38,5 @@
 </div>
 
 <div class="d-flex justify-content-between mt-3">
-    <button type="submit" class="btn btn-primary me-2"> @if(isset($client)) {{ __('Save') }} @else {{ __('Add') }} @endif </button>
+    <button type="submit" class="btn btn-primary me-2"> @if(isset($client)) {{ __('Сохранить') }} @else {{ __('Добавить') }} @endif </button>
 </div>
-
-@push('plugin-scripts')
-    <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
-@endpush
-
-@push('custom-scripts')
-    <script src="{{ asset('assets/js/tinymce.js') }}"></script>
-@endpush
