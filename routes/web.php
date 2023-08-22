@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\OurClientLogoController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TextBlockController;
 use App\Http\Controllers\Admin\VideoPlayerController;
+use App\Http\Controllers\Front\BannerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,8 +27,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layout.front');
+    return view('front.index');
 });
+
+Route::resource('/banners', BannerController::class);
 
 Auth::routes();
 

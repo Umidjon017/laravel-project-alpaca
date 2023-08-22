@@ -30,6 +30,13 @@
               <span class="link-title">{{ __('Заявки') }}</span>
             </a>
         </li>
+        <li class="nav-item nav-category">{{ __('Для фронта') }}</li>
+        <li class="nav-item {{ request()->routeIs('banners.*') ? 'active' : '' }}">
+            <a href="{{ route('banners.index') }}" class="nav-link">
+                <i data-feather="loader"></i>
+                <span class="link-title">{{ __('Баннеры') }}</span>
+            </a>
+        </li>
         <li class="nav-item nav-category">{{ __('Языки') }}</li>
         <li class="nav-item {{ request()->routeIs('admin.localizations.*') ? 'active' : '' }}">
             <a href="{{ route('admin.localizations.index') }}" class="nav-link">

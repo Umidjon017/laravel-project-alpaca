@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @include('admin.partials.breadcrumb', ['page'=>'Заявки'])
+    @include('admin.partials.breadcrumb', ['page'=>'Баннеры'])
 
     <div class="row">
 
@@ -10,7 +10,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h6 class="card-title">{{ __('Заявки страницу') }}</h6>
+                        <h6 class="card-title">{{ __('Баннеры страницу') }}</h6>
+                        <a href="{{ route('banners.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
@@ -23,16 +24,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($appeals as $appeal)
+                            @foreach ($banners as $banner)
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
-                                    <td> {!! $appeal->getTranslatedAttributes(session('locale_id'))->title ?? 'No title' !!} </td>
-                                    <td> {!! $appeal->getTranslatedAttributes(session('locale_id'))->description ?? 'No Description' !!} </td>
+                                    <td> {!! $banner->getTranslatedAttributes(session('locale_id'))->title ?? 'No title' !!} </td>
+                                    <td> {!! $banner->getTranslatedAttributes(session('locale_id'))->description ?? 'No Description' !!} </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('admin.appeals.edit', $appeal->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('banners.edit', $banner->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('admin.appeals.destroy', $appeal->id) }}" method="POST">
+                                        <form action="{{ route('banners.destroy', $banner->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>

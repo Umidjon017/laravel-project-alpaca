@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('front/assets/icon.png') }}">
-    <title>Alpaca</title>
+
+    <title>{{ $title ?? config('app.name', 'Alpaca') }}</title>
     <!-- style -->
     <link rel="stylesheet" href="{{ asset('front/style/css/style.css') }}">
     <!-- swiper -->
@@ -13,61 +14,17 @@
 <!--bodyni classiga " rtl__on " qoshiladi-->
 <body class="">
 
-<!-- Navbar Start -->
-@include('layout._front-inc.navbar')
-<!-- Navbar End -->
-
-<!-- Hero Start -->
-@include('layout._front-inc.hero')
-<!-- Hero End -->
+{{ $navbar }}
 
 <!-- Container Start -->
 <div class="container">
 
-    <!-- Project-carousel Start -->
-    @include('layout._front-inc.project-carousel')
-    <!-- Project-carousel End -->
+    {{ $slot }}
 
-    <!-- Philosophy Start -->
-    @include('layout._front-inc.philosophy')
-    <!-- Philosophy End -->
-
-    <div class="for__card__container">
-        <!-- For Doctors Start -->
-        @include('layout._front-inc.for-doctors')
-        <!-- For Doctors End -->
-
-        <!-- For Leader Start -->
-        @include('layout._front-inc.for-leader')
-        <!-- For Leader End -->
-
-        <!-- For IT Start -->
-        @include('layout._front-inc.for-it-star')
-        <!-- For IT End -->
-
-        <!-- For Marketology Start -->
-        @include('layout._front-inc.for-marketology')
-        <!-- For Marketology End -->
-    </div>
-    <!--  -->
-
-    <!-- Comments Start -->
-    @include('layout._front-inc.comments')
-    <!-- Comments End -->
-
-    <!-- Partners Start -->
-    @include('layout._front-inc.partners')
-    <!-- Partners End -->
-
-    <!-- Use-now Start -->
-    @include('layout._front-inc.use-now')
-    <!-- Use-now End -->
 </div>
 <!-- Container End -->
 
-<!-- Footer Start -->
-@include('layout._front-inc.footer')
-<!-- Footer End -->
+{{ $footer }}
 
 
 <script src="{{ asset('front/js/script.js') }}"></script>
