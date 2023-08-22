@@ -37,6 +37,12 @@
                 <span class="link-title">{{ __('Баннеры') }}</span>
             </a>
         </li>
+        <li class="nav-item {{ request()->routeIs('philosophy.*') ? 'active' : '' }}">
+            <a href="{{ route('philosophy.index') }}" class="nav-link">
+                <i data-feather="loader"></i>
+                <span class="link-title">{{ __('Наша философия') }}</span>
+            </a>
+        </li>
         <li class="nav-item nav-category">{{ __('Языки') }}</li>
         <li class="nav-item {{ request()->routeIs('admin.localizations.*') ? 'active' : '' }}">
             <a href="{{ route('admin.localizations.index') }}" class="nav-link">
