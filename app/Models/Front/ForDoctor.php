@@ -6,27 +6,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Banner extends Model
+class ForDoctor extends Model
 {
     use HasFactory;
 
     protected $fillable = ['link', 'image'];
 
-    const FILE_PATH = 'front/images/banners/';
+    const FILE_PATH = 'front/images/doctors/';
 
     public function getImagePath(): string
     {
-        return public_path(banner_file_path()) . $this->image;
+        return public_path(doctors_file_path()) . $this->image;
     }
 
-    public function isImageExists(): bool
+    public function isPhotoExists(): bool
     {
         return file_exists($this->getImagePath());
     }
 
     public function deleteImage(): bool
     {
-        if ($this->isImageExists()) {
+        if ($this->isPhotoExists()) {
             @unlink($this->getImagePath());
         }
         else {
@@ -42,6 +42,6 @@ class Banner extends Model
 
     public function translations(): HasMany
     {
-        return $this->hasMany(BannerTranslation::class);
+        return $this->hasMany(ForDoctorTranslation::class);
     }
 }

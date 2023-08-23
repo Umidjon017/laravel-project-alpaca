@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TextBlockController;
 use App\Http\Controllers\Admin\VideoPlayerController;
 use App\Http\Controllers\Front\BannerController;
+use App\Http\Controllers\Front\ForDoctorController;
 use App\Http\Controllers\Front\OurPhilosophyController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::get('/', function () {
 
 Route::resource('/banners', BannerController::class);
 Route::resource('/philosophy', OurPhilosophyController::class);
+Route::resource('/doctors', ForDoctorController::class);
 
 Auth::routes();
 

@@ -3,30 +3,29 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Front\StoreBannerRequest;
-use App\Http\Requests\Front\UpdateBannerRequest;
-use App\Models\Front\Banner;
-use Illuminate\Contracts\View\View;
+use App\Http\Requests\Front\StoreForDoctorRequest;
+use App\Http\Requests\Front\UpdateForDoctorRequest;
+use App\Models\Front\ForDoctor;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-class BannerController extends Controller
+class ForDoctorController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        $banners = Banner::with('translations')->get();
+        $doctors = ForDoctor::with('translations')->get();
 
-        return view('front.banners.index', compact('banners'));
+        return view('front.doctors.index', compact('doctors'));
     }
 
     public function create()
     {
         $localizations = Cache::get('localizations');
 
-        return view('front.banners.create', compact('localizations'));
+        return view('front.doctors.create', compact('localizations'));
     }
 
-    public function store(StoreBannerRequest $request)
+    public function store(StoreForDoctorRequest $request)
     {
         try{
             DB::transaction(function() use ($request) {
@@ -36,13 +35,14 @@ class BannerController extends Controller
                     $data['image'] = $this->fileUpload($request->file('image'));
                 }
 
-                $banner = Banner::create($data);
+                $doctor = ForDoctor::create($data);
 
                 foreach($request->translations as $key=>$value) {
-                    $banner->translations()->create([
+                    $doctor->translations()->create([
                         'localization_id'=>$key,
                         'title'=>$value['title'],
                         'description'=>$value['description'],
+                        'body'=>$value['body'],
                     ]);
                 }
             });
@@ -50,34 +50,35 @@ class BannerController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('banners.index')->with('success', 'Banner added successfully!');
+        return redirect()->route('doctors.index')->with('success', 'For doctor added successfully!');
     }
 
-    public function edit(Banner $banner)
+    public function edit(ForDoctor $doctor)
     {
         $localizations = Cache::get('localizations');
 
-        return view('front.banners.edit', compact('banner', 'localizations'));
+        return view('front.doctors.edit', compact('doctor', 'localizations'));
     }
 
-    public function update(UpdateBannerRequest $request, Banner $banner)
+    public function update(UpdateForDoctorRequest $request, ForDoctor $doctor)
     {
         try {
-            DB::transaction(function() use ($request, $banner){
+            DB::transaction(function() use ($request, $doctor){
                 $data = $request->all();
 
                 if ($request->hasFile('image')) {
-                    $banner->deleteImage();
+                    $doctor->deleteImage();
                     $data['image'] = $this->fileUpload($request->file('image'));
                 }
 
-                $banner->update($data);
+                $doctor->update($data);
 
                 foreach($request->translations as $key => $value){
-                    $banner->translations()->updateOrCreate(['id' => $value['id']], [
+                    $doctor->translations()->updateOrCreate(['id' => $value['id']], [
                         'localization_id'=>$key,
                         'title'=>$value['title'],
                         'description'=>$value['description'],
+                        'body'=>$value['body'],
                     ]);
                 }
             });
@@ -86,21 +87,21 @@ class BannerController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('banners.index')->with('success', 'Banner edited successfully!');
+        return redirect()->route('doctors.index')->with('success', 'For doctor edited successfully!');
     }
 
-    public function destroy(Banner $banner)
+    public function destroy(ForDoctor $doctor)
     {
-        $banner->delete();
-        $banner->deleteImage();
+        $doctor->delete();
+        $doctor->deleteImage();
 
-        return redirect()->back()->with('success', 'Banner deleted successfully!');
+        return redirect()->back()->with('success', 'For doctor deleted successfully!');
     }
 
     public function fileUpload($file): string
     {
         $filename = time().'_'.$file->getClientOriginalName();
-        $file->move(public_path(Banner::FILE_PATH), $filename);
+        $file->move(public_path(ForDoctor::FILE_PATH), $filename);
         return $filename;
     }
 }

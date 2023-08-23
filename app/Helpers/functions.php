@@ -8,6 +8,7 @@ use App\Models\Admin\OurClientLogo;
 use App\Models\Admin\Page;
 use App\Models\Admin\VideoPlayer;
 use App\Models\Front\Banner;
+use App\Models\Front\ForDoctor;
 
 if(!function_exists('page_file_path')) {
 
@@ -70,5 +71,13 @@ if(!function_exists('banner_file_path')) {
     function banner_file_path(): string
     {
         return '/' . Banner::FILE_PATH;
+    }
+}
+
+if(!function_exists('doctors_file_path')) {
+
+    function doctors_file_path(): string
+    {
+        return '/' . ForDoctor::FILE_PATH;
     }
 }
