@@ -20,6 +20,7 @@ use App\Http\Controllers\Front\ForLeaderController;
 use App\Http\Controllers\Front\ForMarketologyController;
 use App\Http\Controllers\Front\OurPartnerLogoController;
 use App\Http\Controllers\Front\OurPhilosophyController;
+use App\Http\Controllers\Front\RecommendationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,7 @@ Route::resource('/it', ForItController::class)->except('show');
 Route::resource('/marketology', ForMarketologyController::class)->except('show');
 Route::resource('/feedback', FeedbackController::class)->except('show');
 Route::resource('/partners', OurPartnerLogoController::class)->except('show');
+Route::resource('/recommendations', RecommendationController::class)->except('show');
 
 Auth::routes();
 

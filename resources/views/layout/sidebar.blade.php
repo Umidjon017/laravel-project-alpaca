@@ -79,6 +79,12 @@
                 <span class="link-title">{{ __('Наши клиенты') }}</span>
             </a>
         </li>
+        <li class="nav-item {{ request()->routeIs('recommendations.*') ? 'active' : '' }}">
+            <a href="{{ route('recommendations.index') }}" class="nav-link">
+                <i data-feather="loader"></i>
+                <span class="link-title">{{ __('Рекомендации') }}</span>
+            </a>
+        </li>
         <li class="nav-item nav-category">{{ __('Языки') }}</li>
         <li class="nav-item {{ request()->routeIs('admin.localizations.*') ? 'active' : '' }}">
             <a href="{{ route('admin.localizations.index') }}" class="nav-link">
