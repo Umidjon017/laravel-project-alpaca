@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TextBlockController;
 use App\Http\Controllers\Admin\VideoPlayerController;
 use App\Http\Controllers\Front\BannerController;
+use App\Http\Controllers\Front\FeedbackController;
 use App\Http\Controllers\Front\ForDoctorController;
 use App\Http\Controllers\Front\ForItController;
 use App\Http\Controllers\Front\ForLeaderController;
@@ -41,6 +42,7 @@ Route::resource('/doctors', ForDoctorController::class);
 Route::resource('/leaders', ForLeaderController::class);
 Route::resource('/it', ForItController::class);
 Route::resource('/marketology', ForMarketologyController::class);
+Route::resource('/feedback', FeedbackController::class);
 
 Auth::routes();
 

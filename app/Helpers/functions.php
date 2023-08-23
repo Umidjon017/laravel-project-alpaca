@@ -8,6 +8,7 @@ use App\Models\Admin\OurClientLogo;
 use App\Models\Admin\Page;
 use App\Models\Admin\VideoPlayer;
 use App\Models\Front\Banner;
+use App\Models\Front\Feedback;
 use App\Models\Front\ForDoctor;
 use App\Models\Front\ForIt;
 use App\Models\Front\ForLeader;
@@ -106,5 +107,13 @@ if(!function_exists('marketology_file_path')) {
     function marketology_file_path(): string
     {
         return '/' . ForMarketology::FILE_PATH;
+    }
+}
+
+if(!function_exists('feedback_file_path')) {
+
+    function feedback_file_path(): string
+    {
+        return '/' . Feedback::FILE_PATH;
     }
 }

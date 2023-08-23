@@ -67,6 +67,12 @@
                 <span class="link-title">{{ __('Для маркетолога') }}</span>
             </a>
         </li>
+        <li class="nav-item {{ request()->routeIs('feedback.*') ? 'active' : '' }}">
+            <a href="{{ route('feedback.index') }}" class="nav-link">
+                <i data-feather="loader"></i>
+                <span class="link-title">{{ __('Отзывы клиентов') }}</span>
+            </a>
+        </li>
         <li class="nav-item nav-category">{{ __('Языки') }}</li>
         <li class="nav-item {{ request()->routeIs('admin.localizations.*') ? 'active' : '' }}">
             <a href="{{ route('admin.localizations.index') }}" class="nav-link">

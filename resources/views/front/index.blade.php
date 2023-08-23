@@ -44,7 +44,7 @@
     <!--  -->
 
     <!-- Comments Start -->
-    @include('layout._front-inc.comments')
+    @include('layout._front-inc.feedbacks')
     <!-- Comments End -->
 
     <!-- Partners Start -->
