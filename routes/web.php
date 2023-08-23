@@ -18,6 +18,7 @@ use App\Http\Controllers\Front\ForDoctorController;
 use App\Http\Controllers\Front\ForItController;
 use App\Http\Controllers\Front\ForLeaderController;
 use App\Http\Controllers\Front\ForMarketologyController;
+use App\Http\Controllers\Front\MenuController;
 use App\Http\Controllers\Front\OurPartnerLogoController;
 use App\Http\Controllers\Front\OurPhilosophyController;
 use App\Http\Controllers\Front\RecommendationController;
@@ -47,6 +48,7 @@ Route::resource('/marketology', ForMarketologyController::class)->except('show')
 Route::resource('/feedback', FeedbackController::class)->except('show');
 Route::resource('/partners', OurPartnerLogoController::class)->except('show');
 Route::resource('/recommendations', RecommendationController::class)->except('show');
+Route::resource('/menus', MenuController::class)->except('show');
 
 Auth::routes();
 

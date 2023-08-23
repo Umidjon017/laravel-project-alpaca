@@ -85,6 +85,12 @@
                 <span class="link-title">{{ __('Рекомендации') }}</span>
             </a>
         </li>
+        <li class="nav-item {{ request()->routeIs('menus.*') ? 'active' : '' }}">
+            <a href="{{ route('menus.index') }}" class="nav-link">
+                <i data-feather="loader"></i>
+                <span class="link-title">{{ __('Меню') }}</span>
+            </a>
+        </li>
         <li class="nav-item nav-category">{{ __('Языки') }}</li>
         <li class="nav-item {{ request()->routeIs('admin.localizations.*') ? 'active' : '' }}">
             <a href="{{ route('admin.localizations.index') }}" class="nav-link">
