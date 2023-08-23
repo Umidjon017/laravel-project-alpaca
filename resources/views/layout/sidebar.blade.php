@@ -61,6 +61,12 @@
                 <span class="link-title">{{ __('Для IT') }}</span>
             </a>
         </li>
+        <li class="nav-item {{ request()->routeIs('marketology.*') ? 'active' : '' }}">
+            <a href="{{ route('marketology.index') }}" class="nav-link">
+                <i data-feather="loader"></i>
+                <span class="link-title">{{ __('Для маркетолога') }}</span>
+            </a>
+        </li>
         <li class="nav-item nav-category">{{ __('Языки') }}</li>
         <li class="nav-item {{ request()->routeIs('admin.localizations.*') ? 'active' : '' }}">
             <a href="{{ route('admin.localizations.index') }}" class="nav-link">

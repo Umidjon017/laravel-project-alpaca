@@ -56,7 +56,7 @@
 
     @isset($it)
     <div class="mt-3 mb-3">
-        <img src="{{ asset(it_file_path() . $it->image) }}" alt="For Doctor Image" width="200">
+        <img src="{{ asset(it_file_path() . $it->image) }}" alt="For IT Image" width="200">
     </div>
     @endisset
 
