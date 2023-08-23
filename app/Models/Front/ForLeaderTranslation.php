@@ -12,7 +12,7 @@ class ForLeaderTranslation extends Model
 
     protected $fillable = ['for_leader_id', 'localization_id', 'title', 'description', 'body'];
 
-    public function forDoctor(): BelongsTo
+    public function forLeader(): BelongsTo
     {
         return $this->belongsTo(ForLeader::class, 'for_leader_id');
     }

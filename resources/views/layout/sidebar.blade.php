@@ -55,6 +55,12 @@
                 <span class="link-title">{{ __('Для руководителя') }}</span>
             </a>
         </li>
+        <li class="nav-item {{ request()->routeIs('it.*') ? 'active' : '' }}">
+            <a href="{{ route('it.index') }}" class="nav-link">
+                <i data-feather="loader"></i>
+                <span class="link-title">{{ __('Для IT') }}</span>
+            </a>
+        </li>
         <li class="nav-item nav-category">{{ __('Языки') }}</li>
         <li class="nav-item {{ request()->routeIs('admin.localizations.*') ? 'active' : '' }}">
             <a href="{{ route('admin.localizations.index') }}" class="nav-link">
