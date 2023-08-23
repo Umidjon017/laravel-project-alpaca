@@ -9,6 +9,7 @@ use App\Models\Admin\Page;
 use App\Models\Admin\VideoPlayer;
 use App\Models\Front\Banner;
 use App\Models\Front\ForDoctor;
+use App\Models\Front\ForLeader;
 
 if(!function_exists('page_file_path')) {
 
@@ -79,5 +80,13 @@ if(!function_exists('doctors_file_path')) {
     function doctors_file_path(): string
     {
         return '/' . ForDoctor::FILE_PATH;
+    }
+}
+
+if(!function_exists('leaders_file_path')) {
+
+    function leaders_file_path(): string
+    {
+        return '/' . ForLeader::FILE_PATH;
     }
 }
