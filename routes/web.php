@@ -18,6 +18,7 @@ use App\Http\Controllers\Front\ForDoctorController;
 use App\Http\Controllers\Front\ForItController;
 use App\Http\Controllers\Front\ForLeaderController;
 use App\Http\Controllers\Front\ForMarketologyController;
+use App\Http\Controllers\Front\OurPartnerLogoController;
 use App\Http\Controllers\Front\OurPhilosophyController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,13 +37,14 @@ Route::get('/', function () {
     return view('front.index');
 });
 
-Route::resource('/banners', BannerController::class);
-Route::resource('/philosophy', OurPhilosophyController::class);
-Route::resource('/doctors', ForDoctorController::class);
-Route::resource('/leaders', ForLeaderController::class);
-Route::resource('/it', ForItController::class);
-Route::resource('/marketology', ForMarketologyController::class);
-Route::resource('/feedback', FeedbackController::class);
+Route::resource('/banners', BannerController::class)->except('show');
+Route::resource('/philosophy', OurPhilosophyController::class)->except('show');
+Route::resource('/doctors', ForDoctorController::class)->except('show');
+Route::resource('/leaders', ForLeaderController::class)->except('show');
+Route::resource('/it', ForItController::class)->except('show');
+Route::resource('/marketology', ForMarketologyController::class)->except('show');
+Route::resource('/feedback', FeedbackController::class)->except('show');
+Route::resource('/partners', OurPartnerLogoController::class)->except('show');
 
 Auth::routes();
 

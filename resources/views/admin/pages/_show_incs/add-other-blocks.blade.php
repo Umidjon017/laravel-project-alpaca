@@ -22,7 +22,7 @@
                 <hr>
 
                 <div class="d-flex justify-content-between">
-                    <h6 class="mb-1"> {{__('Добавьте блок Наши клиенты')}} </h6>
+                    <h6 class="mb-1"> {{__('Добавить блок Наши клиенты')}} </h6>
                     <a href="{{ route('admin.clients.create', $page->id) }}"
                        class="btn btn-primary"> {{ __('Добавить') }} </a>
                 </div>

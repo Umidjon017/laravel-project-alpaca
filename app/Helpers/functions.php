@@ -13,6 +13,7 @@ use App\Models\Front\ForDoctor;
 use App\Models\Front\ForIt;
 use App\Models\Front\ForLeader;
 use App\Models\Front\ForMarketology;
+use App\Models\Front\OurPartnerLogo;
 
 if(!function_exists('page_file_path')) {
 
@@ -115,5 +116,13 @@ if(!function_exists('feedback_file_path')) {
     function feedback_file_path(): string
     {
         return '/' . Feedback::FILE_PATH;
+    }
+}
+
+if(!function_exists('partners_file_path')) {
+
+    function partners_file_path(): string
+    {
+        return '/' . OurPartnerLogo::FILE_PATH;
     }
 }
