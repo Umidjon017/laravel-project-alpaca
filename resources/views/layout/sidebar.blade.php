@@ -31,62 +31,62 @@
             </a>
         </li>
         <li class="nav-item nav-category">{{ __('Для фронта') }}</li>
-        <li class="nav-item {{ request()->routeIs('banners.*') ? 'active' : '' }}">
-            <a href="{{ route('banners.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.banners.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.banners.index') }}" class="nav-link">
                 <i data-feather="loader"></i>
                 <span class="link-title">{{ __('Баннеры') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('philosophy.*') ? 'active' : '' }}">
-            <a href="{{ route('philosophy.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.philosophy.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.philosophy.index') }}" class="nav-link">
                 <i data-feather="loader"></i>
                 <span class="link-title">{{ __('Наша философия') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('doctors.*') ? 'active' : '' }}">
-            <a href="{{ route('doctors.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.doctors.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.doctors.index') }}" class="nav-link">
                 <i data-feather="loader"></i>
                 <span class="link-title">{{ __('Для врача') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('leaders.*') ? 'active' : '' }}">
-            <a href="{{ route('leaders.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.leaders.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.leaders.index') }}" class="nav-link">
                 <i data-feather="loader"></i>
                 <span class="link-title">{{ __('Для руководителя') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('it.*') ? 'active' : '' }}">
-            <a href="{{ route('it.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.it.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.it.index') }}" class="nav-link">
                 <i data-feather="loader"></i>
                 <span class="link-title">{{ __('Для IT') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('marketology.*') ? 'active' : '' }}">
-            <a href="{{ route('marketology.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.marketology.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.marketology.index') }}" class="nav-link">
                 <i data-feather="loader"></i>
                 <span class="link-title">{{ __('Для маркетолога') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('feedback.*') ? 'active' : '' }}">
-            <a href="{{ route('feedback.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.feedback.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.feedback.index') }}" class="nav-link">
                 <i data-feather="loader"></i>
                 <span class="link-title">{{ __('Отзывы клиентов') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('partners.*') ? 'active' : '' }}">
-            <a href="{{ route('partners.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.partners.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.partners.index') }}" class="nav-link">
                 <i data-feather="loader"></i>
                 <span class="link-title">{{ __('Наши клиенты') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('recommendations.*') ? 'active' : '' }}">
-            <a href="{{ route('recommendations.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.recommendations.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.recommendations.index') }}" class="nav-link">
                 <i data-feather="loader"></i>
                 <span class="link-title">{{ __('Рекомендации') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('menus.*') ? 'active' : '' }}">
-            <a href="{{ route('menus.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.menus.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.menus.index') }}" class="nav-link">
                 <i data-feather="loader"></i>
                 <span class="link-title">{{ __('Меню') }}</span>
             </a>

@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h6 class="card-title">{{ __('Наша философия') }}</h6>
-                        <a href="{{ route('philosophy.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        <a href="{{ route('admin.philosophy.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
@@ -32,10 +32,10 @@
                                     <td> {!! $philosophy->getTranslatedAttributes(session('locale_id'))->description ?? 'No Description' !!} </td>
                                     <td> {!! $philosophy->link ?? 'No links' !!} </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('philosophy.edit', $philosophy->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('admin.philosophy.edit', $philosophy->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('philosophy.destroy', $philosophy->id) }}" method="POST">
+                                        <form action="{{ route('admin.philosophy.destroy', $philosophy->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>

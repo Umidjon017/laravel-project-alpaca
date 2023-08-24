@@ -19,6 +19,7 @@
                         <tr class="text-center">
                           <th class="text-start"> # </th>
                           <th> {{ __('Заголовок') }} </th>
+                          <th> {{ __('Слаг') }} </th>
                           <th> {{ __('Статус') }} </th>
                           <th class="w-25"> {{ __('Действие') }} </th>
                         </tr>
@@ -28,6 +29,7 @@
                         <tr>
                           <td> {{ $loop->iteration }} </td>
                           <td> {!! $page->getTranslatedAttributes(session('locale_id'))->title ?? 'No title' !!} </td>
+                          <td> {!! $page->slug ?? 'No slug' !!} </td>
                           <td>
                             @if ($page->status == 1)
                             <span class="badge bg-success fs-6"> {{ __('Активный') }} </span>

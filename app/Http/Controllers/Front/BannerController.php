@@ -50,7 +50,7 @@ class BannerController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('banners.index')->with('success', 'Banner added successfully!');
+        return redirect()->route('admin.banners.index')->with('success', 'Banner added successfully!');
     }
 
     public function edit(Banner $banner)
@@ -86,7 +86,7 @@ class BannerController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('banners.index')->with('success', 'Banner edited successfully!');
+        return redirect()->route('admin.banners.index')->with('success', 'Banner edited successfully!');
     }
 
     public function destroy(Banner $banner)

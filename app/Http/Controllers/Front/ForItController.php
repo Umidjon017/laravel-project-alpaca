@@ -51,7 +51,7 @@ class ForItController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('it.index')->with('success', 'For IT added successfully!');
+        return redirect()->route('admin.it.index')->with('success', 'For IT added successfully!');
     }
 
     public function edit(ForIt $it)
@@ -88,7 +88,7 @@ class ForItController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('it.index')->with('success', 'For IT edited successfully!');
+        return redirect()->route('admin.it.index')->with('success', 'For IT edited successfully!');
     }
 
     public function destroy(ForIt $it)
@@ -96,7 +96,7 @@ class ForItController extends Controller
         $it->delete();
         $it->deleteImage();
 
-        return redirect()->route('it.index')->with('success', 'For IT deleted successfully!');
+        return redirect()->back()->with('success', 'For IT deleted successfully!');
     }
 
     public function fileUpload($file): string

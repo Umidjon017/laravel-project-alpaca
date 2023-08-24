@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h6 class="card-title">{{ __('Баннеры страницу') }}</h6>
-                        <a href="{{ route('banners.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        <a href="{{ route('admin.banners.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
@@ -30,10 +30,10 @@
                                     <td> {!! $banner->getTranslatedAttributes(session('locale_id'))->title ?? 'No title' !!} </td>
                                     <td> {!! $banner->getTranslatedAttributes(session('locale_id'))->description ?? 'No Description' !!} </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('banners.edit', $banner->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('admin.banners.edit', $banner->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('banners.destroy', $banner->id) }}" method="POST">
+                                        <form action="{{ route('admin.banners.destroy', $banner->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>

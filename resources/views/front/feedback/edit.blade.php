@@ -1,14 +1,14 @@
 @extends('layout.master')
 
 @section('content')
-    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Отзывы клиентов', 'pageUrl'=>route('feedback.index')])
+    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Отзывы клиентов', 'pageUrl'=>route('admin.feedback.index')])
 
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">{{__('Редактировать блок комментариев')}}</h6>
-                    <form action="{{ route('feedback.update', $feedback->id) }}" enctype="multipart/form-data" method="POST" class="forms-sample">
+                    <form action="{{ route('admin.feedback.update', $feedback->id) }}" enctype="multipart/form-data" method="POST" class="forms-sample">
                         @csrf
                         @method('PUT')
                         @include('front.feedback._form')

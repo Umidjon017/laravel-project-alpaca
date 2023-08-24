@@ -13,18 +13,18 @@
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Заголовок') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($marketology) value="{{ $marketology->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Введите название" required>
+                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" value="{{ old('translations.*.title') ?? (isset($marketology) ? $marketology->getTranslatedAttributes($locale->id)->title : '') }}" placeholder="Введите название" required>
                     @error('translations.*.title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Описание') }}(*)</label>
-                    <textarea class="form-control @error('translations.*.description') is-invalid @enderror" name="translations[{{ $locale->id }}][description]" rows="4"> @isset($marketology) {{ $marketology->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
+                    <textarea class="form-control @error('translations.*.description') is-invalid @enderror" name="translations[{{ $locale->id }}][description]" rows="4"> {{ old('translations.*.description') ?? (isset($marketology) ? $marketology->getTranslatedAttributes($locale->id)->description : '') }} </textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Контент') }}(*)</label>
-                    <textarea class="form-control ckeditor @error('translations.*.body') is-invalid @enderror" name="translations[{{ $locale->id }}][body]" rows="4"> @isset($marketology) {{ $marketology->getTranslatedAttributes($locale->id)->body }} @endisset </textarea>
+                    <textarea class="form-control ckeditor @error('translations.*.body') is-invalid @enderror" name="translations[{{ $locale->id }}][body]" rows="4"> {{ old('translations.*.body') ?? (isset($marketology) ? $marketology->getTranslatedAttributes($locale->id)->body : '') }} </textarea>
                 </div>
 
                 @isset($marketology)
@@ -36,7 +36,7 @@
 
     <div class="mt-3">
         <label class="form-label" for="image-upload"> {{ __('Загрузите или перетащите сюда свои изображения') }} (*) </label>
-        <input type="file" id="image-preview" name="image" class="form-control" @isset($marketology) value="{{$marketology->image}}" @endisset/>
+        <input type="file" id="image-preview" name="image" class="form-control" value="{{ old('image') ?? (isset($marketology) ? $marketology->image : '') }}"/>
         @error('image')
         <div class="alert alert-danger">
             {{ $message }}
@@ -46,7 +46,7 @@
 
     <div class="mt-3">
         <label class="form-label" for="link"> {{ __('Добавить ссылку') }} (*) </label>
-        <input type="text" id="link" name="link" class="form-control" @isset($marketology) value="{{$marketology->link}}" @endisset required/>
+        <input type="text" id="link" name="link" class="form-control" value="{{ old('link') ?? (isset($marketology) ? $marketology->link : '') }}" required/>
         @error('link')
         <div class="alert alert-danger">
             {{ $message }}

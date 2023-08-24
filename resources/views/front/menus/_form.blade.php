@@ -5,8 +5,18 @@
 
                 <div class="mt-3">
                     <label class="form-label" for="menu_title"> {{ __('Название меню') }} (*) </label>
-                    <input type="text" id="menu_title" name="menu_title" class="form-control" @isset($menu) value="{{$menu->menu_title}}" @endisset required/>
+                    <input type="text" id="menu_title" name="menu_title" class="form-control" value="{{ old('menu_title') ?? (isset($menu) ? $menu->menu_title : '') }}" required/>
                     @error('menu_title')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                <div class="mt-3">
+                    <label class="form-label" for="menu_title"> {{ __('Ссылка') }} (*) </label>
+                    <input type="text" id="menu_title" name="link" class="form-control" value="{{ old('link') ?? (isset($menu) ? $menu->link : '') }}" required/>
+                    @error('link')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
@@ -18,7 +28,7 @@
                     <select name="parent_id" class="js-example-basic-single w-100" data-width="100%"  data-placeholder="Select menu">
                         <option value="0">Выберите menu</option>
                         @foreach($menus as $menuItem)
-                            <option value="{{ $menuItem->id }}" {{ $menuItem->id == $menu->parent_id ? 'selected' : '' }} >{{$menuItem->menu_title}}</option>
+                            <option value="{{ $menuItem->id }}" {{ $menuItem->id == (isset($menu) ? $menu->parent_id : '')  ? 'selected' : '' }} >{{$menuItem->menu_title}}</option>
                         @endforeach
                     </select>
                     @error('parent_id')
@@ -31,8 +41,8 @@
                 <div class="mt-3">
                     <label class="form-label">{{__('Статус (*)')}}</label>
                     <select class="js-example-basic-single w-100" data-width="100%"  data-placeholder="Select menu" name="status">
-                        <option value="1" @isset($menu) {{ $menu->status == 1 ? "selected" : '' }} @endisset>Active</option>
-                        <option value="0" @isset($menu) {{ $menu->status == 0 ? "selected" : '' }} @endisset>Inactive</option>
+                        <option value="1" @isset($menu) {{ $menu->status == 1 ? "selected" : '' }} @endisset>Активный</option>
+                        <option value="0" @isset($menu) {{ $menu->status == 0 ? "selected" : '' }} @endisset>Неактивный</option>
                     </select>
                     @error('status')
                     <div class="alert alert-danger">

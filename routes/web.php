@@ -22,6 +22,7 @@ use App\Http\Controllers\Front\MenuController;
 use App\Http\Controllers\Front\OurPartnerLogoController;
 use App\Http\Controllers\Front\OurPhilosophyController;
 use App\Http\Controllers\Front\RecommendationController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,20 +36,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front.index');
-});
-
-Route::resource('/banners', BannerController::class)->except('show');
-Route::resource('/philosophy', OurPhilosophyController::class)->except('show');
-Route::resource('/doctors', ForDoctorController::class)->except('show');
-Route::resource('/leaders', ForLeaderController::class)->except('show');
-Route::resource('/it', ForItController::class)->except('show');
-Route::resource('/marketology', ForMarketologyController::class)->except('show');
-Route::resource('/feedback', FeedbackController::class)->except('show');
-Route::resource('/partners', OurPartnerLogoController::class)->except('show');
-Route::resource('/recommendations', RecommendationController::class)->except('show');
-Route::resource('/menus', MenuController::class)->except('show');
+Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes();
 
@@ -87,4 +75,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Checkbox Block
     Route::get('/{id}/checkbox/create', [CheckboxBlockController::class, 'create'])->name('checkbox.create');
     Route::resource('/checkbox', CheckboxBlockController::class)->only('store', 'edit', 'update', 'destroy');
+
+    // For Frontend
+    Route::resource('/banners', BannerController::class)->except('show');
+    Route::resource('/philosophy', OurPhilosophyController::class)->except('show');
+    Route::resource('/doctors', ForDoctorController::class)->except('show');
+    Route::resource('/leaders', ForLeaderController::class)->except('show');
+    Route::resource('/it', ForItController::class)->except('show');
+    Route::resource('/marketology', ForMarketologyController::class)->except('show');
+    Route::resource('/feedback', FeedbackController::class)->except('show');
+    Route::resource('/partners', OurPartnerLogoController::class)->except('show');
+    Route::resource('/recommendations', RecommendationController::class)->except('show');
+    Route::resource('/menus', MenuController::class)->except('show');
 });

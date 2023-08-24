@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h6 class="card-title">{{ __('Наши клиенты страницу') }}</h6>
-                        <a href="{{ route('partners.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        <a href="{{ route('admin.partners.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
@@ -32,10 +32,10 @@
                                     </td>
                                     <td> {!! $partner->link ?? 'No link' !!} </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('partners.edit', $partner->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('admin.partners.edit', $partner->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('partners.destroy', $partner->id) }}" method="POST">
+                                        <form action="{{ route('admin.partners.destroy', $partner->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>

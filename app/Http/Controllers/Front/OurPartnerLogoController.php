@@ -31,7 +31,7 @@ class OurPartnerLogoController extends Controller
 
         OurPartnerLogo::create($data);
 
-        return redirect()->route('partners.index')->with('success', 'Client added successfully!');
+        return redirect()->route('admin.partners.index')->with('success', 'Client added successfully!');
     }
 
     public function edit(OurPartnerLogo $partner)
@@ -50,7 +50,7 @@ class OurPartnerLogoController extends Controller
 
         $partner->update($data);
 
-        return redirect()->route('partners.index')->with('success', 'Client edited successfully!');
+        return redirect()->route('admin.partners.index')->with('success', 'Client edited successfully!');
     }
 
     public function destroy(OurPartnerLogo $partner)

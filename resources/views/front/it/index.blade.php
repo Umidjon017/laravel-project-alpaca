@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h6 class="card-title">{{ __('Для IT страницу') }}</h6>
-                        <a href="{{ route('it.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        <a href="{{ route('admin.it.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
@@ -34,10 +34,10 @@
                                     <td> {!! $it->getTranslatedAttributes(session('locale_id'))->body ?? 'No Description' !!} </td>
                                     <td> {!! $it->link ?? 'No link' !!} </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('it.edit', $it->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('admin.it.edit', $it->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('it.destroy', $it->id) }}" method="POST">
+                                        <form action="{{ route('admin.it.destroy', $it->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>

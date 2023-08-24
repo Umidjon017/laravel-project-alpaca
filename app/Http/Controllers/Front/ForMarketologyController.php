@@ -50,7 +50,7 @@ class ForMarketologyController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('marketology.index')->with('success', 'For marketology added successfully!');
+        return redirect()->route('admin.marketology.index')->with('success', 'For marketology added successfully!');
     }
 
     public function edit(ForMarketology $marketology)
@@ -87,7 +87,7 @@ class ForMarketologyController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('marketology.index')->with('success', 'For marketology edited successfully!');
+        return redirect()->route('admin.marketology.index')->with('success', 'For marketology edited successfully!');
     }
 
     public function destroy(ForMarketology $marketology)

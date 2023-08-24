@@ -10,7 +10,7 @@ class Menu extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['parent_id', 'menu_title', 'slug', 'sort_order', 'status'];
+    protected $fillable = ['parent_id', 'menu_title', 'link', 'sort_order', 'status'];
 
     public function parent(): HasMany
     {
