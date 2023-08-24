@@ -24,35 +24,33 @@
                     <img src="{{ asset('front/assets/image/hero/close.png') }}" alt="">
                 </button>
             </div>
+
             <ul class="nav">
-                <li class="nav__li nav__dropdown">
-            <span class="nav__dropdown__open">
-              Пользователи
-              <img src="{{ asset('front/assets/image/arrows/arrow_bottom.png') }}" alt="">
-            </span>
-                    <ul class="nav__dropdown__menu">
-                        <li><a href="#">Частная практика</a></li>
-                        <li><a href="#">Outpatient clinic</a></li>
-                        <li><a href="#">Chain of clinics</a></li>
-                    </ul>
-                </li>
-                <li class="nav__li nav__dropdown">
-            <span class="nav__dropdown__open">
-              Клиники
-              <img src="{{ asset('front/assets/image/arrows/arrow_bottom.png') }}" alt="">
-            </span>
-                    <ul class="nav__dropdown__menu">
-                        <li><a href="#">Частная практика</a></li>
-                        <li><a href="#">Outpatient clinic</a></li>
-                        <li><a href="#">Chain of clinics</a></li>
-                        <li><a href="#">Hospital</a></li>
-                        <li><a href="#">Hospital group</a></li>
-                    </ul>
-                </li>
-                <li class="nav__li"><a href="#">Модули</a></li>
-                <li class="nav__li"><a href="#">Цены</a></li>
-                <li class="nav__li"><a href="#">О нас</a></li>
+                @foreach($menus as $menu)
+                @foreach($menu->parent as $menuItem)
+                    @if($menuItem->parent_id == 0)
+                        @include('front.menus.submenu', ['item' => $menuItem])
+                    @endif
+{{--                <li class="nav__li nav__dropdown">--}}
+{{--                    <span class="nav__dropdown__open">--}}
+{{--                      Клиники--}}
+{{--                      <img src="{{ asset('front/assets/image/arrows/arrow_bottom.png') }}" alt="">--}}
+{{--                    </span>--}}
+{{--                    <ul class="nav__dropdown__menu">--}}
+{{--                        <li><a href="#">Частная практика</a></li>--}}
+{{--                        <li><a href="#">Outpatient clinic</a></li>--}}
+{{--                        <li><a href="#">Chain of clinics</a></li>--}}
+{{--                        <li><a href="#">Hospital</a></li>--}}
+{{--                        <li><a href="#">Hospital group</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--                <li class="nav__li"><a href="#">Модули</a></li>--}}
+{{--                <li class="nav__li"><a href="#">Цены</a></li>--}}
+{{--                <li class="nav__li"><a href="#">О нас</a></li>--}}
+                @endforeach
+            @endforeach
             </ul>
+
             <div class="demo">
                 <button>Запросить демо версию</button>
                 <div class="nev__contact">

@@ -41,6 +41,16 @@
     </div>
 
     <div class="mt-3">
+        <label class="form-label" for="image-upload"> {{ __('Загрузите или перетащите сюда свои изображения') }} (*) </label>
+        <input type="file" id="image-preview" name="icon[]" multiple class="form-control" value="{{ old('icon') ?? (isset($philosophy) ? $philosophy->icon : '') }}"/>
+        @error('icon')
+        <div class="alert alert-danger">
+            {{ $message }}
+        </div>
+        @enderror
+    </div>
+
+    <div class="mt-3">
         <label class="form-label" for="link"> {{ __('Добавить ссылку') }} (*) </label>
         <input type="text" id="link" name="link" class="form-control" value="{{ old('link') ?? (isset($philosophy) ? $philosophy->link : '') }}" required/>
         @error('link')
@@ -49,6 +59,17 @@
         </div>
         @enderror
     </div>
+
+    @isset($philosophy)
+        <div class="mt-3 mb-3">
+            @php
+                $icons = explode(',', $philosophy->icon)
+            @endphp
+            @foreach($icons as $icon)
+            <img src="{{ asset(philosophy_file_path() . $icon) }}" alt="">
+            @endforeach
+        </div>
+    @endisset
 
 </div>
 

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('our_philosophies', function (Blueprint $table) {
             $table->id();
             $table->string('link');
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }

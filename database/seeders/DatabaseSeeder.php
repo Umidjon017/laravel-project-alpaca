@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
     $this->call([
       UserSeeder::class,
       LocalizationSeeder::class,
-      MenuSeeder::class
+      MenuSeeder::class,
+      OurPhilosophy::class,
+      OurPhilosophyTranslation::class
     ]);
   }
 }

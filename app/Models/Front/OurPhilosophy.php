@@ -10,7 +10,30 @@ class OurPhilosophy extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['link'];
+    protected $fillable = ['link', 'icon'];
+
+    const FILE_PATH = 'front/images/philosophy/';
+
+    public function getImagePath(): string
+    {
+        return public_path(philosophy_file_path()) . $this->icon;
+    }
+
+    public function isPhotoExists(): bool
+    {
+        return file_exists($this->getImagePath());
+    }
+
+    public function deleteImage(): bool
+    {
+        if ($this->isPhotoExists()) {
+            @unlink($this->getImagePath());
+        }
+        else {
+            return false;
+        }
+        return true;
+    }
 
     public function getTranslatedAttributes($localeId)
     {

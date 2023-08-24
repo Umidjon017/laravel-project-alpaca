@@ -1,18 +1,20 @@
 <!-- use_now Start -->
 <div class="use__now">
+    @foreach($recommendations as $recommendation)
     <div class="use__now__text">
         <p class="use__now__title">
-            Эффективное решениедля управления медицинскими предприятиями - попробуйте сейчас
+            {!! $recommendation->getTranslatedAttributes(session('locale_id'))->title !!}
         </p>
         <p class="use__now__subtitle">
-            Узнайте, как мы можем помочь вам оптимизировать работуи достичь высоких результатов с нашей системой.
+            {!! $recommendation->getTranslatedAttributes(session('locale_id'))->description !!}
         </p>
-        <a href="#" class="use__now__btn">
+        <a href="{{ $recommendation->link }}" class="use__now__btn">
             Попробовать бесплатно
         </a>
     </div>
     <div class="use__now__img">
         <img src="{{asset('front/assets/image/end.png')}}" alt="">
     </div>
+    @endforeach
 </div>
 <!-- use_now End -->

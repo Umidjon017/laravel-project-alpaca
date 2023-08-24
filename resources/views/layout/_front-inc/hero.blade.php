@@ -2,18 +2,23 @@
 <div class="hero__container">
     <div class="container">
         <div class="hero">
+            @foreach($banners as $banner)
             <div class="hero__text">
-                <h1 class="hero__title">Максимизируйте эффективность вашего <span>медицинского</span> бизнесас нашей операционной системой</h1>
-                <p>Регистрация пациентов и ведение электронных медицинских карт, расписание и управление приемами, финансовый учет, интеграция с медицинскими приборами.</p>
-                <b>К слову, alpaca - это не лама!</b>
+                    <h1 class="hero__title">
+                        {!! preg_replace('/медицинского/i', '<span>медицинского</span>', $banner->getTranslatedAttributes(session('locale_id'))->title) !!}
+                    </h1>
+                    <p>
+                        {!! preg_replace('/К слову, alpaca - это не лама!/i', '<b>К слову, alpaca - это не лама!</b>', $banner->getTranslatedAttributes(session('locale_id'))->description) !!}
+                    </p>
                 <div class="hero__btn">
                     <a href="#">Попробовать бесплатно</a>
-                    <a href="#">Узнать больше</a>
+                    <a href="{{ $banner->link }}">Узнать больше</a>
                 </div>
             </div>
             <div class="hero__img">
-                <img src="{{asset('front/assets/image/hero/hero.png')}}" alt="">
+                <img src="{{asset(banner_file_path() . $banner->image)}}" alt="">
             </div>
+            @endforeach
         </div>
     </div>
 </div>

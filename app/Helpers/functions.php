@@ -14,6 +14,7 @@ use App\Models\Front\ForIt;
 use App\Models\Front\ForLeader;
 use App\Models\Front\ForMarketology;
 use App\Models\Front\OurPartnerLogo;
+use App\Models\Front\OurPhilosophy;
 use App\Models\Front\Recommendation;
 
 if(!function_exists('page_file_path')) {
@@ -117,6 +118,14 @@ if(!function_exists('feedback_file_path')) {
     function feedback_file_path(): string
     {
         return '/' . Feedback::FILE_PATH;
+    }
+}
+
+if(!function_exists('philosophy_file_path')) {
+
+    function philosophy_file_path(): string
+    {
+        return '/' . OurPhilosophy::FILE_PATH;
     }
 }
 
