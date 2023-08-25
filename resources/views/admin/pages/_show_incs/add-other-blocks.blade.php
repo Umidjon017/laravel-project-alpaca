@@ -85,6 +85,14 @@
                        class="btn btn-primary"> {{ __('Добавить') }} </a>
                 </div>
 
+                <hr>
+
+                <div class="d-flex justify-content-between">
+                    <h6 class="mb-1"> {{__('Добавить блок Рекомендации')}} </h6>
+                    <a href="{{ route('admin.recommendation-block.create', $page->id) }}"
+                       class="btn btn-primary"> {{ __('Добавить') }} </a>
+                </div>
+
             </div>
         </div>
     </div>

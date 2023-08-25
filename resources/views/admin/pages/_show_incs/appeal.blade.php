@@ -22,14 +22,14 @@
                         <div class="example">
                             <div>
                                 <h6> {{ __('Заголовок') }} </h6>
-                                <p class="mb-1"> {!! $appeal->getTranslatedAttributes(session('locale_id'))->title !!} </p>
+                                <p class="mb-1"> {!! $appeal->translatable()->title !!} </p>
                             </div>
 
                             <hr>
 
                             <div>
                                 <h6> {{ __('Описание') }} </h6>
-                                <p class="mb-1"> {!! $appeal->getTranslatedAttributes(session('locale_id'))->description !!} </p>
+                                <p class="mb-1"> {!! $appeal->translatable()->description !!} </p>
                             </div>
                         </div>
                     </div>

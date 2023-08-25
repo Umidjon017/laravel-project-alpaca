@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h6 class="card-title"> {{ __('Страница -') }} {{ $page->getTranslatedAttributes(session('locale_id'))->title }} </h6>
+        <h6 class="card-title"> {{ __('Страница -') }} {{ $page->translatable()->title }} </h6>
     </div>
     <div class="card-body">
         <div class="example">

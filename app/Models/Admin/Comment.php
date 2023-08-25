@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\App;
 
 class Comment extends Model
 {
@@ -34,6 +35,11 @@ class Comment extends Model
             return false;
         }
         return true;
+    }
+
+    public function translatable()
+    {
+        return $this->translations->where('localization_id', App::getLocale())->first();
     }
 
     public function getTranslatedAttributes($localeId)

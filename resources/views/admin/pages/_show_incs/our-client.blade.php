@@ -1,7 +1,7 @@
 <div class="raw">
     <div class="d-flex justify-content-evenly flex-wrap">
         @foreach ($clients as $client)
-            <div class="col-5">
+            <div class="col-3">
                 <div class="card mt-3">
                     <div class="card-header">
                         <div class="card-title">
@@ -16,20 +16,22 @@
                             </form>
                             <a href="{{ route('admin.clients.edit', $client->id) }}"
                                class="btn btn-success btn-sm float-end text-capitalize">{{ __('Редактировать') }}</a>
+                            <a href="{{ route('admin.clients.show', $client->id) }}"
+                               class="btn btn-primary btn-sm float-end text-capitalize me-2">{{ __('Посмотреть') }}</a>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="example">
                             <div>
                                 <h6> {{ __('Заголовок') }} </h6>
-                                <p class="mb-1"> {!! $client->getTranslatedAttributes(session('locale_id'))->title !!} </p>
+                                <p class="mb-1"> {!! $client->translatable()->title !!} </p>
                             </div>
 
                             <hr>
 
                             <div>
                                 <h6> {{ __('Описание') }} </h6>
-                                <p class="mb-1"> {!! $client->getTranslatedAttributes(session('locale_id'))->description !!} </p>
+                                <p class="mb-1"> {!! $client->translatable()->description !!} </p>
                             </div>
                         </div>
                     </div>

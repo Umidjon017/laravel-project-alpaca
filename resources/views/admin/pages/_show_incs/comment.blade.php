@@ -1,8 +1,8 @@
 <div class="raw">
     <div class="d-flex justify-content-evenly flex-wrap">
         @foreach ($comments as $comment)
-            <div class="col-5">
-                <div class="card mt-3">
+            <div class="col-3">
+                <div class="card mt-3 me-3">
                     <div class="card-header">
                         <div class="card-title">
                             <h6> {{ __('Блок комментариев') }} {{ $loop->iteration }}</h6>
@@ -22,21 +22,21 @@
                         <div class="example">
                             <div>
                                 <h6> {{ __('Полное имя') }} </h6>
-                                <p class="mb-1"> {!! $comment->getTranslatedAttributes(session('locale_id'))->full_name !!} </p>
+                                <p class="mb-1"> {!! $comment->translatable()->full_name !!} </p>
                             </div>
 
                             <hr>
 
                             <div>
                                 <h6> {{ __('позиция') }} </h6>
-                                <p class="mb-1"> {!! $comment->getTranslatedAttributes(session('locale_id'))->position !!} </p>
+                                <p class="mb-1"> {!! $comment->translatable()->position !!} </p>
                             </div>
 
                             <hr>
 
                             <div>
                                 <h6> {{ __('Текст') }} </h6>
-                                <p class="mb-1"> {!! $comment->getTranslatedAttributes(session('locale_id'))->text !!} </p>
+                                <p class="mb-1"> {!! $comment->translatable()->text !!} </p>
                             </div>
 
                             <hr>

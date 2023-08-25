@@ -13,6 +13,7 @@ use App\Models\Admin\InfoBlock;
 use App\Models\Admin\OurClient;
 use App\Models\Admin\OurClientLogo;
 use App\Models\Admin\Page;
+use App\Models\Admin\RecommendationBlock;
 use App\Models\Admin\TextBlock;
 use App\Models\Admin\VideoPlayer;
 use App\Models\Localization;
@@ -80,10 +81,11 @@ class PageController extends Controller
 //      $ourClientLogos = OurClientLogo::where('page_id', $page->id)->get();
       $directSpeeches = DirectSpeech::where('page_id', $page->id)->with('translations')->get();
       $checkboxBlocks = CheckboxBlock::where('page_id', $page->id)->with('translations')->get();
+      $recommendationBlocks = RecommendationBlock::where('page_id', $page->id)->with('translations')->get();
 
       return view('admin.pages.show', compact(
           'localizations','page', 'galleries', 'infos', 'comments', 'appeals', 'texts',
-          'videos', 'clients', 'directSpeeches', 'checkboxBlocks'));
+          'videos', 'clients', 'directSpeeches', 'checkboxBlocks', 'recommendationBlocks'));
     }
 
     public function edit(Page $page): View

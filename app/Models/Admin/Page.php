@@ -5,6 +5,7 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\App;
 
 class Page extends Model
 {
@@ -35,6 +36,11 @@ class Page extends Model
         return true;
     }
 
+    public function translatable()
+    {
+        return $this->translations->where('localization_id', App::getLocale())->first();
+    }
+
     public function getTranslatedAttributes($localeId)
     {
         return $this->translations->where('localization_id', $localeId)->first();
@@ -60,6 +66,16 @@ class Page extends Model
         return $this->hasMany(Comment::class, 'page_id');
     }
 
+    public function textBlocks(): HasMany
+    {
+        return $this->hasMany(TextBlock::class, 'page_id');
+    }
+
+    public function checkBoxes(): HasMany
+    {
+        return $this->hasMany(CheckboxBlock::class, 'page_id');
+    }
+
     public function videoPlayers(): HasMany
     {
         return $this->hasMany(VideoPlayer::class, 'page_id');
@@ -78,5 +94,15 @@ class Page extends Model
     public function directSpeeches(): HasMany
     {
         return $this->hasMany(DirectSpeech::class, 'page_id');
+    }
+
+    public function recommendationBlocks(): HasMany
+    {
+        return $this->hasMany(RecommendationBlock::class, 'page_id');
+    }
+
+    public function appeals(): HasMany
+    {
+        return $this->hasMany(Appeal::class, 'page_id');
     }
 }

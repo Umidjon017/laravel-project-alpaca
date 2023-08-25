@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Page;
 use App\Models\Front\Banner;
 use App\Models\Front\Feedback;
 use App\Models\Front\ForDoctor;
@@ -13,7 +14,6 @@ use App\Models\Front\OurPartnerLogo;
 use App\Models\Front\OurPhilosophy;
 use App\Models\Front\Recommendation;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
@@ -34,5 +34,19 @@ class HomeController extends Controller
             'menus', 'banners', 'ourPhilosophy', 'doctors', 'leaders', 'its', 'marketologies',
             'feedbacks', 'partners', 'recommendations'
         ));
+    }
+
+    public function page(string $page): View
+    {
+        $menus = Menu::with('parent.children')->get();
+        $route = Page::where('status', 1)->where('slug', $page)->with('translations', 'galleries', 'infos', 'comments',
+            'textBlocks', 'checkBoxes', 'videoPlayers', 'ourClients', 'ourClientsLogo', 'directSpeeches',
+            'recommendationBlocks', 'appeals')->first();
+
+        if (! $route) {
+            abort(404);
+        }
+
+        return view('front.innerPage', compact('menus','route'));
     }
 }

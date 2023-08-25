@@ -10,7 +10,7 @@ class TextBlockTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['text_block_id', 'localization_id', 'text'];
+    protected $fillable = ['text_block_id', 'localization_id', 'title', 'text'];
 
     public function textBlock(): BelongsTo
     {

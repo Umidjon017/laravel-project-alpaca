@@ -20,9 +20,13 @@
                     </div>
                     <div class="card-body">
                         <div class="example">
-                            <div>
+                            <div class="mb-3">
+                                <h6> {{ __('Заголовок') }} </h6>
+                                <p class="mb-1"> {!! $text->translatable()->title !!} </p>
+                            </div>
+                            <div class="mb-3">
                                 <h6> {{ __('Текст') }} </h6>
-                                <p class="mb-1"> {!! $text->getTranslatedAttributes(session('locale_id'))->text !!} </p>
+                                <p class="mb-1"> {!! $text->translatable()->text !!} </p>
                             </div>
                         </div>
                     </div>

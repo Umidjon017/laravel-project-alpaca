@@ -6,6 +6,7 @@ use App\Models\Admin\Gallery;
 use App\Models\Admin\InfoBlock;
 use App\Models\Admin\OurClientLogo;
 use App\Models\Admin\Page;
+use App\Models\Admin\RecommendationBlock;
 use App\Models\Admin\VideoPlayer;
 use App\Models\Front\Banner;
 use App\Models\Front\Feedback;
@@ -142,5 +143,13 @@ if(!function_exists('recommendations_file_path')) {
     function recommendations_file_path(): string
     {
         return '/' . Recommendation::FILE_PATH;
+    }
+}
+
+if(!function_exists('recommendations_admin_file_path')) {
+
+    function recommendations_admin_file_path(): string
+    {
+        return '/' . RecommendationBlock::FILE_PATH;
     }
 }

@@ -54,6 +54,10 @@
                     @include('admin.pages._show_incs.appeal')
                     {{-- Appeal Block end --}}
 
+                    {{-- Appeal Block start --}}
+                    @include('admin.pages._show_incs.recommendation-block')
+                    {{-- Appeal Block end --}}
+
                     {{-- Add Other Blocks start --}}
                     @include('admin.pages._show_incs.add-other-blocks')
                     {{-- Add Other Blocks end --}}

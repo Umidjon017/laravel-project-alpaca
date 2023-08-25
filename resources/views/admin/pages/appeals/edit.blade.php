@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Проекты', 'pageUrl'=>route('admin.pages.index')])
+    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Страницы', 'pageUrl'=>route('admin.pages.index')])
 
     <div class="row">
         <div class="col-12">
@@ -19,9 +19,3 @@
     </div>
 @endsection
 
-@push('custom-scripts')
-    <script src="{{ asset('assets/plugins/ckeditor/ckeditor.js') }}"></script>
-    <script>
-        CKEDITOR.replace('body');
-    </script>
-@endpush

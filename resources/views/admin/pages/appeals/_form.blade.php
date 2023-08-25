@@ -20,7 +20,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Описание') }}</label>
-                    <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][description]" rows="10"> @isset($appeal) {{ $appeal->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
+                    <textarea class="form-control" name="translations[{{ $locale->id }}][description]" rows="4"> @isset($appeal) {{ $appeal->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
                 </div>
                 @isset($page) @foreach($page->get() as $p)
                     <input type="hidden" name="page_id" value="{{ $p->id }}" />
@@ -38,10 +38,3 @@
     <button type="submit" class="btn btn-primary me-2"> @if(isset($appeal)) {{ __('Сохранить') }} @else {{ __('Добавить') }} @endif </button>
 </div>
 
-@push('plugin-scripts')
-    <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
-@endpush
-
-@push('custom-scripts')
-    <script src="{{ asset('assets/js/tinymce.js') }}"></script>
-@endpush

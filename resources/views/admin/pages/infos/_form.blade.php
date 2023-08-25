@@ -20,7 +20,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Описание') }}</label>
-                    <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][description]" rows="10"> @isset($info) {{ $info->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
+                    <textarea class="form-control" name="translations[{{ $locale->id }}][description]" rows="4"> @isset($info) {{ $info->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Контент') }}</label>

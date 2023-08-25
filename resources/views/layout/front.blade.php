@@ -8,11 +8,18 @@
     <title>{{ $title ?? config('app.name', 'Alpaca') }}</title>
     <!-- style -->
     <link rel="stylesheet" href="{{ asset('front/style/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/style/css/video.css') }}">
+
+    @stack('css')
+
     <!-- swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    @stack('custom-css')
+
 </head>
 <!--bodyni classiga " rtl__on " qoshiladi-->
-<body class="@if(\Illuminate\Support\Facades\App::getLocale() == '2') rtl__on @endif">
+<body class="@if(\Illuminate\Support\Facades\App::getLocale() == '2') rtl__on @endif" @if(request()->routeIs('home.page*')) id="other__pages" @endif>
 
 {{ $navbar }}
 
@@ -28,8 +35,25 @@
 
 
 <script src="{{ asset('front/js/script.js') }}"></script>
+<script src="{{ asset('front/js/video.js') }}"></script>
+
+@stack('js')
+
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+@stack('custom-js')
+
 <script>
+    var swiper = new Swiper(".innerSwiper", {
+            navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+            pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
     var swiper = new Swiper(".mySwiper", {
         slidesPerView: 3,
         spaceBetween: 40,
@@ -67,5 +91,6 @@
         },
     });
 </script>
+
 </body>
 </html>

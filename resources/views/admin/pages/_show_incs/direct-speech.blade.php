@@ -22,21 +22,21 @@
                         <div class="example">
                             <div>
                                 <h6> {{ __('Полное имя') }} </h6>
-                                <p class="mb-1"> {!! $directSpeech->getTranslatedAttributes(session('locale_id'))->full_name !!} </p>
+                                <p class="mb-1"> {!! $directSpeech->translatable()->full_name !!} </p>
                             </div>
 
                             <hr>
 
                             <div>
                                 <h6> {{ __('позиция') }} </h6>
-                                <p class="mb-1"> {!! $directSpeech->getTranslatedAttributes(session('locale_id'))->position !!} </p>
+                                <p class="mb-1"> {!! $directSpeech->translatable()->position !!} </p>
                             </div>
 
                             <hr>
 
                             <div>
                                 <h6> {{ __('Текст') }} </h6>
-                                <p class="mb-1"> {!! $directSpeech->getTranslatedAttributes(session('locale_id'))->text !!} </p>
+                                <p class="mb-1"> {!! $directSpeech->translatable()->text !!} </p>
                             </div>
 
                             <hr>

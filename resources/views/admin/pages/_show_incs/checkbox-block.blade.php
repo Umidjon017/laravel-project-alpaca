@@ -1,8 +1,8 @@
 <div class="raw">
     <div class="d-flex justify-content-evenly flex-wrap">
         @foreach ($checkboxBlocks as $checkboxBlock)
-            <div class="col-5">
-                <div class="card mt-3">
+            <div class="col-3">
+                <div class="card mt-3 me-3">
                     <div class="card-header">
                         <div class="card-title">
                             <h6>{{ __('Блок чечкбокса') }} {{ $loop->iteration }}</h6>
@@ -22,7 +22,7 @@
                         <div class="example">
                             <div>
                                 <h6> {{ __('Заголовок') }} </h6>
-                                <p class="mb-1"> {!! $checkboxBlock->getTranslatedAttributes(session('locale_id'))->title !!} </p>
+                                <p class="mb-1"> {!! $checkboxBlock->translatable()->title !!} </p>
                             </div>
                         </div>
                     </div>

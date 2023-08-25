@@ -52,6 +52,14 @@ class OurClientController extends Controller
         return view('admin.pages.clients.edit', compact('localizations','client'));
     }
 
+    public function show(Page $page): View
+    {
+        $localizations = Cache::get('localizations');
+
+        return view('admin.pages.clients.create', compact('localizations', 'page'));
+    }
+
+
     public function update(UpdateOurClientRequest $request, OurClient $client)
     {
         try {

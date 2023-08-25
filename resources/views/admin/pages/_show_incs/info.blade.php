@@ -22,21 +22,21 @@
                         <div class="example">
                             <div>
                                 <h6> {{ __('Заголовок') }} </h6>
-                                <p class="mb-1"> {!! $info->getTranslatedAttributes(session('locale_id'))->title !!} </p>
+                                <p class="mb-1"> {!! $info->translatable()->title !!} </p>
                             </div>
 
                             <hr>
 
                             <div>
                                 <h6> {{ __('Описание') }} </h6>
-                                <p class="mb-1"> {!! $info->getTranslatedAttributes(session('locale_id'))->description !!} </p>
+                                <p class="mb-1"> {!! $info->translatable()->description !!} </p>
                             </div>
 
                             <hr>
 
                             <div>
                                 <h6> {{ __('Контент') }} </h6>
-                                <p class="mb-1"> {!! $info->getTranslatedAttributes(session('locale_id'))->body !!} </p>
+                                <p class="mb-1"> {!! $info->translatable()->body !!} </p>
                             </div>
 
                             <hr>

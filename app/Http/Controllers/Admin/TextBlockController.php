@@ -33,6 +33,7 @@ class TextBlockController extends Controller
                 foreach($request->translations as $key=>$value){
                     $info->translations()->create([
                         'localization_id'=>$key,
+                        'title'=>$value['title'],
                         'text'=>$value['text'],
                     ]);
                 }
@@ -61,6 +62,7 @@ class TextBlockController extends Controller
                 foreach($request->translations as $key => $value){
                     $text->translations()->updateOrCreate(['id' => $value['id']], [
                         'localization_id'=>$key,
+                        'title'=>$value['title'],
                         'text'=>$value['text'],
                     ]);
                 }

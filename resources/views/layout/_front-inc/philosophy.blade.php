@@ -5,10 +5,10 @@
             $items = explode(',', $philosophy->translatable()->additional);
         @endphp
     <p class="filasofiya__title">
-        {{ $philosophy->translatable()->title }}
+        {!! nl2br(strip_tags($philosophy->translatable()->title)) !!}
     </p>
     <p class="filasofiya__subtitle">
-        {{ $philosophy->translatable()->description }}
+        {!! nl2br(strip_tags($philosophy->translatable()->description)) !!}
     </p>
     <a href="{{ $philosophy->link }}" class="filasofiya__btn">Узнать подробнее</a>
     <div class="filasofiya__items">

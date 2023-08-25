@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\OurClientController;
 use App\Http\Controllers\Admin\OurClientLogoController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\RecommendationBlockController;
 use App\Http\Controllers\Admin\TextBlockController;
 use App\Http\Controllers\Admin\VideoPlayerController;
 use App\Http\Controllers\Front\BannerController;
@@ -42,7 +43,7 @@ Route::get('/locale/{locale}', function ($locale){
 });
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/page/{slug}', [HomeController::class, 'page']);
+Route::get('/page/{slug}', [HomeController::class, 'page'])->name('home.page');
 
 Auth::routes();
 
@@ -57,19 +58,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/gallery', GalleryController::class)->only('store', 'update', 'destroy');
     // Info Block
     Route::get('/{id}/infos/create', [InfoBlockController::class, 'create'])->name('infos.create');
-    Route::resource('/infos', InfoBlockController::class)->only('store', 'edit', 'update', 'destroy');
+    Route::resource('/infos', InfoBlockController::class)->except('index', 'create', 'show');
     // Comments
     Route::get('/{id}/comments/create', [CommentController::class, 'create'])->name('comments.create');
-    Route::resource('/comments', CommentController::class)->only('store', 'edit', 'update', 'destroy');
+    Route::resource('/comments', CommentController::class)->except('index', 'create', 'show');
     // Text Block
     Route::get('/{id}/texts/create', [TextBlockController::class, 'create'])->name('texts.create');
-    Route::resource('/texts', TextBlockController::class)->only('store', 'edit', 'update', 'destroy');
+    Route::resource('/texts', TextBlockController::class)->except('index', 'create', 'show');
     // Video Player
     Route::get('/{id}/videos/create', [VideoPlayerController::class, 'create'])->name('videos.create');
-    Route::resource('/videos', VideoPlayerController::class)->only('store', 'edit', 'update', 'destroy');
+    Route::resource('/videos', VideoPlayerController::class)->except('index', 'create', 'show');
     // Our Clients
     Route::get('/{id}/clients/create', [OurClientController::class, 'create'])->name('clients.create');
-    Route::resource('/clients', OurClientController::class)->only('store', 'edit', 'update', 'destroy');
+    Route::resource('/clients', OurClientController::class)->except('index', 'create');
     // Our Clients Logo
     Route::resource('/clients_logo', OurClientLogoController::class)->only('store', 'update', 'destroy');
     // Appeals
@@ -77,10 +78,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/appeals', AppealController::class)->only('index', 'store', 'edit', 'update', 'destroy');
     // Direct Speech
     Route::get('/{id}/direct_speech/create', [DirectSpeechController::class, 'create'])->name('direct_speech.create');
-    Route::resource('/direct_speech', DirectSpeechController::class)->only('store', 'edit', 'update', 'destroy');
+    Route::resource('/direct_speech', DirectSpeechController::class)->except('index', 'create', 'show');
     // Checkbox Block
     Route::get('/{id}/checkbox/create', [CheckboxBlockController::class, 'create'])->name('checkbox.create');
-    Route::resource('/checkbox', CheckboxBlockController::class)->only('store', 'edit', 'update', 'destroy');
+    Route::resource('/checkbox', CheckboxBlockController::class)->except('index', 'create', 'show');
+    // Recommendation Block
+    Route::get('/{id}/recommendation-block/create', [RecommendationBlockController::class, 'create'])->name('recommendation-block.create');
+    Route::resource('/recommendation-block', RecommendationBlockController::class)->except('index', 'create', 'show');
 
     // For Frontend
     Route::resource('/banners', BannerController::class)->except('show');
