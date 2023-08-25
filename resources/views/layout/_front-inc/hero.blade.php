@@ -5,10 +5,10 @@
             @foreach($banners as $banner)
             <div class="hero__text">
                     <h1 class="hero__title">
-                        {!! preg_replace('/медицинского/i', '<span>медицинского</span>', $banner->getTranslatedAttributes(session('locale_id'))->title) !!}
+                        {!! preg_replace('/медицинского/i', '<span>медицинского</span>', $banner->translatable()->title) !!}
                     </h1>
                     <p>
-                        {!! preg_replace('/К слову, alpaca - это не лама!/i', '<b>К слову, alpaca - это не лама!</b>', $banner->getTranslatedAttributes(session('locale_id'))->description) !!}
+                        {!! preg_replace('/К слову, alpaca - это не лама!/i', '<b>К слову, alpaca - это не лама!</b>', $banner->translatable()->description) !!}
                     </p>
                 <div class="hero__btn">
                     <a href="#">Попробовать бесплатно</a>

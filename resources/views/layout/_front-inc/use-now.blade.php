@@ -3,10 +3,10 @@
     @foreach($recommendations as $recommendation)
     <div class="use__now__text">
         <p class="use__now__title">
-            {!! $recommendation->getTranslatedAttributes(session('locale_id'))->title !!}
+            {!! $recommendation->translatable()->title !!}
         </p>
         <p class="use__now__subtitle">
-            {!! $recommendation->getTranslatedAttributes(session('locale_id'))->description !!}
+            {!! $recommendation->translatable()->description !!}
         </p>
         <a href="{{ $recommendation->link }}" class="use__now__btn">
             Попробовать бесплатно

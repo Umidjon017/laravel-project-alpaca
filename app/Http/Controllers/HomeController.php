@@ -13,6 +13,7 @@ use App\Models\Front\OurPartnerLogo;
 use App\Models\Front\OurPhilosophy;
 use App\Models\Front\Recommendation;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {

@@ -26,7 +26,7 @@
             </div>
 
             <ul class="nav">
-                @foreach($menus as $menu)
+            @foreach($menus as $menu)
                 @foreach($menu->parent as $menuItem)
                     @if($menuItem->parent_id == 0)
                         @include('front.menus.submenu', ['item' => $menuItem])
@@ -50,6 +50,12 @@
                 @endforeach
             @endforeach
             </ul>
+
+            <div>
+                @foreach(\Illuminate\Support\Facades\Cache::get('localizations') as $locale)
+                    <a href="/locale/{{ $locale->id }}">{{ strtoupper($locale->name) }} </a> &nbsp;
+                @endforeach
+            </div>
 
             <div class="demo">
                 <button>Запросить демо версию</button>

@@ -1219,6 +1219,21 @@ button {
     font-style: normal !important;
 }
 
+.for2__left p strong {
+    font-weight: 600 !important;
+    font-size: 20px !important;
+    line-height: 11px !important;
+}
+
+.for2__left p {
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 21px !important;
+    color: var(--black, #1F2128) !important;
+    font-family: Inter !important;
+    font-style: normal !important;
+}
+
 .for1__right .fc__text_p, .for2__left .fc__text_p {
   font-weight: 400;
   font-size: 18px;

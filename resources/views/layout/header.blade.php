@@ -14,11 +14,14 @@
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="{{ url('assets/images/flags/us.svg') }}" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1 me-1 d-none d-md-inline-block">English</span>
+          <span class="ms-1 me-1 d-none d-md-inline-block"> {{__('Languages')}} </span>
         </a>
         <div class="dropdown-menu" aria-labelledby="languageDropdown">
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="{{ url('assets/images/flags/us.svg') }}" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1"> English </span></a>
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="{{ url('assets/images/flags/ru.svg') }}" class="wd-20 me-1" title="fr" alt="ru"> <span class="ms-1"> Русский </span></a>
+            @foreach(\Illuminate\Support\Facades\Cache::get('localizations') as $locale)
+                <a href="/locale/{{ $locale->id }}" class="dropdown-item py-2">
+                    <img src="{{ url('assets/images/flags/ru.svg') }}" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1"> {{ $locale->name }} </span>
+                </a>
+            @endforeach
         </div>
       </li>
       <li class="nav-item dropdown">

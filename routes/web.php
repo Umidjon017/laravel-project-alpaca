@@ -36,7 +36,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/locale/{locale}', function ($locale){
+   session(['locale_id' => $locale]);
+   return back();
+});
+
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/page/{slug}', [HomeController::class, 'page']);
 
 Auth::routes();
 

@@ -81,8 +81,8 @@ class OurPhilosophyController extends Controller
                         $image->move(public_path(OurPhilosophy::FILE_PATH), $filename);
                         $images[] = $filename;
                     }
+                    $data['icon'] = implode(',', $images);
                 }
-                $data['icon'] = implode(',', $images);
 
                 $philosophy->update($data);
 

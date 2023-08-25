@@ -2,39 +2,26 @@
 <div class="filasofiya">
     @foreach($ourPhilosophy as $philosophy)
         @php
-            $items = explode(',', $philosophy->getTranslatedAttributes(session('locale_id'))->additional);
+            $items = explode(',', $philosophy->translatable()->additional);
         @endphp
     <p class="filasofiya__title">
-        {{ $philosophy->getTranslatedAttributes(session('locale_id'))->title }}
+        {{ $philosophy->translatable()->title }}
     </p>
     <p class="filasofiya__subtitle">
-        {{ $philosophy->getTranslatedAttributes(session('locale_id'))->description }}
+        {{ $philosophy->translatable()->description }}
     </p>
     <a href="{{ $philosophy->link }}" class="filasofiya__btn">Узнать подробнее</a>
     <div class="filasofiya__items">
         @php
-            $icons = explode(',', $philosophy->icon)
+            $icons = explode(',', $philosophy->icon);
+            $iconCount = count($icons);
         @endphp
-        @foreach($items as $item)
+        @foreach($items as $index => $item)
             <div class="f__item">
-                @foreach($icons as $icon)
-                    <img src="{{ asset(philosophy_file_path() . $icon) }}" alt="">
-                    <p>{{ $item }}</p>
-                @endforeach
+                <img src="{{ asset(philosophy_file_path() . $icons[$index % $iconCount]) }}" alt="">
+                <p>{{ $item }}</p>
             </div>
         @endforeach
-{{--        <div class="f__item">--}}
-{{--            <img src="{{ asset('front/assets/image/stars/star3.png') }}" alt="">--}}
-{{--            <p>Наш залог - наилучший опыт для пациентов </p>--}}
-{{--        </div>--}}
-{{--        <div class="f__item">--}}
-{{--            <img src="{{ asset('front/assets/image/stars/star2.png') }}" alt="">--}}
-{{--            <p>Предоставляем инструментарий для эффективного управления</p>--}}
-{{--        </div>--}}
-{{--        <div class="f__item">--}}
-{{--            <img src="{{ asset('front/assets/image/stars/star3.png') }}" alt="">--}}
-{{--            <p>Используем самую современную архитектуру с защитой по умолчанию</p>--}}
-{{--        </div>--}}
     </div>
     @endforeach
 </div>

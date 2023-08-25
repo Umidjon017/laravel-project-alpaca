@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
 <!--bodyni classiga " rtl__on " qoshiladi-->
-<body class="">
+<body class="@if(\Illuminate\Support\Facades\App::getLocale() == '2') rtl__on @endif">
 
 {{ $navbar }}
 

@@ -4,10 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 
-class Localization
+class Language
 {
     /**
      * Handle an incoming request.
@@ -18,11 +17,11 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
-        if(empty(Cache::get('localizations'))){
-            Cache::remember('localizations', 2000000, function () {
-                return DB::table('localizations')->get();
-            });
-        }
+        if(session()->has('locale_id')){
+            App::setLocale(session('locale_id'));
+        }else{
+            App::setLocale('1');
+        };
 
         return $next($request);
     }
