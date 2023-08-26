@@ -3,7 +3,7 @@
     <div class="container">
         <footer class="footer">
             <div class="footer__logo">
-                <img src="{{asset('front/assets/image/end.png')}}" alt="">
+                <a href="{{url('/')}}"><img src="{{ asset('front/assets/logo_footer.svg') }}" alt=""></a>
                 <p>Эффективное решение для управления медицинскими предприятиями</p>
             </div>
             <div class="footer__link fl1">

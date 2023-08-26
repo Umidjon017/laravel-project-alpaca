@@ -41,7 +41,7 @@
                             <a href="{{ route('admin.pages.show', $page->id) }}" class="btn btn-primary" style="margin-right: 10px;">
                                 {{ __('Посмотреть') }}
                             </a>
-                            <a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                            <a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-warning" style="margin-right: 10px;">
                                 {{ __('Редактировать') }}
                             </a>
                             <form action="{{ route('admin.pages.destroy', $page->id) }}" method="POST">

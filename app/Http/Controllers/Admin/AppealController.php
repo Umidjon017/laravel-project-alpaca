@@ -13,18 +13,11 @@ use Illuminate\Support\Facades\DB;
 
 class AppealController extends Controller
 {
-    public function index(): View
-    {
-        $appeals = Appeal::with('translations')->get();
-
-        return view('admin.pages.appeals.index', compact('appeals'));
-    }
-
-    public function create(Page $page): View
+    public function create(Page $id): View
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.appeals.create', compact('localizations', 'page'));
+        return view('admin.pages.appeals.create', compact('localizations', 'id'));
     }
 
     public function store(StoreAppealRequest $request)
@@ -49,6 +42,13 @@ class AppealController extends Controller
         }
 
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Appeal block added successfully!');
+    }
+
+    public function show(Page $id): View
+    {
+        $appeals = Appeal::where('page_id', $id->id)->with('translations')->get();
+
+        return view('admin.pages.appeals.show', compact('appeals', 'id'));
     }
 
     public function edit(Appeal $appeal): View
@@ -79,13 +79,13 @@ class AppealController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Appeal block edited successfully!');
+        return redirect('admin/'.$appeal->page_id.'/appeals/show')->with('success', 'Appeal block edited successfully!');
     }
 
     public function destroy(Appeal $appeal)
     {
         $appeal->delete();
 
-        return back()->with('success', 'Appeal block deleted successfully!');
+        return redirect('admin/pages/'.$appeal->page_id)->with('success', 'Appeal block deleted successfully!');
     }
 }

@@ -26,9 +26,9 @@
                     <label class="form-label">{{ __('Контент') }}</label>
                     <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][body]" rows="10"> @isset($info) {{ $info->getTranslatedAttributes($locale->id)->body }} @endisset </textarea>
                 </div>
-                @isset($page) @foreach($page->get() as $p)
-                <input type="hidden" name="page_id" value="{{ $p->id }}" />
-                @endforeach @endisset
+                @isset($id)
+                <input type="hidden" name="page_id" value="{{ $id->id }}" />
+                @endisset
 
                 @isset($info)
                     <input type="hidden" name="translations[{{ $locale->id }}][id]" value="{{ $info->getTranslatedAttributes($locale->id)->id }}" />

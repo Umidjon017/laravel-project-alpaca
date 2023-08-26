@@ -3,7 +3,7 @@
     <!-- Navbar Mobile Start-->
     <div class="navbar__mobile">
         <div class="logo__mobile">
-            <img src="{{ asset('front/assets/logo.svg') }}" alt="">
+            <a href="{{url('/')}}"><img src="{{ asset('front/assets/logo.svg') }}" alt=""></a>
         </div>
         <div class="mobile__btns">
             <a href="tel:+972 53-466-1653" class="menu__btn phone__btn">
@@ -19,18 +19,13 @@
     <div class="navbar__fixed">
         <div class="navbar">
             <div class="logo">
-                <img src="{{ asset('front/assets/logo.svg') }}" alt="">
+                <a href="{{url('/')}}"><img src="{{ asset('front/assets/logo.svg') }}" alt=""></a>
                 <button class="menu__btn burger__close">
                     <img src="{{ asset('front/assets/image/hero/close.png') }}" alt="">
                 </button>
             </div>
 
             <ul class="nav">
-            @foreach($menus as $menu)
-                @foreach($menu->parent as $menuItem)
-                    @if($menuItem->parent_id == 0)
-                        @include('front.menus.submenu', ['item' => $menuItem])
-                    @endif
 {{--                <li class="nav__li nav__dropdown">--}}
 {{--                    <span class="nav__dropdown__open">--}}
 {{--                      Клиники--}}
@@ -47,13 +42,18 @@
 {{--                <li class="nav__li"><a href="#">Модули</a></li>--}}
 {{--                <li class="nav__li"><a href="#">Цены</a></li>--}}
 {{--                <li class="nav__li"><a href="#">О нас</a></li>--}}
+            @foreach($menus as $menu)
+                @foreach($menu->parent as $menuItem)
+                    @if($menuItem->parent_id == 0)
+                        @include('front.menus.submenu', ['item' => $menuItem])
+                    @endif
                 @endforeach
             @endforeach
             </ul>
 
             <div>
                 @foreach(\Illuminate\Support\Facades\Cache::get('localizations') as $locale)
-                    <a href="/locale/{{ $locale->id }}">{{ strtoupper($locale->name) }} </a> &nbsp;
+                    <a class="locales {{ app()->getLocale()==$locale->id ? 'active' : '' }} " href="/locale/{{ $locale->id }}">{{ strtoupper($locale->name) }} </a> &nbsp;
                 @endforeach
             </div>
 

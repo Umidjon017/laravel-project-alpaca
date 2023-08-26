@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AppealController;
+use App\Http\Controllers\Admin\AppealFormController;
 use App\Http\Controllers\Admin\CheckboxBlockController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DirectSpeechController;
@@ -54,36 +55,47 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/localizations', LocalizationController::class)->except('create', 'edit', 'show');
     // Pages
     Route::resource('/pages', PageController::class);
-    // Gallery
-    Route::resource('/gallery', GalleryController::class)->only('store', 'update', 'destroy');
     // Info Block
     Route::get('/{id}/infos/create', [InfoBlockController::class, 'create'])->name('infos.create');
+    Route::get('/{id}/infos/show', [InfoBlockController::class, 'show'])->name('infos.show');
     Route::resource('/infos', InfoBlockController::class)->except('index', 'create', 'show');
     // Comments
     Route::get('/{id}/comments/create', [CommentController::class, 'create'])->name('comments.create');
+    Route::get('/{id}/comments/show', [CommentController::class, 'show'])->name('comments.show');
     Route::resource('/comments', CommentController::class)->except('index', 'create', 'show');
-    // Text Block
-    Route::get('/{id}/texts/create', [TextBlockController::class, 'create'])->name('texts.create');
-    Route::resource('/texts', TextBlockController::class)->except('index', 'create', 'show');
-    // Video Player
-    Route::get('/{id}/videos/create', [VideoPlayerController::class, 'create'])->name('videos.create');
-    Route::resource('/videos', VideoPlayerController::class)->except('index', 'create', 'show');
     // Our Clients
     Route::get('/{id}/clients/create', [OurClientController::class, 'create'])->name('clients.create');
-    Route::resource('/clients', OurClientController::class)->except('index', 'create');
+    Route::get('/{id}/clients/show', [OurClientController::class, 'show'])->name('clients.show');
+    Route::resource('/clients', OurClientController::class)->except('index', 'create', 'show');
     // Our Clients Logo
     Route::resource('/clients_logo', OurClientLogoController::class)->only('store', 'update', 'destroy');
-    // Appeals
-    Route::get('/{id}/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
-    Route::resource('/appeals', AppealController::class)->only('index', 'store', 'edit', 'update', 'destroy');
-    // Direct Speech
-    Route::get('/{id}/direct_speech/create', [DirectSpeechController::class, 'create'])->name('direct_speech.create');
-    Route::resource('/direct_speech', DirectSpeechController::class)->except('index', 'create', 'show');
+    // Text Block
+    Route::get('/{id}/texts/create', [TextBlockController::class, 'create'])->name('texts.create');
+    Route::get('/{id}/texts/show', [TextBlockController::class, 'show'])->name('texts.show');
+    Route::resource('/texts', TextBlockController::class)->except('index', 'create', 'show');
     // Checkbox Block
     Route::get('/{id}/checkbox/create', [CheckboxBlockController::class, 'create'])->name('checkbox.create');
+    Route::get('/{id}/checkbox/show', [CheckboxBlockController::class, 'show'])->name('checkbox.show');
     Route::resource('/checkbox', CheckboxBlockController::class)->except('index', 'create', 'show');
+    // Gallery
+    Route::resource('/gallery', GalleryController::class)->except('index', 'create', 'edit');
+    // Video Player
+    Route::get('/{id}/videos/create', [VideoPlayerController::class, 'create'])->name('videos.create');
+    Route::get('/{id}/videos/show', [VideoPlayerController::class, 'show'])->name('videos.show');
+    Route::resource('/videos', VideoPlayerController::class)->except('index', 'create', 'show');
+    // Direct Speech
+    Route::get('/{id}/direct_speech/create', [DirectSpeechController::class, 'create'])->name('direct_speech.create');
+    Route::get('/{id}/direct_speech/show', [DirectSpeechController::class, 'show'])->name('direct_speech.show');
+    Route::resource('/direct_speech', DirectSpeechController::class)->except('index', 'create', 'show');
+    // Appeals
+    Route::get('/{id}/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
+    Route::get('/{id}/appeals/show', [AppealController::class, 'show'])->name('appeals.show');
+    Route::resource('/appeals', AppealController::class)->except('create', 'show');
+    // Appeal Form
+    Route::Resource('/appeal_form', AppealFormController::class)->except('show');
     // Recommendation Block
     Route::get('/{id}/recommendation-block/create', [RecommendationBlockController::class, 'create'])->name('recommendation-block.create');
+    Route::get('/{id}/recommendation-block/show', [RecommendationBlockController::class, 'show'])->name('recommendation-block.show');
     Route::resource('/recommendation-block', RecommendationBlockController::class)->except('index', 'create', 'show');
 
     // For Frontend

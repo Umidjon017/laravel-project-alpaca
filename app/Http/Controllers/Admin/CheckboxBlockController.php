@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\DB;
 
 class CheckboxBlockController extends Controller
 {
-    public function create(Page $page): View
+    public function create(Page $id): View
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.checkbox.create', compact('localizations', 'page'));
+        return view('admin.pages.checkbox.create', compact('localizations', 'id'));
     }
 
     public function store(StoreCheckboxBlockRequest $request)
@@ -41,6 +41,13 @@ class CheckboxBlockController extends Controller
         }
 
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Checkbox block added successfully!');
+    }
+
+    public function show(Page $id): View
+    {
+        $checkboxBlocks = CheckboxBlock::where('page_id', $id->id)->with('translations')->get();
+
+        return view('admin.pages.checkbox.show', compact('checkboxBlocks', 'id'));
     }
 
     public function edit(CheckboxBlock $checkbox)
@@ -70,13 +77,13 @@ class CheckboxBlockController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Checkbox block edited successfully!');
+        return redirect('admin/'.$checkbox->page_id.'/checkbox/show')->with('success', 'Checkbox block edited successfully!');
     }
 
     public function destroy(CheckboxBlock $checkbox)
     {
         $checkbox->delete();
 
-        return back()->with('success', 'Checkbox block deleted successfully!');
+        return redirect('admin/pages/'.$checkbox->page_id)->with('success', 'Checkbox block deleted successfully!');
     }
 }

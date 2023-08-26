@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\DB;
 
 class TextBlockController extends Controller
 {
-    public function create(Page $page): View
+    public function create(Page $id): View
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.texts.create', compact('localizations', 'page'));
+        return view('admin.pages.texts.create', compact('localizations', 'id'));
     }
 
     public function store(StoreTextBlockRequest $request)
@@ -43,6 +43,14 @@ class TextBlockController extends Controller
         }
 
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Text block added successfully!');
+    }
+
+
+    public function show(Page $id): View
+    {
+        $texts = TextBlock::where('page_id', $id->id)->with('translations')->get();
+
+        return view('admin.pages.texts.show', compact('texts', 'id'));
     }
 
     public function edit(TextBlock $text): View
@@ -72,12 +80,12 @@ class TextBlockController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Text block edited successfully!');
+        return redirect('admin/'.$text->page_id.'/texts/show')->with('success', 'Text block edited successfully!');
     }
 
     public function destroy(TextBlock $text): RedirectResponse
     {
         $text->delete();
-        return redirect()->back()->with('success', 'Text block deleted successfully!');
+        return redirect('admin/pages/'.$text->page_id)->with('success', 'Text block deleted successfully!');
     }
 }

@@ -27,9 +27,9 @@
                     </div>
                     @enderror
                 </div>
-                @isset($page) @foreach($page->get() as $p)
-                    <input type="hidden" name="page_id" value="{{ $p->id }}" />
-                @endforeach @endisset
+                @isset($id)
+                    <input type="hidden" name="page_id" value="{{ $id->id }}" />
+                @endisset
 
                 @isset($text)
                     <input type="hidden" name="translations[{{ $locale->id }}][id]" value="{{ $text->getTranslatedAttributes($locale->id)->id }}" />

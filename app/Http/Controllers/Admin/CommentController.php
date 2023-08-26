@@ -54,6 +54,13 @@ class CommentController extends Controller
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Comment block added successfully!');
     }
 
+    public function show(Page $id): View
+    {
+        $comments = Comment::where('page_id', $id->id)->with('translations')->get();
+
+        return view('admin.pages.comments.show', compact('comments', 'id'));
+    }
+
     public function edit(Comment $comment): View
     {
         $localizations = Cache::get('localizations');
@@ -93,7 +100,7 @@ class CommentController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Comment block edited successfully!');
+        return redirect('admin/'.$comment->page_id.'/comments/show')->with('success', 'Comment block edited successfully!');
     }
 
     public function destroy(Comment $comment): RedirectResponse
@@ -102,7 +109,7 @@ class CommentController extends Controller
         $comment->deleteFile('image');
         $comment->deleteFile('logo');
 
-        return redirect()->back()->with('success', 'Comment block deleted successfully!');
+        return redirect('admin/pages/'.$comment->page_id)->with('success', 'Comment block deleted successfully!');
     }
 
     public function fileUpload($file): string

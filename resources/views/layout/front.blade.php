@@ -9,13 +9,26 @@
     <!-- style -->
     <link rel="stylesheet" href="{{ asset('front/style/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('front/style/css/video.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 
     @stack('css')
 
     <!-- swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
+    <style>
+        .locales{
+            color: #092D46;
+            font-weight: bold;
+        }
+        .active{
+            text-decoration: underline;
+        }
+    </style>
+
     @stack('custom-css')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <!--bodyni classiga " rtl__on " qoshiladi-->
@@ -32,7 +45,6 @@
 <!-- Container End -->
 
 {{ $footer }}
-
 
 <script src="{{ asset('front/js/script.js') }}"></script>
 <script src="{{ asset('front/js/video.js') }}"></script>

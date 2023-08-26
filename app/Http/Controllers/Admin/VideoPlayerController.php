@@ -11,9 +11,9 @@ use Illuminate\Contracts\View\View;
 
 class VideoPlayerController extends Controller
 {
-    public function create(Page $page): View
+    public function create(Page $id): View
     {
-        return view('admin.pages.videos.create', compact('page'));
+        return view('admin.pages.videos.create', compact('id'));
     }
 
     public function store(StoreVideoPlayerRequest $request)
@@ -29,6 +29,13 @@ class VideoPlayerController extends Controller
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Video Player added successfully!');
     }
 
+    public function show(Page $id): View
+    {
+        $videos = VideoPlayer::where('page_id', $id->id)->get();
+
+        return view('admin.pages.videos.show', compact('videos', 'id'));
+    }
+
     public function update(UpdateVideoPlayerRequest $request, VideoPlayer $video)
     {
         $data = $request->all();
@@ -40,7 +47,7 @@ class VideoPlayerController extends Controller
 
         $video->update($data);
 
-        return redirect()->route('admin.pages.index')->with('success', 'Video Player edited successfully!');
+        return redirect('admin/'.$video->page_id.'/videos/show')->with('success', 'Video Player edited successfully!');
     }
 
     public function edit(VideoPlayer $video): View
@@ -57,7 +64,7 @@ class VideoPlayerController extends Controller
             $video->deletePoster();
         }
 
-        return redirect()->back()->with('success', 'Video Player deleted successfully');
+        return redirect('admin/pages/'.$video->page_id)->with('success', 'Video Player deleted successfully');
     }
 
     public function fileUpload($file): string

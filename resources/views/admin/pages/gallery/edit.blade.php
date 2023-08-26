@@ -37,7 +37,7 @@
                         @endisset
                     </div>
 
-                    <input type="hidden" name="page_id" value="{{ $page->id }}" />
+                    <input type="hidden" name="page_id" value="{{ $gallery->page_id }}" />
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary m-t-15 waves-effect"> @if(isset($gallery)) {{ __('Сохранить') }} @else {{ __('Добавить') }} @endif </button>

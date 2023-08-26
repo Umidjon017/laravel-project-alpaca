@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\DB;
 
 class OurClientController extends Controller
 {
-    public function create(Page $page): View
+    public function create(Page $id): View
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.clients.create', compact('localizations', 'page'));
+        return view('admin.pages.clients.create', compact('localizations', 'id'));
     }
 
     public function store(StoreOurClientRequest $request)
@@ -52,11 +52,13 @@ class OurClientController extends Controller
         return view('admin.pages.clients.edit', compact('localizations','client'));
     }
 
-    public function show(Page $page): View
+    public function show(Page $id): View
     {
         $localizations = Cache::get('localizations');
+        $clients = OurClient::where('page_id', $id->id)->with('translations')->get();
+        $clientLogos = OurClientLogo::where('page_id', $id->id)->get();
 
-        return view('admin.pages.clients.create', compact('localizations', 'page'));
+        return view('admin.pages.clients.show', compact('localizations', 'clients', 'clientLogos', 'id'));
     }
 
 
@@ -81,13 +83,13 @@ class OurClientController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Our client block edited successfully!');
+        return redirect('admin/'.$client->page_id.'/clients/show')->with('success', 'Our client block edited successfully!');
     }
 
     public function destroy(OurClient $client)
     {
         $client->delete();
 
-        return redirect()->back()->with('success', 'Our client block deleted successfully!');
+        return redirect('admin/pages/'.$client->page_id)->with('success', 'Our client block deleted successfully!');
     }
 }

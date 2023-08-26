@@ -1,4 +1,4 @@
-{{--@dd($route)--}}
+{{--@dd($route->infos)--}}
 <x-front-layout>
 
     <x-slot name="title">
@@ -14,6 +14,7 @@
         <!--  -->
         <div class="for__card__container">
             <!-- Dlya vracha Start -->
+            @if(count($route->infos) > 0)
             <div class="for__card for1 inner__for1">
                 @foreach($route->infos as $index => $info)
                 <div class="for1__left">
@@ -28,11 +29,13 @@
                 </div>
                 @endforeach
             </div>
+            @endif
             <!-- Dlya vracha End -->
         </div>
         <!--  -->
 
         <!-- Plyusi Start -->
+        @if(count($route->textBlocks) > 0)
         <div class="plyusi">
             @foreach($route->textBlocks as $index => $text)
             <p class="plyusi__title">{!! $text->translatable()->title !!}</p>
@@ -45,9 +48,11 @@
             </p>
             @endforeach
         </div>
+        @endif
         <!-- Plyusi End -->
 
         <!-- Comments Start -->
+        @if(count($route->comments) > 0)
         <div class="comments__container">
             <p class="comments__title">Отзывы наших клиентов</p>
             <div class="comments">
@@ -75,9 +80,11 @@
                 </div>
             </div>
         </div>
+        @endif
         <!-- Comments End -->
 
         <!-- Partnyors Start -->
+        @if(count($route->ourClients) > 0)
         <div class="partnyors__container">
             @foreach($route->ourClients as $index => $client)
             <p class="partnyors__title">{!! $client->translatable()->title !!}</p>
@@ -90,9 +97,11 @@
                 @endforeach
             </div>
         </div>
+        @endif
         <!-- Partnyors End -->
 
         <!-- use_now Start -->
+        @if(count($route->recommendationBlocks) > 0)
         <div class="use__now">
             @foreach($route->recommendationBlocks as $index => $recommend)
             <div class="use__now__text">
@@ -111,35 +120,39 @@
             </div>
             @endforeach
         </div>
+        @endif
         <!-- use_now End -->
 
         <!-- Video player Start -->
+        @if(count($route->videoPlayers) > 0)
         <div class="video__container inner__container">
             <div class="video-element">
                 @foreach($route->videoPlayers as $index => $player)
-                <div class="video-cover"><i class="fas fa-play"></i></div>
-                <video class="my-video" poster="{{asset(videos_file_path().$player->video_poster)}}">
-                    <source src="{{$player->video_url}}">
-                </video>
-                <div class="control-box">
-                    <button class="play-pause">
-                        <!-- <img src="./assets/image/play_icon.svg" alt=""> -->
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <div class="completed-track"></div>
-                    <input type="range" min="0" max="100" step="0.001" class="progress-slider" value="0">
-                    <div class="time-duration">00:00/00:00</div>
-                    <button class="full-screen"><i class="fas fa-expand"></i></button>
-                    <button class="mute-button"><i class="fas fa-volume-up"></i></button>
-                    <input type="range" min="0" max="1" step="0.1" class="volume-button" value="1" />
-                    <div class="present-volume"></div>
-                </div>
+                    <div class="video-cover"><i class="fas fa-play"></i></div>
+                    <video class="my-video" poster="{{asset(videos_file_path().$player->video_poster)}}">
+                        <source src="{{$player->video_url}}">
+                    </video>
+                    <div class="control-box">
+                        <button class="play-pause">
+                            <!-- <img src="./assets/image/play_icon.svg" alt=""> -->
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <div class="completed-track"></div>
+                        <input type="range" min="0" max="100" step="0.001" class="progress-slider" value="0">
+                        <div class="time-duration">00:00/00:00</div>
+                        <button class="full-screen"><i class="fas fa-expand"></i></button>
+                        <button class="mute-button"><i class="fas fa-volume-up"></i></button>
+                        <input type="range" min="0" max="1" step="0.1" class="volume-button" value="1" />
+                        <div class="present-volume"></div>
+                    </div>
                 @endforeach
             </div>
         </div>
+        @endif
         <!-- Video player End -->
 
         <!-- one comment Start -->
+        @if(count($route->directSpeeches) > 0)
         <div class="comment__one inner__container">
             @foreach($route->directSpeeches as $index => $speech)
             <div class="comment__one__info">
@@ -159,9 +172,11 @@
             </div>
             @endforeach
         </div>
+        @endif
         <!-- one comment End -->
 
         <!-- inner Slider Start -->
+        @if(count($route->galleries) > 0)
         <div class="inner__slider inner__container">
             <div dir="ltr" class="swiper innerSwiper">
                 <div class="swiper-wrapper">
@@ -179,9 +194,11 @@
                 <div class="swiper-button-prev"></div>
             </div>
         </div>
+        @endif
         <!-- inner Slider End -->
 
         <!-- Contact Start -->
+        @if(count($route->appeals) > 0)
         <div class="contact">
             <div class="contact__text">
                 @foreach($route->appeals as $index => $appeal)
@@ -195,11 +212,12 @@
             </div>
             <div class="contact__form">
                 <p class="form__title">Оставьте заявку прямо сейчас</p>
-                <form action="">
-                    <input type="email" placeholder="Электронная почта">
-                    <input type="text" placeholder="Имя">
-                    <textarea cols="30" rows="10" placeholder="Комментарий"></textarea>
-                    <button>Попробовать бесплатно</button>
+                <form action="{{ route('admin.appeal_form.store') }}" method="POST">
+                    @csrf
+                    <input name="email" type="email" placeholder="Электронная почта">
+                    <input name="name" type="text" placeholder="Имя">
+                    <textarea name="text" cols="30" rows="10" placeholder="Комментарий"></textarea>
+                    <button type="submit">Попробовать бесплатно</button>
                 </form>
                 <p class="form__text">
                     Нажимая на эту кнопку,
@@ -211,15 +229,17 @@
                 </p>
             </div>
         </div>
+        @endif
         <!-- Contact End -->
 
         <!-- Price Start -->
+        @if(count($route->appeals) > 0)
         <div class="price__container">
             <div class="price">
                 <div class="price__card p_light">
                     <p class="price__title">
                         Light
-                        <img src="./assets/image/circle1.png" alt="">
+                        <img src="{{ asset('front/assets/image/circle1.png') }}" alt="">
                     </p>
                     <div class="price__list">
                         <p class="price__item">Schedule</p>
@@ -240,7 +260,7 @@
                 <div class="price__card p_infinity">
                     <p class="price__title">
                         Infinity
-                        <img src="./assets/image/circle3.png" alt="">
+                        <img src="{{ asset('front/assets/image/circle2.png') }}" alt="">
                     </p>
                     <div class="price__list">
                         <p class="price__item">Schedule</p>
@@ -261,7 +281,7 @@
                 <div class="price__card p_smart">
                     <p class="price__title">
                         Smart
-                        <img src="./assets/image/circle2.png" alt="">
+                        <img src="{{ asset('front/assets/image/circle3.png') }}" alt="">
                     </p>
                     <div class="price__list">
                         <p class="price__item">Schedule</p>
@@ -281,6 +301,7 @@
                 </div>
             </div>
         </div>
+        @endif
         <!-- Price End -->
 
     <x-slot name="footer">

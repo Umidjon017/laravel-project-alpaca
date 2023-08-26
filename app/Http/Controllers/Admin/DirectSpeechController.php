@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\DB;
 
 class DirectSpeechController extends Controller
 {
-    public function create(Page $page): View
+    public function create(Page $id): View
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.direct_speech.create', compact('localizations', 'page'));
+        return view('admin.pages.direct_speech.create', compact('localizations', 'id'));
     }
 
     public function store(StoreDirectSpeechRequest $request)
@@ -51,6 +51,13 @@ class DirectSpeechController extends Controller
         }
 
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Direct speech block added successfully!');
+    }
+
+    public function show(Page $id): View
+    {
+        $directSpeeches = DirectSpeech::where('page_id', $id->id)->with('translations')->get();
+
+        return view('admin.pages.direct_speech.show', compact('directSpeeches', 'id'));
     }
 
     public function edit(DirectSpeech $directSpeech)
@@ -92,24 +99,16 @@ class DirectSpeechController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.pages.index')->with('success', 'Direct speech block edited successfully!');
+        return redirect('admin/'.$directSpeech->page_id.'/direct_speech/show')->with('success', 'Direct speech block edited successfully!');
     }
 
     public function destroy(DirectSpeech $directSpeech)
     {
-        if ($directSpeech->logo == null) {
-            $directSpeech->delete();
-            $directSpeech->deleteFile('image');
-        } elseif ($directSpeech->image == null) {
-            $directSpeech->delete();
-            $directSpeech->deleteFile('logo');
-        } else {
-            $directSpeech->delete();
-            $directSpeech->deleteFile('logo');
-            $directSpeech->deleteFile('image');
-        }
+        $directSpeech->delete();
+        $directSpeech->deleteFile('logo');
+        $directSpeech->deleteFile('image');
 
-        return redirect()->back()->with('success', 'Comment block deleted successfully!');
+        return redirect('admin/pages/'.$directSpeech->page_id)->with('success', 'Comment block deleted successfully!');
     }
 
     public function fileUpload($file): string

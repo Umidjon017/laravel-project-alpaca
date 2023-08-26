@@ -22,9 +22,9 @@
                     <label class="form-label">{{ __('Описание') }}</label>
                     <textarea class="form-control" name="translations[{{ $locale->id }}][description]" rows="4"> @isset($appeal) {{ $appeal->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
                 </div>
-                @isset($page) @foreach($page->get() as $p)
-                    <input type="hidden" name="page_id" value="{{ $p->id }}" />
-                @endforeach @endisset
+                @isset($id)
+                    <input type="hidden" name="page_id" value="{{ $id->id }}" />
+                @endisset
 
                 @isset($appeal)
                     <input type="hidden" name="translations[{{ $locale->id }}][id]" value="{{ $appeal->getTranslatedAttributes($locale->id)->id }}" />

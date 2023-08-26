@@ -11,14 +11,15 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 class InfoBlockController extends Controller
 {
-    public function create(Page $page): View
+    public function create(Page $id): View
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.infos.create', compact('localizations', 'page'));
+        return view('admin.pages.infos.create', compact('localizations', 'id'));
     }
 
     public function store(StoreInfoBlockRequest $request): RedirectResponse
@@ -48,6 +49,13 @@ class InfoBlockController extends Controller
         }
 
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Information block added successfully!');
+    }
+
+    public function show(Page $id): View
+    {
+        $infos = InfoBlock::where('page_id', $id->id)->with('translations')->get();
+
+        return view('admin.pages.infos.show', compact('infos', 'id'));
     }
 
     public function edit(InfoBlock $info): View
@@ -84,19 +92,15 @@ class InfoBlockController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect('admin/pages/'.$request->page_id)->with('success', 'Info block edited successfully!');
+        return redirect('admin/'.$info->page_id.'/infos/show')->with('success', 'Info block edited successfully!');
     }
 
     public function destroy(InfoBlock $info): RedirectResponse
     {
-        if ($info->image == null) {
-            $info->delete();
-        } else {
-            $info->delete();
-            $info->deleteImage();
-        }
+        $info->delete();
+        $info->deleteImage();
 
-        return redirect()->back()->with('success', 'Info block deleted successfully!');
+        return redirect('admin/pages/'.$info->page_id)->with('success', 'Info block deleted successfully!');
     }
 
     public function fileUpload($file): string

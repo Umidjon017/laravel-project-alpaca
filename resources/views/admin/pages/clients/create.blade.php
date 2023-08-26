@@ -49,9 +49,9 @@
                                 @enderror
                             </div>
 
-                            @isset($page) @foreach($page->get() as $p)
-                                <input type="hidden" name="page_id" value="{{ $p->id }}" />
-                            @endforeach @endisset
+                            @isset($id)
+                                <input type="hidden" name="page_id" value="{{ $id->id }}" />
+                            @endisset
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __('Добавить') }} </button>
@@ -63,84 +63,6 @@
             </div>
         </div>
     </div>
-
-    @isset($page) @foreach($page->get() as $p)
-        @foreach (app('App\Models\Admin\OurClient')->where('page_id', $p->id)->get() as $client)
-            <div class="raw">
-                <div class="d-flex justify-content-evenly flex-wrap">
-                    <div class="card mt-3">
-                <div class="card-header">
-                    <div class="card-title">
-                        <h6>{{ __('Блок Наши клиенты') }} {{ $loop->iteration }}</h6>
-                        <form action="{{ route('admin.clients.destroy', $client->id) }}"
-                              method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm float-end ms-2">
-                                {{ __('Удалить') }}
-                            </button>
-                        </form>
-                        <a href="{{ route('admin.clients.edit', $client->id) }}"
-                           class="btn btn-success btn-sm float-end text-capitalize">{{ __('Редактировать') }}</a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="example">
-                        <div>
-                            <h6> {{ __('Заголовок') }} </h6>
-                            <p class="mb-1"> {!! $client->getTranslatedAttributes(session('locale_id'))->title !!} </p>
-                        </div>
-
-                        <hr>
-
-                        <div>
-                            <h6> {{ __('Описание') }} </h6>
-                            <p class="mb-1"> {!! $client->getTranslatedAttributes(session('locale_id'))->description !!} </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                </div>
-            </div>
-        @endforeach
-
-        <div class="raw">
-            <div class="d-flex justify-content-evenly flex-wrap">
-            @foreach(app('App\Models\Admin\OurClientLogo')->where('page_id', $p->id)->get() as $clientLogo)
-                <div class="card mt-3">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h6> {{ __('Блок логотипа клиентов') }} {{ $loop->iteration }} </h6>
-                            <form action="{{ route('admin.clients_logo.destroy', $clientLogo->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm float-end ms-2">{{ __('Удалить') }}</button>
-                            </form>
-                            <button type="button" class="btn btn-success btn-sm float-end text-capitalize"
-                                    data-bs-toggle="modal" data-bs-target="#editClientsLogo{{$clientLogo->id}}">{{ __('Редактировать') }}
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex">
-                            <div>
-                                <h6>{{ __('Логотип') }}</h6>
-                                <img src="{{ asset(clients_logo_file_path().$clientLogo->logo) }}" alt="" width="200">
-                            </div>
-
-                            <div>
-                                <h6> {{ __('Ссылка') }} </h6>
-                                <p> {{$clientLogo->link}} </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @include('admin.pages.clients_logo.edit')
-             @endforeach
-            </div>
-        </div>
-    @endforeach @endisset
 
 @endsection
 

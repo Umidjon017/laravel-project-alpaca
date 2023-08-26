@@ -24,8 +24,8 @@
               <span class="link-title">{{ __('Страницы') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('admin.appeals.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.appeals.index') }}" class="nav-link">
+        <li class="nav-item {{ request()->routeIs('admin.appeal_form.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.appeal_form.index') }}" class="nav-link">
               <i data-feather="loader"></i>
               <span class="link-title">{{ __('Заявки') }}</span>
             </a>

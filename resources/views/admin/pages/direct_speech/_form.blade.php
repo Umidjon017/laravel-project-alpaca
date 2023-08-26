@@ -27,11 +27,11 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Позиция') }}</label>
-                    <input type="text" name="translations[{{ $locale->id }}][position]" class="form-control @error('translations.*.position') is-invalid @enderror" @isset($direct_seec) value="{{ $directSpeech->getTranslatedAttributes($locale->id)->position }}" @endisset placeholder="Enter position">
+                    <input type="text" name="translations[{{ $locale->id }}][position]" class="form-control @error('translations.*.position') is-invalid @enderror" @isset($directSpeech) value="{{ $directSpeech->getTranslatedAttributes($locale->id)->position }}" @endisset placeholder="Enter position">
                 </div>
-                @isset($page) @foreach($page->get() as $p)
-                    <input type="hidden" name="page_id" value="{{ $p->id }}" />
-                @endforeach @endisset
+                @isset($id)
+                    <input type="hidden" name="page_id" value="{{ $id->id }}" />
+                @endisset
 
                 @isset($directSpeech)
                     <input type="hidden" name="translations[{{ $locale->id }}][id]" value="{{ $directSpeech->getTranslatedAttributes($locale->id)->id }}" />

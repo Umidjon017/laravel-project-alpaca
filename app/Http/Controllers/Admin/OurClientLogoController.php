@@ -23,7 +23,7 @@ class OurClientLogoController extends Controller
             'link' => $data['link'],
         ]);
 
-        return back()->with('success', 'Our Clients Logo block added successfully!');
+        return redirect('admin/pages/'.$request->page_id)->with('success', 'Our Clients Logo block added successfully!');
     }
 
     public function update(Request $request, OurClientLogo $clients_logo): RedirectResponse

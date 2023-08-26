@@ -37,9 +37,9 @@
     </div>
 @endisset
 
-@isset($page) @foreach($page->get() as $p)
-    <input type="hidden" name="page_id" value="{{ $p->id }}" />
-@endforeach @endisset
+@isset($id)
+    <input type="hidden" name="page_id" value="{{ $id->id }}" />
+@endisset
 
 <br>
 

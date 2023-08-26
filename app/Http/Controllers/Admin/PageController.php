@@ -68,24 +68,43 @@ class PageController extends Controller
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Page created successfully !');
     }
 
+//    public function show(Page $page)
+//    {
+//      $localizations = Cache::get('localizations');
+//      $galleries = Gallery::where('page_id', $page->id)->get();
+//      $infos = InfoBlock::where('page_id', $page->id)->with('translations')->get();
+//      $comments = Comment::where('page_id', $page->id)->with('translations')->get();
+//      $appeals = Appeal::where('page_id', $page->id)->with('translations')->get();
+//      $texts = TextBlock::where('page_id', $page->id)->with('translations')->get();
+//      $videos = VideoPlayer::where('page_id', $page->id)->get();
+//      $clients = OurClient::where('page_id', $page->id)->with('translations')->get();
+//      $directSpeeches = DirectSpeech::where('page_id', $page->id)->with('translations')->get();
+//      $checkboxBlocks = CheckboxBlock::where('page_id', $page->id)->with('translations')->get();
+//      $recommendationBlocks = RecommendationBlock::where('page_id', $page->id)->with('translations')->get();
+//
+//      return view('admin.pages.show', compact(
+//          'localizations','page', 'galleries', 'infos', 'comments', 'appeals', 'texts',
+//          'videos', 'clients', 'directSpeeches', 'checkboxBlocks', 'recommendationBlocks'));
+//    }
+
     public function show(Page $page)
     {
       $localizations = Cache::get('localizations');
-      $galleries = Gallery::where('page_id', $page->id)->get();
-      $infos = InfoBlock::where('page_id', $page->id)->with('translations')->get();
-      $comments = Comment::where('page_id', $page->id)->with('translations')->get();
-      $appeals = Appeal::where('page_id', $page->id)->with('translations')->get();
-      $texts = TextBlock::where('page_id', $page->id)->with('translations')->get();
-      $videos = VideoPlayer::where('page_id', $page->id)->get();
-      $clients = OurClient::where('page_id', $page->id)->with('translations')->get();
-//      $ourClientLogos = OurClientLogo::where('page_id', $page->id)->get();
-      $directSpeeches = DirectSpeech::where('page_id', $page->id)->with('translations')->get();
-      $checkboxBlocks = CheckboxBlock::where('page_id', $page->id)->with('translations')->get();
-      $recommendationBlocks = RecommendationBlock::where('page_id', $page->id)->with('translations')->get();
+        $relatedData = [
+            'infos', 'comments', 'appeals', 'textBlocks',
+            'ourClients', 'directSpeeches', 'checkBoxes', 'recommendationBlocks'
+        ];
 
-      return view('admin.pages.show', compact(
-          'localizations','page', 'galleries', 'infos', 'comments', 'appeals', 'texts',
-          'videos', 'clients', 'directSpeeches', 'checkboxBlocks', 'recommendationBlocks'));
+        foreach ($relatedData as $relation) {
+            $page->load($relation, $relation . '.translations');
+        }
+
+        $page->load('galleries', 'videoPlayers');
+
+        $appeals = Appeal::where('page_id', $page->id)->with('translations')->get();
+        $videos = VideoPlayer::where('page_id', $page->id)->get();
+
+        return view('admin.pages.show', compact('localizations', 'page', 'appeals', 'videos'));
     }
 
     public function edit(Page $page): View

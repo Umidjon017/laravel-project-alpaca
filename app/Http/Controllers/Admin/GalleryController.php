@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Gallery;
+use App\Models\Admin\Page;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -22,6 +24,13 @@ class GalleryController extends Controller
         }
 
         return back()->with('success', 'Gallery block added successfully!');
+    }
+
+    public function show(Page $gallery): View
+    {
+        $galleries = Gallery::where('page_id', $gallery->id)->get();
+
+        return view('admin.pages.gallery.show', compact('galleries', 'gallery'));
     }
 
     public function update(Request $request, Gallery $gallery): RedirectResponse
@@ -46,7 +55,7 @@ class GalleryController extends Controller
         $gallery->delete();
         $gallery->deleteImage();
 
-        return back()->with('success', 'Gallery block deleted successfully!');
+        return redirect('admin/pages/'.$gallery->page_id)->with('success', 'Gallery block deleted successfully!');
     }
 
     public function fileUpload($file): string

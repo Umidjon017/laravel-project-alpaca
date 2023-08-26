@@ -11,7 +11,7 @@ class StoreAppealRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,14 +21,14 @@ class StoreAppealRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'translations' => 'required|array',
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'translations.*.title.required' => 'Title is required',

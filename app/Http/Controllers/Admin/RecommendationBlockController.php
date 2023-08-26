@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\DB;
 
 class RecommendationBlockController extends Controller
 {
-    public function create(Page $page): View
+    public function create(Page $id): View
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.recommendation-block.create', compact('localizations', 'page'));
+        return view('admin.pages.recommendation-block.create', compact('localizations', 'id'));
     }
 
     public function store(StoreRecommendationBlockRequest $request)
@@ -46,6 +46,13 @@ class RecommendationBlockController extends Controller
         }
 
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Recommendation block added successfully!');
+    }
+
+    public function show(Page $id): View
+    {
+        $recommendationBlocks = RecommendationBlock::where('page_id', $id->id)->with('translations')->get();
+
+        return view('admin.pages.recommendation-block.show', compact('recommendationBlocks', 'id'));
     }
 
     public function edit(RecommendationBlock $recommendation_block)
@@ -81,7 +88,7 @@ class RecommendationBlockController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect('admin/pages/'.$request->page_id)->with('success', 'Recommendation edited successfully!');
+        return redirect('admin/'.$recommendation_block->page_id.'/recommendation-block/show')->with('success', 'Recommendation edited successfully!');
     }
 
     public function destroy(RecommendationBlock $recommendation_block)
@@ -89,7 +96,7 @@ class RecommendationBlockController extends Controller
         $recommendation_block->delete();
         $recommendation_block->deleteImage();
 
-        return back()->with('success', 'Recommendation deleted successfully!');
+        return redirect('admin/pages/'.$recommendation_block->page_id)->with('success', 'Recommendation deleted successfully!');
     }
 
     public function fileUpload($file): string

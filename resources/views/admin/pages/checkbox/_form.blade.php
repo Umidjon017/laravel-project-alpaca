@@ -18,9 +18,9 @@
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
-                @isset($page) @foreach($page->get() as $p)
-                    <input type="hidden" name="page_id" value="{{ $p->id }}" />
-                @endforeach @endisset
+                @isset($id)
+                    <input type="hidden" name="page_id" value="{{ $id->id }}" />
+                @endisset
 
                 @isset($checkbox)
                     <input type="hidden" name="translations[{{ $locale->id }}][id]" value="{{ $checkbox->getTranslatedAttributes($locale->id)->id }}" />

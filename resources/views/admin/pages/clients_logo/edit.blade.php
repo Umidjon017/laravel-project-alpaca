@@ -47,7 +47,7 @@
                         @endisset
                     </div>
 
-                    <input type="hidden" name="page_id" value="{{ $p->id }}" />
+                    <input type="hidden" name="page_id" value="{{ $clientLogo->page_id }}" />
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary m-t-15 waves-effect"> @if(isset($clientLogo)) {{ __('Сохранить') }} @else {{ __('Add') }} @endif </button>
