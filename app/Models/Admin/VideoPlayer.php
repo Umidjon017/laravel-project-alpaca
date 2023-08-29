@@ -10,7 +10,7 @@ class VideoPlayer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'video_poster', 'video_url'];
+    protected $fillable = ['page_id', 'video_poster', 'video_url', 'order_id'];
 
     const FILE_PATH = 'admin/images/pages/videos/';
 

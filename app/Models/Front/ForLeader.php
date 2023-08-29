@@ -11,7 +11,7 @@ class ForLeader extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['link', 'image'];
+    protected $fillable = ['link', 'image', 'order_id'];
 
     const FILE_PATH = 'front/images/leaders/';
 

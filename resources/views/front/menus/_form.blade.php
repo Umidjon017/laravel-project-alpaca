@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="mt-3">
-                    <label class="form-label">{{ __('Attach to menu') }}</label>
+                    <label class="form-label">{{ __('Соединение с меню') }}</label>
                     <select name="parent_id" class="js-example-basic-single w-100" data-width="100%"  data-placeholder="Select menu">
                         <option value="0">Выберите menu</option>
                         @foreach($menus as $menuItem)
@@ -32,6 +32,16 @@
                         @endforeach
                     </select>
                     @error('parent_id')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                <div class="mt-3">
+                    <label class="form-label" for="order_id"> {{ __('Порядковый номер') }} (*) </label>
+                    <input type="number" id="order_id" name="order_id" class="form-control" value="{{ old('order_id') ?? (isset($menu) ? $menu->order_id : '') }}" required/>
+                    @error('order_id')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>

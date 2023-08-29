@@ -10,15 +10,15 @@ class Menu extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['parent_id', 'menu_title', 'link', 'sort_order', 'status'];
+    protected $fillable = ['parent_id', 'menu_title', 'link', 'order_id', 'status'];
 
     public function parent(): HasMany
     {
-        return $this->hasMany(Menu::class, 'id');
+        return $this->hasMany(Menu::class, 'id')->orderBy('order_id');
     }
 
     public function children(): HasMany
     {
-        return $this->hasMany(Menu::class, 'parent_id')->orderBy('sort_order');
+        return $this->hasMany(Menu::class, 'parent_id')->orderBy('order_id');
     }
 }

@@ -14,7 +14,7 @@ class OurPhilosophyTranslation extends Seeder
      */
     public function run()
     {
-        $ourPhilosophy = [
+        $items = [
             [
                 'our_philosophy_id' => 1,
                 'localization_id'   => 1,
@@ -30,8 +30,8 @@ class OurPhilosophyTranslation extends Seeder
                 'additional'        => 'Все функции в единой системе для вашего медицинского центра, Наш залог - наилучший опыт для пациентов, Предоставляем инструментарий для эффективного управления, Используем самую современную архитектуру с защитой по умолчанию',
             ],
         ];
-        foreach ($ourPhilosophy as $philosophy) {
-            \App\Models\Front\OurPhilosophyTranslation::Create($philosophy);
+        foreach ($items as $item) {
+            \App\Models\Front\OurPhilosophyTranslation::Create($item);
         }
     }
 }

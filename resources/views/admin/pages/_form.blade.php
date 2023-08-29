@@ -35,15 +35,6 @@
     <input type="file" name="Изображений" multiple class="form-control" @isset($page) {{ $page->image }} @endisset>
   </div>
 
-  <div class="mt-3 mb-3">
-    <label for="exampleFormControlSelect1" class="form-label">{{ __('Status') }}(*)</label>
-    <select class="form-select" id="exampleFormControlSelect1" required name="status">
-      <option value="">{{ __('Выберите статус') }}</option>
-      <option value="1" selected @isset($page) {{ $page->status == 1 ? "selected" : '' }} @endisset>{{ __('Активный') }}</option>
-      <option value="2" @isset($page) {{ $page->status == 2 ? "selected" : '' }} @endisset>{{ __('Неактивный') }}</option>
-    </select>
-  </div>
-
 <div class="mb-3">
     <label class="form-label">{{ __('Мета заголовок') }}</label>
     <input type="text" name="meta_title" class="form-control" @isset($page) value="{{ $page->meta_title }}" @endisset placeholder="Введите Мета-заголовок">

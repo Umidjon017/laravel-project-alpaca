@@ -11,7 +11,7 @@ class Feedback extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['logo', 'image'];
+    protected $fillable = ['logo', 'image', 'order_id'];
 
     const FILE_PATH = 'front/images/feedback/';
 

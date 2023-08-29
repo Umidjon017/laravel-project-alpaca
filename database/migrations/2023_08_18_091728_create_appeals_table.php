@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('appeals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('page_id')->constrained('pages')->cascadeOnDelete();
+            $table->integer('order_id')->default(1);
             $table->timestamps();
         });
     }

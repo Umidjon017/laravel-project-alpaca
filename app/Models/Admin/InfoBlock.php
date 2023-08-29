@@ -12,7 +12,7 @@ class InfoBlock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'link', 'image'];
+    protected $fillable = ['page_id', 'link', 'image', 'order_id'];
 
     const FILE_PATH = 'admin/images/pages/infos/';
 

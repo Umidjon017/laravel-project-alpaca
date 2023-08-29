@@ -19,7 +19,7 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $menus = Menu::with('parent.children')->get();
+        $menus = Menu::where('status', 1)->with('parent.children')->orderBy('order_id')->get();
         $banners = Banner::with('translations')->get();
         $ourPhilosophy = OurPhilosophy::with('translations')->get();
         $doctors = ForDoctor::with('translations')->get();
@@ -38,8 +38,8 @@ class HomeController extends Controller
 
     public function page(string $page): View
     {
-        $menus = Menu::with('parent.children')->get();
-        $route = Page::where('status', 1)->where('slug', $page)->with('translations', 'galleries', 'infos', 'comments',
+        $menus = Menu::where('status', 1)->with('parent.children')->orderBy('order_id')->get();
+        $route = Page::where('slug', $page)->with('translations', 'galleries', 'infos', 'comments',
             'textBlocks', 'checkBoxes', 'videoPlayers', 'ourClients', 'ourClientsLogo', 'directSpeeches',
             'recommendationBlocks', 'appeals')->first();
 

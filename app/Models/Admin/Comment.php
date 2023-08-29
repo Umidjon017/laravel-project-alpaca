@@ -12,7 +12,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'logo', 'image'];
+    protected $fillable = ['page_id', 'logo', 'image', 'order_id'];
 
     const FILE_PATH = 'admin/images/pages/comments/';
 

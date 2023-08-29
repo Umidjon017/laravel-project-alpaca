@@ -12,7 +12,7 @@ class CheckboxBlock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id'];
+    protected $fillable = ['page_id', 'order_id'];
 
     public function translatable()
     {

@@ -9,7 +9,7 @@ class OurPartnerLogo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['logo', 'link'];
+    protected $fillable = ['logo', 'link', 'order_id'];
 
     const FILE_PATH = 'front/images/partners/';
 

@@ -10,7 +10,7 @@ class OurClientLogo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'logo', 'link'];
+    protected $fillable = ['page_id', 'logo', 'link', 'order_id'];
 
     const FILE_PATH = 'admin/images/pages/clients_logo/';
 

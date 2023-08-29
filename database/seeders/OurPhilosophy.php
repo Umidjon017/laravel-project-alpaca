@@ -14,14 +14,12 @@ class OurPhilosophy extends Seeder
      */
     public function run()
     {
-        $ourPhilosophy = [
-            [
-                'link' => '#',
-                'icon' => null
-            ],
+        $items = [
+            ['link' => '#', 'icon' => '1692882140_star2.png,1692882140_star3.png', 'order_id' => 1],
         ];
-        foreach ($ourPhilosophy as $philosophy) {
-            \App\Models\Front\OurPhilosophy::Create($philosophy);
+
+        foreach ($items as $item) {
+            \App\Models\Front\OurPhilosophy::create($item);
         }
     }
 }

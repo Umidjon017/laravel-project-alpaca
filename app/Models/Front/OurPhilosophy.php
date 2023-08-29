@@ -11,7 +11,7 @@ class OurPhilosophy extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['link', 'icon'];
+    protected $fillable = ['link', 'icon', 'order_id'];
 
     const FILE_PATH = 'front/images/philosophy/';
 

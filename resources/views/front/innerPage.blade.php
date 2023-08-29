@@ -1,4 +1,3 @@
-{{--@dd($route->infos)--}}
 <x-front-layout>
 
     <x-slot name="title">
@@ -12,9 +11,9 @@
     </x-slot>
 
         <!--  -->
+        @if(count($route->infos) > 0)
         <div class="for__card__container">
             <!-- Dlya vracha Start -->
-            @if(count($route->infos) > 0)
             <div class="for__card for1 inner__for1">
                 @foreach($route->infos as $index => $info)
                 <div class="for1__left">
@@ -29,13 +28,13 @@
                 </div>
                 @endforeach
             </div>
-            @endif
             <!-- Dlya vracha End -->
         </div>
+        @endif
         <!--  -->
 
         <!-- Plyusi Start -->
-        @if(count($route->textBlocks) > 0)
+        @if(count($route->textBlocks) > 0 || count($route->checkBoxes) > 0)
         <div class="plyusi">
             @foreach($route->textBlocks as $index => $text)
             <p class="plyusi__title">{!! $text->translatable()->title !!}</p>

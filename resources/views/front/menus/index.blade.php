@@ -5,7 +5,7 @@
     @include('admin.partials.breadcrumb', ['page'=>'Меню'])
 
     <div class="row">
-        <div class="col-7 grid-margin stretch-card">
+        <div class="col-9 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
@@ -18,7 +18,8 @@
                             <tr class="text-center">
                                 <th class="text-start"> # </th>
                                 <th> {{ __('Название меню') }} </th>
-                                <th> {{ __('ID родителя') }} </th>
+                                <th> {{ __('Соединение с меню') }} </th>
+                                <th> {{ __('Порядковый номер') }} </th>
                                 <th> {{ __('Ссылка') }} </th>
                                 <th> {{ __('Статус') }} </th>
                                 <th> {{ __('Действие') }} </th>
@@ -29,7 +30,24 @@
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
                                     <td> {!! $menu->menu_title ?? 'No title' !!} </td>
-                                    <td> {!! $menu->parent_id ?? 'No id' !!} </td>
+{{--                                    <td> {!! $menu->parent_id ?? 'No id' !!} </td>--}}
+
+                                    <td>
+                                        @foreach ($menus as $menu)
+                                        @foreach($menu->parent as $parent)
+{{--                                            @if($parent->parent_id == 0)--}}
+{{--                                                <span> {{ $parent->menu_title }} </span>--}}
+{{--                                            @endif--}}
+
+                                            @foreach($parent->children as $child)
+                                                <span class="badge bg-danger"> {{ $child->menu_title }} -> {{ $child->order_id }} </span>
+                                            @endforeach
+
+                                        @endforeach
+                                        @endforeach
+                                    </td>
+
+                                    <td> {!! $menu->order_id ?? 'No id' !!} </td>
                                     <td> {!! $menu->link ?? 'No link' !!} </td>
                                     <td>
                                         @if ($menu->status == 1)

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('page_id')->constrained('pages')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('link')->nullable();
             $table->string('image')->nullable();
+            $table->integer('order_id')->default(1);
             $table->timestamps();
         });
     }

@@ -11,7 +11,12 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $menus = Menu::with('parent.children')->get();
+        $menus = Menu::with('parent.children')->orderBy('parent_id')->get();
+//        foreach ($menus as $menu) {
+//            foreach ($menu->parent as $parent) {
+//                dd($parent->children);
+//            }
+//        }
 
         return view('front.menus.index', compact('menus'));
     }

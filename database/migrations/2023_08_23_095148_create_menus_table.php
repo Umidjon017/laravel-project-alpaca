@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('parent_id')->default(0);
             $table->string('menu_title')->default(null);
             $table->string('link')->default(null);
-            $table->string('sort_order')->default(0);
+            $table->integer('order_id')->default(1);
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

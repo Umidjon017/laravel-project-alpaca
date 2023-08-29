@@ -10,7 +10,7 @@ class Gallery extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'image'];
+    protected $fillable = ['page_id', 'image', 'order_id'];
 
     const FILE_PATH = 'admin/images/pages/gallery/';
 

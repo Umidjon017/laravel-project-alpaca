@@ -20,7 +20,6 @@
                           <th class="text-start"> # </th>
                           <th> {{ __('Заголовок') }} </th>
                           <th> {{ __('Слаг') }} </th>
-                          <th> {{ __('Статус') }} </th>
                           <th class="w-25"> {{ __('Действие') }} </th>
                         </tr>
                       </thead>
@@ -30,13 +29,6 @@
                           <td> {{ $loop->iteration }} </td>
                           <td> {!! $page->getTranslatedAttributes(session('locale_id'))->title ?? 'No title' !!} </td>
                           <td> {!! $page->slug ?? 'No slug' !!} </td>
-                          <td>
-                            @if ($page->status == 1)
-                            <span class="badge bg-success fs-6"> {{ __('Активный') }} </span>
-                            @else
-                            <span class="badge bg-danger"> {{ __('Неактивный') }} </span>
-                            @endif
-                          </td>
                           <td class="d-flex align-items-center">
                             <a href="{{ route('admin.pages.show', $page->id) }}" class="btn btn-primary" style="margin-right: 10px;">
                                 {{ __('Посмотреть') }}

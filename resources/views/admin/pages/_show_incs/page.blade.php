@@ -27,19 +27,6 @@
                     </div>
 
                     <div class="mt-3">
-                        <h6>{{ __('Статус') }}</h6>
-                        <p>
-                            @if ($page->status == 1)
-                                <span class="badge bg-success"> {{ __('Активный') }} </span>
-                            @else
-                                <span class="badge bg-danger"> {{ __('Неактивный') }} </span>
-                            @endif
-                        </p>
-                    </div>
-
-                    <hr>
-
-                    <div>
                         <h6 class="mb-1">{{ __('Изображение') }}</h6>
                         <img src="{{ asset(page_file_path().$page->image) }}" alt="" width="100">
                     </div>
