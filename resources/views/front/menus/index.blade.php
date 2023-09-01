@@ -5,7 +5,7 @@
     @include('admin.partials.breadcrumb', ['page'=>'Меню'])
 
     <div class="row">
-        <div class="col-9 grid-margin stretch-card">
+        <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
@@ -29,24 +29,12 @@
                             @foreach ($menus as $menu)
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
-                                    <td> {!! $menu->menu_title ?? 'No title' !!} </td>
-{{--                                    <td> {!! $menu->parent_id ?? 'No id' !!} </td>--}}
-
-                                    <td>
-                                        @foreach ($menus as $menu)
-                                        @foreach($menu->parent as $parent)
-{{--                                            @if($parent->parent_id == 0)--}}
-{{--                                                <span> {{ $parent->menu_title }} </span>--}}
-{{--                                            @endif--}}
-
-                                            @foreach($parent->children as $child)
-                                                <span class="badge bg-danger"> {{ $child->menu_title }} -> {{ $child->order_id }} </span>
-                                            @endforeach
-
-                                        @endforeach
+                                    <td> {!! $menu->translatable()->menu_title ?? 'No title' !!} </td>
+                                    <td class="d-flex flex-wrap">
+                                        @foreach($menu->children as $child)
+                                            <a href="{{ route('admin.menus.edit', $child->id) }}" class="badge bg-light text-dark m-1 fs-6"> {{ $child->translatable()->menu_title }} -> {{ $child->order_id }} </a>
                                         @endforeach
                                     </td>
-
                                     <td> {!! $menu->order_id ?? 'No id' !!} </td>
                                     <td> {!! $menu->link ?? 'No link' !!} </td>
                                     <td>

@@ -26,7 +26,10 @@ class PageController extends Controller
 {
     public function index()
     {
-        $pages = Page::with('translations')->latest()->get();
+        $pages = Page::with('translations', 'galleries', 'infos', 'comments', 'textBlocks', 'checkBoxes',
+            'videoPlayers', 'ourClients', 'ourClientsLogo', 'directSpeeches', 'recommendationBlocks', 'appeals')
+            ->latest()
+            ->get();
 
         return view('admin.pages.index', compact('pages'));
     }
@@ -43,6 +46,7 @@ class PageController extends Controller
         try{
           DB::transaction(function() use ($request) {
               $data = $request->all();
+              $data['order_blocks'] = implode(',', $request->order_blocks);
 
               $localizationId = Localization::first()->id;
               $data['slug'] = \Str::slug($request->translations[$localizationId]['title']);

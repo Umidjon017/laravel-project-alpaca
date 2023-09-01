@@ -1,5 +1,9 @@
 @extends('layout.master')
 
+@push('plugin-styles')
+    <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.min.css')}}">
+@endpush
+
 @section('content')
   @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Страницы', 'pageUrl'=>route('admin.pages.index')])
 
@@ -19,8 +23,13 @@
 @endsection
 
 @push('custom-scripts')
+    <script src="{{ asset('assets/js/select2.js') }}"></script>
     <script src="{{ asset('assets/plugins/ckeditor/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace('body');
     </script>
+@endpush
+
+@push('plugin-scripts')
+    <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
 @endpush

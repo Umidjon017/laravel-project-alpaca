@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
 {
-    public function create(Page $page): View
+    public function create(Page $id): View
     {
         $localizations = Cache::get('localizations');
 
-        return view('admin.pages.comments.create', compact('localizations', 'page'));
+        return view('admin.pages.comments.create', compact('localizations', 'id'));
     }
 
     public function store(StoreCommentRequest $request)

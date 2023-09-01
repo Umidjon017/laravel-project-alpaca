@@ -11,7 +11,7 @@ class Page extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['image', 'slug', 'meta_title', 'meta_description', 'meta_keywords'];
+    protected $fillable = ['image', 'slug', 'order_blocks', 'meta_title', 'meta_description', 'meta_keywords'];
 
     const FILE_PATH = 'admin/images/pages/';
 

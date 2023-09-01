@@ -28,38 +28,52 @@
       </div>
       @endforeach
     </div>
-  </div>
+</div>
 
-  <div class="mt-3">
+<div class="mt-3">
     <label for="image" class="form-label">{{ __('Изображений') }}</label>
     <input type="file" name="Изображений" multiple class="form-control" @isset($page) {{ $page->image }} @endisset>
-  </div>
+</div>
 
-<div class="mb-3">
+<div class="mt-3 form-group">
+    <label class="form-label">{{__('Order blocks (*)')}}</label>
+    <select class="js-example-basic-multiple w-100" multiple data-width="100%"  data-placeholder="Select order blocks" name="order_blocks[]">
+        <option value="galleries" @isset($page) {{ $page->order_blocks == 'galleries' ? "selected" : '' }} @endisset>galleries</option>
+        <option value="infos" @isset($page) {{ $page->order_blocks == 'infos' ? "selected" : '' }} @endisset>infos</option>
+        <option value="comments" @isset($page) {{ $page->order_blocks == 'comments' ? "selected" : '' }} @endisset>comments</option>
+        <option value="textBlocks" @isset($page) {{ $page->order_blocks == 'textBlocks' ? "selected" : '' }} @endisset>textBlocks</option>
+        <option value="checkBoxes" @isset($page) {{ $page->order_blocks == 'checkBoxes' ? "selected" : '' }} @endisset>checkBoxes</option>
+        <option value="videoPlayers" @isset($page) {{ $page->order_blocks == 'videoPlayers' ? "selected" : '' }} @endisset>videoPlayers</option>
+        <option value="ourClients" @isset($page) {{ $page->order_blocks == 'ourClients' ? "selected" : '' }} @endisset>ourClients</option>
+        <option value="ourClientsLogo" @isset($page) {{ $page->order_blocks == 'ourClientsLogo' ? "selected" : '' }} @endisset>ourClientsLogo</option>
+        <option value="directSpeeches" @isset($page) {{ $page->order_blocks == 'directSpeeches' ? "selected" : '' }} @endisset>directSpeeches</option>
+        <option value="recommendationBlocks" @isset($page) {{ $page->order_blocks == 'recommendationBlocks' ? "selected" : '' }} @endisset>recommendationBlocks</option>
+        <option value="appeals" @isset($page) {{ $page->order_blocks == 'appeals' ? "selected" : '' }} @endisset>appeals</option>
+    </select>
+    @error('order_blocks')
+    <div class="alert alert-danger">
+        {{ $message }}
+    </div>
+    @enderror
+</div>
+
+<div class="mt-3">
     <label class="form-label">{{ __('Мета заголовок') }}</label>
     <input type="text" name="meta_title" class="form-control" @isset($page) value="{{ $page->meta_title }}" @endisset placeholder="Введите Мета-заголовок">
 </div>
 
-<div class="mb-3">
+<div class="mt-3">
     <label class="form-label">{{ __('Мета описание') }}</label>
     <input type="text" name="meta_description" class="form-control" @isset($page) value="{{ $page->meta_description }}" @endisset placeholder="Введите Мета-описание">
 </div>
 
-<div class="mb-3">
+<div class="mt-3">
     <label class="form-label">{{ __('Мета ключевые слова') }}</label>
     <input type="text" name="meta_keywords" class="form-control" @isset($page) value="{{ $page->meta_keywords }}" @endisset placeholder="Введите Мета-ключевые слова">
 </div>
 
-  <div class="d-flex justify-content-between">
-    <button type="submit" class="btn btn-primary me-2">
+<div class="d-flex justify-content-between">
+    <button type="submit" class="btn btn-primary me-2 mt-3">
       @isset($page) {{ __('Сохранить') }} @else {{ __('Создавать') }} @endisset
     </button>
-  </div>
-
-  @push('plugin-scripts')
-    <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
-  @endpush
-
-  @push('custom-scripts')
-    <script src="{{ asset('assets/js/tinymce.js') }}"></script>
-  @endpush
+</div>

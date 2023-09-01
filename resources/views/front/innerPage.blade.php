@@ -92,7 +92,9 @@
 
             <div class="partnyors">
                 @foreach($route->ourClientsLogo as $index => $logo)
-                <img src="{{asset(clients_logo_file_path() . $logo->logo)}}" alt="">
+                    <a href="{{$logo->link}}" target="_blank">
+                        <img src="{{asset(clients_logo_file_path() . $logo->logo)}}" alt="">
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -232,7 +234,6 @@
         <!-- Contact End -->
 
         <!-- Price Start -->
-        @if(count($route->appeals) > 0)
         <div class="price__container">
             <div class="price">
                 <div class="price__card p_light">
@@ -300,7 +301,6 @@
                 </div>
             </div>
         </div>
-        @endif
         <!-- Price End -->
 
     <x-slot name="footer">

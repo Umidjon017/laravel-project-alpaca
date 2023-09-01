@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('menu_translations', function (Blueprint $table) {
             $table->id();
-            $table->integer('parent_id')->default(0);
-            $table->string('link')->default(null);
-            $table->integer('order_id')->default(1);
-            $table->boolean('status')->default(1);
+            $table->foreignId('menu_id')->constrained('menus')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('localization_id')->constrained('localizations')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('menu_title')->default(null);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('menu_translations');
     }
 };

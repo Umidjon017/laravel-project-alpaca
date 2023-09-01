@@ -19,7 +19,7 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $menus = Menu::where('status', 1)->with('parent.children')->orderBy('order_id')->get();
+        $menus = Menu::where('status', 1)->with('parent.children', 'translations')->orderBy('order_id')->get();
         $banners = Banner::with('translations')->get();
         $ourPhilosophy = OurPhilosophy::with('translations')->get();
         $doctors = ForDoctor::with('translations')->get();

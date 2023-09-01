@@ -47,14 +47,14 @@
                                         <div class="example">
                                             <div>
                                                 <h6> {{ __('Заголовок') }} </h6>
-                                                <p class="mb-1"> {!! $client->getTranslatedAttributes(session('locale_id'))->title !!} </p>
+                                                <p class="mb-1"> {!! $client->translatable()->title !!} </p>
                                             </div>
 
                                             <hr>
 
                                             <div>
                                                 <h6> {{ __('Описание') }} </h6>
-                                                <p class="mb-1"> {!! $client->getTranslatedAttributes(session('locale_id'))->description !!} </p>
+                                                <p class="mb-1"> {!! $client->translatable()->description !!} </p>
                                             </div>
                                         </div>
                                     </div>

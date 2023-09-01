@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Для маркетолога', 'pageUrl'=>route('admin.marketology.index')])
+    @include('admin.partials.breadcrumb', ['subPage'=>'Редактировать', 'page'=>'Для маркетолога', 'pageUrl'=>route('admin.marketology.index')])
 
     <div class="row">
         <div class="col-12">

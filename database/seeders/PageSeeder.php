@@ -16,8 +16,8 @@ class PageSeeder extends Seeder
     public function run()
     {
         $items = [
-            ['image' => NULL, 'slug' => 'alpaca-dlia-vraca', 'meta_title' => NULL, 'meta_description' => NULL, 'meta_keywords' => NULL],
-            ['image' => NULL, 'slug' => 'dlia-it', 'meta_title' => NULL, 'meta_description' => NULL, 'meta_keywords' => NULL],
+            ['image' => NULL, 'slug' => 'alpaca-dlia-vraca', 'order_blocks' => NULL, 'meta_title' => NULL, 'meta_description' => NULL, 'meta_keywords' => NULL],
+            ['image' => NULL, 'slug' => 'dlia-it', 'order_blocks' => NULL, 'meta_title' => NULL, 'meta_description' => NULL, 'meta_keywords' => NULL],
         ];
 
         foreach ($items as $item) {

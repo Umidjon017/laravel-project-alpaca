@@ -3,14 +3,33 @@
         <div class="card">
             <div class="card-body">
 
-                <div class="mt-3">
-                    <label class="form-label" for="menu_title"> {{ __('Название меню') }} (*) </label>
-                    <input type="text" id="menu_title" name="menu_title" class="form-control" value="{{ old('menu_title') ?? (isset($menu) ? $menu->menu_title : '') }}" required/>
-                    @error('menu_title')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
+                <ul class="nav nav-tabs " id="myTab" role="tablist">
+                    @foreach($localizations as $localization)
+                        <li class="nav-item">
+                            <a class="nav-link @if($loop->first) active @endif" id="{{ $localization->name }}-tab" data-bs-toggle="tab" data-bs-target="#{{ $localization->name }}" role="tab" aria-controls="{{ $localization->name }}" aria-selected="true">
+                                {{ strtoupper($localization->name) }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+                <div class="tab-content border border-top-0 p-3" id="myTabContent">
+                    @foreach ($localizations as $locale)
+                        <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
+                            <div class="mt-3">
+                                <label class="form-label" for="menu_title"> {{ __('Название меню') }} (*) </label>
+                                <input type="text" id="menu_title" name="translations[{{ $locale->id }}][menu_title]" class="form-control @error('translations.*.menu_title') is-invalid @enderror" value="{{ old('translation.1.menu_title') ?? (isset($menu) ? $menu->getTranslatedAttributes($locale->id)->menu_title : '') }}" required/>
+                                @error('menu_title')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            @isset($menu)
+                                <input type="hidden" name="translations[{{ $locale->id }}][id]" value="{{ $menu->getTranslatedAttributes($locale->id)->id }}" />
+                            @endisset
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="mt-3">
@@ -28,7 +47,7 @@
                     <select name="parent_id" class="js-example-basic-single w-100" data-width="100%"  data-placeholder="Select menu">
                         <option value="0">Выберите menu</option>
                         @foreach($menus as $menuItem)
-                            <option value="{{ $menuItem->id }}" {{ $menuItem->id == (isset($menu) ? $menu->parent_id : '')  ? 'selected' : '' }} >{{$menuItem->menu_title}}</option>
+                            <option value="{{ $menuItem->id }}" {{ $menuItem->id == (isset($menu) ? $menu->parent_id : '')  ? 'selected' : '' }} >{{$menuItem->translatable()->menu_title}}</option>
                         @endforeach
                     </select>
                     @error('parent_id')

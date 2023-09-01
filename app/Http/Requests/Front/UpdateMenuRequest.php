@@ -24,14 +24,14 @@ class UpdateMenuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'menu_title' => 'required',
+            'translations.*.menu_title' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'menu_title' => 'Menu title is required',
+            'translations.*.menu_title' => 'Menu title is required',
         ];
     }
 }

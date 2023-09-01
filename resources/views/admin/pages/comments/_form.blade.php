@@ -29,9 +29,9 @@
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
-                @isset($page) @foreach($page->get() as $p)
-                    <input type="hidden" name="page_id" value="{{ $p->id }}" />
-                @endforeach @endisset
+                @isset($id)
+                    <input type="hidden" name="page_id" value="{{ $id->id }}" />
+                @endisset
 
                 @isset($comment)
                     <input type="hidden" name="translations[{{ $locale->id }}][id]" value="{{ $comment->getTranslatedAttributes($locale->id)->id }}" />

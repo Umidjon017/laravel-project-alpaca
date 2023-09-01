@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Меню', 'pageUrl'=>route('admin.menus.index')])
+    @include('admin.partials.breadcrumb', ['subPage'=>'Редактировать', 'page'=>'Меню', 'pageUrl'=>route('admin.menus.index')])
 
     <div class="row">
         <div class="col-12">

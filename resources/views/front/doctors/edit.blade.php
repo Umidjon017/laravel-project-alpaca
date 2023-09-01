@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Для врача', 'pageUrl'=>route('admin.doctors.index')])
+    @include('admin.partials.breadcrumb', ['subPage'=>'Редактировать', 'page'=>'Для врача', 'pageUrl'=>route('admin.doctors.index')])
 
     <div class="row">
         <div class="col-12">

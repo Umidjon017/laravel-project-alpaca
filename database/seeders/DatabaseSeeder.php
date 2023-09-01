@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
       PageSeeder::class,
       PageTranslationSeeder::class,
       MenuSeeder::class,
+      MenuTranslationSeeder::class,
       OurPhilosophy::class,
       OurPhilosophyTranslation::class,
         AppealSeeder::class,
