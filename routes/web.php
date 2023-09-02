@@ -21,6 +21,7 @@ use App\Http\Controllers\Front\ForItController;
 use App\Http\Controllers\Front\ForLeaderController;
 use App\Http\Controllers\Front\ForMarketologyController;
 use App\Http\Controllers\Front\MenuController;
+use App\Http\Controllers\Front\OurPartnerController;
 use App\Http\Controllers\Front\OurPartnerLogoController;
 use App\Http\Controllers\Front\OurPhilosophyController;
 use App\Http\Controllers\Front\RecommendationController;
@@ -100,14 +101,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/recommendation-block', RecommendationBlockController::class)->except('index', 'create', 'show');
 
     // For Frontend
-    Route::resource('/banners', BannerController::class)->except('show');
-    Route::resource('/philosophy', OurPhilosophyController::class)->except('show');
-    Route::resource('/doctors', ForDoctorController::class)->except('show');
-    Route::resource('/leaders', ForLeaderController::class)->except('show');
-    Route::resource('/it', ForItController::class)->except('show');
-    Route::resource('/marketology', ForMarketologyController::class)->except('show');
-    Route::resource('/feedback', FeedbackController::class)->except('show');
-    Route::resource('/partners', OurPartnerLogoController::class)->except('show');
-    Route::resource('/recommendations', RecommendationController::class)->except('show');
-    Route::resource('/menus', MenuController::class)->except('show');
+    Route::prefix('main-page')->name('main-page.')->group(function () {
+        Route::resource('/banners', BannerController::class)->except('show');
+        Route::resource('/philosophy', OurPhilosophyController::class)->except('show');
+        Route::resource('/doctors', ForDoctorController::class)->except('show');
+        Route::resource('/leaders', ForLeaderController::class)->except('show');
+        Route::resource('/it', ForItController::class)->except('show');
+        Route::resource('/marketology', ForMarketologyController::class)->except('show');
+        Route::resource('/feedback', FeedbackController::class)->except('show');
+        Route::resource('/partners', OurPartnerController::class)->except('show');
+        Route::resource('/partner-logos', OurPartnerLogoController::class)->except('index', 'show');
+        Route::resource('/recommendations', RecommendationController::class)->except('show');
+        Route::resource('/menus', MenuController::class)->except('show');
+    });
 });

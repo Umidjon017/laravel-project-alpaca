@@ -9,6 +9,7 @@ use App\Models\Admin\OurClient;
 use App\Models\Admin\OurClientLogo;
 use App\Models\Admin\Page;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +22,7 @@ class OurClientController extends Controller
         return view('admin.pages.clients.create', compact('localizations', 'id'));
     }
 
-    public function store(StoreOurClientRequest $request)
+    public function store(StoreOurClientRequest $request): RedirectResponse
     {
         try{
             DB::transaction(function() use ($request) {
@@ -45,7 +46,7 @@ class OurClientController extends Controller
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Our client block added successfully!');
     }
 
-    public function edit(OurClient $client)
+    public function edit(OurClient $client): View
     {
         $localizations = Cache::get('localizations');
 
@@ -62,7 +63,7 @@ class OurClientController extends Controller
     }
 
 
-    public function update(UpdateOurClientRequest $request, OurClient $client)
+    public function update(UpdateOurClientRequest $request, OurClient $client): RedirectResponse
     {
         try {
             DB::transaction(function() use ($request, $client){
@@ -86,7 +87,7 @@ class OurClientController extends Controller
         return redirect('admin/'.$client->page_id.'/clients/show')->with('success', 'Our client block edited successfully!');
     }
 
-    public function destroy(OurClient $client)
+    public function destroy(OurClient $client): RedirectResponse
     {
         $client->delete();
 

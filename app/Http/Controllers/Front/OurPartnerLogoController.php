@@ -5,23 +5,17 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Front\OurPartnerLogo;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class OurPartnerLogoController extends Controller
 {
-    public function index(): View
-    {
-        $partners = OurPartnerLogo::all();
-
-        return view('front.partners.index', compact('partners'));
-    }
-
     public function create(): View
     {
-        return view('front.partners.create');
+        return view('front.partner-logos.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $data = $request->all();
 
@@ -31,32 +25,32 @@ class OurPartnerLogoController extends Controller
 
         OurPartnerLogo::create($data);
 
-        return redirect()->route('admin.partners.index')->with('success', 'Client added successfully!');
+        return redirect()->route('admin.main-page.partners.index')->with('success', 'Client added successfully!');
     }
 
-    public function edit(OurPartnerLogo $partner)
+    public function edit(OurPartnerLogo $partner_logo): View
     {
-        return view('front.partners.edit', compact('partner'));
+        return view('front.partner-logos.edit', compact('partner_logo'));
     }
 
-    public function update(Request $request, OurPartnerLogo $partner)
+    public function update(Request $request, OurPartnerLogo $partner_logo): RedirectResponse
     {
         $data = $request->all();
 
         if ($request->hasFile('logo')) {
-            $partner->deleteImage();
+            $partner_logo->deleteImage();
             $data['logo'] = $this->fileUpload($request->file('logo'));
         }
 
-        $partner->update($data);
+        $partner_logo->update($data);
 
-        return redirect()->route('admin.partners.index')->with('success', 'Client edited successfully!');
+        return redirect()->route('admin.main-page.partners.index')->with('success', 'Client edited successfully!');
     }
 
-    public function destroy(OurPartnerLogo $partner)
+    public function destroy(OurPartnerLogo $partner_logo): RedirectResponse
     {
-        $partner->delete();
-        $partner->deleteImage();
+        $partner_logo->delete();
+        $partner_logo->deleteImage();
 
         return back()->with('success', 'Client deleted successfully!');
     }

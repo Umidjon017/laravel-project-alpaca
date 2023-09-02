@@ -11,7 +11,9 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h6 class="card-title">{{ __('Баннеры страницу') }}</h6>
-                        <a href="{{ route('admin.banners.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        @if($banners->isEmpty())
+                            <a href="{{ route('admin.main-page.banners.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        @endif
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
@@ -27,13 +29,13 @@
                             @foreach ($banners as $banner)
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
-                                    <td> {!! $banner->getTranslatedAttributes(session('locale_id'))->title ?? 'No title' !!} </td>
-                                    <td> {!! $banner->getTranslatedAttributes(session('locale_id'))->description ?? 'No Description' !!} </td>
+                                    <td> {!! $banner->translatable()->title ?? 'No title' !!} </td>
+                                    <td> {!! $banner->translatable()->description ?? 'No Description' !!} </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('admin.banners.edit', $banner->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('admin.main-page.banners.edit', $banner->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('admin.banners.destroy', $banner->id) }}" method="POST">
+                                        <form action="{{ route('admin.main-page.banners.destroy', $banner->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>

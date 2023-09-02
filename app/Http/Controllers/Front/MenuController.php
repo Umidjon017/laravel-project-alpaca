@@ -47,7 +47,7 @@ class MenuController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.menus.index')->with('success', 'Menu created successfully!');
+        return redirect()->route('admin.main-page.menus.index')->with('success', 'Menu created successfully!');
     }
 
     public function edit(Menu $menu)
@@ -77,7 +77,7 @@ class MenuController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.menus.index')->with('success', 'Menu edited successfully!');
+        return redirect()->route('admin.main-page.menus.index')->with('success', 'Menu edited successfully!');
     }
 
     public function destroy(Menu $menu)

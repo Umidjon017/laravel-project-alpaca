@@ -11,93 +11,80 @@
   </div>
   <div class="sidebar-body">
     <ul class="nav">
+        {{-- Glabniy --}}
         <li class="nav-item nav-category">{{ __('Главная') }}</li>
-        <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+        <li class="nav-item {{ active_class(['admin/dashboard*']) }}">
           <a href="{{ route('admin.dashboard') }}" class="nav-link">
             <i data-feather="monitor"></i>
             <span class="link-title">{{ __('Главная') }}</span>
           </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
+        <li class="nav-item {{ active_class(['admin/pages*']) }}">
             <a href="{{ route('admin.pages.index') }}" class="nav-link">
               <i data-feather="loader"></i>
               <span class="link-title">{{ __('Страницы') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('admin.appeal_form.*') ? 'active' : '' }}">
+        <li class="nav-item {{ active_class(['admin/appeal_form*']) }}">
             <a href="{{ route('admin.appeal_form.index') }}" class="nav-link">
               <i data-feather="loader"></i>
               <span class="link-title">{{ __('Заявки') }}</span>
             </a>
         </li>
-        <li class="nav-item nav-category">{{ __('Для фронта') }}</li>
-        <li class="nav-item {{ request()->routeIs('admin.banners.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.banners.index') }}" class="nav-link">
-                <i data-feather="loader"></i>
-                <span class="link-title">{{ __('Баннеры') }}</span>
+
+        {{-- Main Page --}}
+        <li class="nav-item nav-category">{{ __('Главная страница') }}</li>
+        <li class="nav-item {{ active_class(['admin/main-page/*']) }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#admin" role="button" aria-expanded="{{ is_active_route(['admin/main-page/*']) }}" aria-controls="admin">
+                <i class="link-icon" data-feather="layout"></i>
+                <span class="link-title">{{ __('Главная страница') }}</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
+            <div class="collapse {{ show_class(['admin/main-page/*']) }}" id="admin">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/main-page/banners') }}" class="nav-link {{ active_class(['admin/main-page/banners']) }}">{{ __('Баннеры') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/main-page/philosophy') }}" class="nav-link {{ active_class(['admin/main-page/philosophy']) }}">{{ __('Наша философия') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/main-page/doctors') }}" class="nav-link {{ active_class(['admin/main-page/doctors']) }}">{{ __('Для врача') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/main-page/leaders') }}" class="nav-link {{ active_class(['admin/main-page/leaders']) }}">{{ __('Для руководителя') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/main-page/it') }}" class="nav-link {{ active_class(['admin/main-page/it']) }}">{{ __('Для IT') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/main-page/marketology') }}" class="nav-link {{ active_class(['admin/main-page/marketology']) }}">{{ __('Для маркетолога') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/main-page/feedback') }}" class="nav-link {{ active_class(['admin/main-page/feedback']) }}">{{ __('Отзывы клиентов') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/main-page/partners') }}" class="nav-link {{ active_class(['admin/main-page/partners']) }}">{{ __('Наши клиенты') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/main-page/recommendations') }}" class="nav-link {{ active_class(['admin/main-page/recommendations']) }}">{{ __('Рекомендации') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/main-page/menus') }}" class="nav-link {{ active_class(['admin/main-page/menus']) }}">{{ __('Меню') }}</a>
+                    </li>
+                </ul>
+            </div>
         </li>
-        <li class="nav-item {{ request()->routeIs('admin.philosophy.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.philosophy.index') }}" class="nav-link">
-                <i data-feather="loader"></i>
-                <span class="link-title">{{ __('Наша философия') }}</span>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('admin.doctors.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.doctors.index') }}" class="nav-link">
-                <i data-feather="loader"></i>
-                <span class="link-title">{{ __('Для врача') }}</span>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('admin.leaders.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.leaders.index') }}" class="nav-link">
-                <i data-feather="loader"></i>
-                <span class="link-title">{{ __('Для руководителя') }}</span>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('admin.it.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.it.index') }}" class="nav-link">
-                <i data-feather="loader"></i>
-                <span class="link-title">{{ __('Для IT') }}</span>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('admin.marketology.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.marketology.index') }}" class="nav-link">
-                <i data-feather="loader"></i>
-                <span class="link-title">{{ __('Для маркетолога') }}</span>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('admin.feedback.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.feedback.index') }}" class="nav-link">
-                <i data-feather="loader"></i>
-                <span class="link-title">{{ __('Отзывы клиентов') }}</span>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('admin.partners.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.partners.index') }}" class="nav-link">
-                <i data-feather="loader"></i>
-                <span class="link-title">{{ __('Наши клиенты') }}</span>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('admin.recommendations.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.recommendations.index') }}" class="nav-link">
-                <i data-feather="loader"></i>
-                <span class="link-title">{{ __('Рекомендации') }}</span>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('admin.menus.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.menus.index') }}" class="nav-link">
-                <i data-feather="loader"></i>
-                <span class="link-title">{{ __('Меню') }}</span>
-            </a>
-        </li>
+
+        {{-- Languages --}}
         <li class="nav-item nav-category">{{ __('Языки') }}</li>
-        <li class="nav-item {{ request()->routeIs('admin.localizations.*') ? 'active' : '' }}">
+        <li class="nav-item {{ active_class(['admin/localizations*']) }}">
             <a href="{{ route('admin.localizations.index') }}" class="nav-link">
-              <i data-feather="slack"></i>
-              <span class="link-title">{{ __('Языки') }}</span>
+                <i data-feather="slack"></i>
+                <span class="link-title">{{ __('Языки') }}</span>
             </a>
         </li>
+
     </ul>
   </div>
 </nav>

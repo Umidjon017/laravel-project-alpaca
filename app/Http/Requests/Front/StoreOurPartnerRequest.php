@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Front;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAppealFormRequest extends FormRequest
+class StoreOurPartnerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,16 @@ class StoreAppealFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required',
-            'name' => 'required',
-            'text' => 'required',
+            'translations.*.title' => 'required',
+            'translations.*.description' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'email' => 'Email is required',
-            'name' => 'Name is required',
-            'text' => 'Text is required',
+            'translations.*.title' => 'Title is required',
+            'translations.*.description' => 'Description is required',
         ];
     }
 }

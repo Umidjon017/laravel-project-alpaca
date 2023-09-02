@@ -1,14 +1,14 @@
 @extends('layout.master')
 
 @section('content')
-    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Отзывы клиентов', 'pageUrl'=>route('admin.feedback.index')])
+    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Отзывы клиентов', 'pageUrl'=>route('admin.main-page.feedback.index')])
 
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">{{__('Добавить Отзывы наших клиентов')}}</h6>
-                    <form action="{{ route('admin.feedback.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+                    <form action="{{ route('admin.main-page.feedback.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                         @csrf
                         @include('front.feedback._form')
                     </form>

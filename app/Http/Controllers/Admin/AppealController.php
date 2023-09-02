@@ -34,6 +34,11 @@ class AppealController extends Controller
                         'localization_id'=>$key,
                         'title'=>$value['title'],
                         'description'=>$value['description'],
+                        'theme'=>$value['theme'],
+                        'email'=>$value['email'],
+                        'name'=>$value['name'],
+                        'comment'=>$value['comment'],
+                        'link'=>$value['link'],
                     ]);
                 }
             });
@@ -71,6 +76,11 @@ class AppealController extends Controller
                         'localization_id'=>$key,
                         'title'=>$value['title'],
                         'description'=>$value['description'],
+                        'theme'=>$value['theme'],
+                        'email'=>$value['email'],
+                        'name'=>$value['name'],
+                        'comment'=>$value['comment'],
+                        'link'=>$value['link'],
                     ]);
                 }
             });

@@ -11,7 +11,9 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h6 class="card-title">{{ __('Рекомендации страницу') }}</h6>
-                        <a href="{{ route('admin.recommendations.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        @if($recommendations->isEmpty())
+                            <a href="{{ route('admin.main-page.recommendations.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        @endif
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
@@ -28,14 +30,14 @@
                             @foreach ($recommendations as $recommendation)
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
-                                    <td> {!! $recommendation->getTranslatedAttributes(session('locale_id'))->title ?? 'No title' !!} </td>
-                                    <td> {!! $recommendation->getTranslatedAttributes(session('locale_id'))->description ?? 'No Description' !!} </td>
+                                    <td> {!! $recommendation->translatable()->title ?? 'No title' !!} </td>
+                                    <td> {!! $recommendation->translatable()->description ?? 'No Description' !!} </td>
                                     <td> {!! $recommendation->link ?? 'No link' !!} </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('admin.recommendations.edit', $recommendation->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('admin.main-page.recommendations.edit', $recommendation->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('admin.recommendations.destroy', $recommendation->id) }}" method="POST">
+                                        <form action="{{ route('admin.main-page.recommendations.destroy', $recommendation->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>

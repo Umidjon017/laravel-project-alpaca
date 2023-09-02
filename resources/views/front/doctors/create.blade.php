@@ -1,14 +1,14 @@
 @extends('layout.master')
 
 @section('content')
-    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Для врача', 'pageUrl'=>route('admin.doctors.index')])
+    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Для врача', 'pageUrl'=>route('admin.main-page.doctors.index')])
 
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">{{__('Добавить баннеры')}}</h6>
-                    <form action="{{ route('admin.doctors.store') }}" method="POST" class="forms-sample" enctype="multipart/form-data">
+                    <form action="{{ route('admin.main-page.doctors.store') }}" method="POST" class="forms-sample" enctype="multipart/form-data">
                         @csrf
                         @include('front.doctors._form')
                     </form>

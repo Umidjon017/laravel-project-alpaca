@@ -49,7 +49,7 @@ class RecommendationController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.recommendations.index')->with('success', 'Recommendation added successfully!');
+        return redirect()->route('admin.main-page.recommendations.index')->with('success', 'Recommendation added successfully!');
     }
 
     public function edit(Recommendation $recommendation)
@@ -85,7 +85,7 @@ class RecommendationController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.recommendations.index')->with('success', 'Recommendation edited successfully!');
+        return redirect()->route('admin.main-page.recommendations.index')->with('success', 'Recommendation edited successfully!');
     }
 
     public function destroy(Recommendation $recommendation)

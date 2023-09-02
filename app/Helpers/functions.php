@@ -18,6 +18,24 @@ use App\Models\Front\OurPartnerLogo;
 use App\Models\Front\OurPhilosophy;
 use App\Models\Front\Recommendation;
 
+if (! function_exists('active_class')){
+    function active_class(array $path, string $active = 'active'): string {
+        return call_user_func_array('Request::is', $path) ? $active : '';
+    }
+}
+
+if (! function_exists('is_active_route')) {
+    function is_active_route(array $path): string {
+        return call_user_func_array('Request::is', $path) ? 'true' : 'false';
+    }
+}
+
+if (! function_exists('show_class')) {
+    function show_class(array $path): string {
+        return call_user_func_array('Request::is', $path) ? 'show' : '';
+    }
+}
+
 if(!function_exists('page_file_path')) {
 
     function page_file_path(): string

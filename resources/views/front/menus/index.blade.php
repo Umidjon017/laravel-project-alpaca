@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h6 class="card-title">{{ __('Страница главный меню') }}</h6>
-                        <a href="{{ route('admin.menus.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        <a href="{{ route('admin.main-page.menus.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
@@ -32,7 +32,7 @@
                                     <td> {!! $menu->translatable()->menu_title ?? 'No title' !!} </td>
                                     <td class="d-flex flex-wrap">
                                         @foreach($menu->children as $child)
-                                            <a href="{{ route('admin.menus.edit', $child->id) }}" class="badge bg-light text-dark m-1 fs-6"> {{ $child->translatable()->menu_title }} -> {{ $child->order_id }} </a>
+                                            <a href="{{ route('admin.main-page.menus.edit', $child->id) }}" class="badge bg-light text-dark m-1 fs-6"> {{ $child->translatable()->menu_title }} -> {{ $child->order_id }} </a>
                                         @endforeach
                                     </td>
                                     <td> {!! $menu->order_id ?? 'No id' !!} </td>
@@ -45,10 +45,10 @@
                                         @endif
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('admin.menus.edit', $menu->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('admin.main-page.menus.edit', $menu->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('admin.menus.destroy', $menu->id) }}" method="POST">
+                                        <form action="{{ route('admin.main-page.menus.destroy', $menu->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>

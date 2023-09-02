@@ -18,9 +18,50 @@
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label">{{ __('Описание') }}</label>
                     <textarea class="form-control" name="translations[{{ $locale->id }}][description]" rows="4"> @isset($appeal) {{ $appeal->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{ __('Тема заявления') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][theme]" class="form-control @error('translations.*.theme') is-invalid @enderror" @isset($appeal) value="{{ $appeal->getTranslatedAttributes($locale->id)->theme }}" @endisset placeholder="Введите название">
+                    @error('translations.*.theme')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{ __('Электронная почта') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][email]" class="form-control @error('translations.*.email') is-invalid @enderror" @isset($appeal) value="{{ $appeal->getTranslatedAttributes($locale->id)->email }}" @endisset placeholder="Введите название">
+                    @error('translations.*.email')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{ __('Имя') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][name]" class="form-control @error('translations.*.name') is-invalid @enderror" @isset($appeal) value="{{ $appeal->getTranslatedAttributes($locale->id)->name }}" @endisset placeholder="Введите название">
+                    @error('translations.*.name')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{ __('Комментарий') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][comment]" class="form-control @error('translations.*.comment') is-invalid @enderror" @isset($appeal) value="{{ $appeal->getTranslatedAttributes($locale->id)->comment }}" @endisset placeholder="Введите название">
+                    @error('translations.*.comment')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{ __('Имя ссылки') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][link]" class="form-control @error('translations.*.link') is-invalid @enderror" @isset($appeal) value="{{ $appeal->getTranslatedAttributes($locale->id)->link }}" @endisset placeholder="Введите название">
+                    @error('translations.*.link')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
                 </div>
                 @isset($id)
                     <input type="hidden" name="page_id" value="{{ $id->id }}" />

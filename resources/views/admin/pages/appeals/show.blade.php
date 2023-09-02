@@ -57,6 +57,41 @@
                                                     <h6> {{ __('Описание') }} </h6>
                                                     <p class="mb-1"> {!! $appeal->translatable()->description !!} </p>
                                                 </div>
+
+                                                <hr>
+
+                                                <div>
+                                                    <h6> {{ __('Тема заявления') }} </h6>
+                                                    <p class="mb-1"> {!! $appeal->translatable()->theme !!} </p>
+                                                </div>
+
+                                                <hr>
+
+                                                <div>
+                                                    <h6> {{ __('Электронная почта') }} </h6>
+                                                    <p class="mb-1"> {!! $appeal->translatable()->email !!} </p>
+                                                </div>
+
+                                                <hr>
+
+                                                <div>
+                                                    <h6> {{ __('Имя') }} </h6>
+                                                    <p class="mb-1"> {!! $appeal->translatable()->name !!} </p>
+                                                </div>
+
+                                                <hr>
+
+                                                <div>
+                                                    <h6> {{ __('Комментарий') }} </h6>
+                                                    <p class="mb-1"> {!! $appeal->translatable()->comment !!} </p>
+                                                </div>
+
+                                                <hr>
+
+                                                <div>
+                                                    <h6> {{ __('Имя ссылки') }} </h6>
+                                                    <p class="mb-1"> {!! $appeal->translatable()->link !!} </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

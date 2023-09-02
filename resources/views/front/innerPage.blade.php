@@ -83,7 +83,7 @@
         <!-- Comments End -->
 
         <!-- Partnyors Start -->
-        @if(count($route->ourClients) > 0)
+        @if(count($route->ourClients) > 0 || count($route->ourClientsLogo) > 0)
         <div class="partnyors__container">
             @foreach($route->ourClients as $index => $client)
             <p class="partnyors__title">{!! $client->translatable()->title !!}</p>
@@ -212,13 +212,13 @@
                 @endforeach
             </div>
             <div class="contact__form">
-                <p class="form__title">Оставьте заявку прямо сейчас</p>
+                <p class="form__title">{!! $appeal->translatable()->theme !!}</p>
                 <form action="{{ route('admin.appeal_form.store') }}" method="POST">
                     @csrf
-                    <input name="email" type="email" placeholder="Электронная почта">
-                    <input name="name" type="text" placeholder="Имя">
-                    <textarea name="text" cols="30" rows="10" placeholder="Комментарий"></textarea>
-                    <button type="submit">Попробовать бесплатно</button>
+                    <input name="email" type="email" placeholder="{!! $appeal->translatable()->email !!}">
+                    <input name="name" type="text" placeholder="{!! $appeal->translatable()->name !!}">
+                    <textarea name="text" cols="30" rows="10" placeholder="{!! $appeal->translatable()->comment !!}"></textarea>
+                    <button type="submit">{!! $appeal->translatable()->link !!}</button>
                 </form>
                 <p class="form__text">
                     Нажимая на эту кнопку,

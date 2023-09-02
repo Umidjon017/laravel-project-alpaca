@@ -11,7 +11,9 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h6 class="card-title">{{ __('Для врача страницу') }}</h6>
-                        <a href="{{ route('admin.doctors.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        @if($doctors->isEmpty())
+                            <a href="{{ route('admin.main-page.doctors.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        @endif
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
@@ -29,15 +31,15 @@
                             @foreach ($doctors as $doctor)
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
-                                    <td> {!! $doctor->getTranslatedAttributes(session('locale_id'))->title ?? 'No title' !!} </td>
-                                    <td> {!! $doctor->getTranslatedAttributes(session('locale_id'))->description ?? 'No Description' !!} </td>
-                                    <td> {!! $doctor->getTranslatedAttributes(session('locale_id'))->body ?? 'No Description' !!} </td>
+                                    <td> {!! $doctor->translatable()->title ?? 'No title' !!} </td>
+                                    <td> {!! $doctor->translatable()->description ?? 'No Description' !!} </td>
+                                    <td> {!! $doctor->translatable()->body ?? 'No Description' !!} </td>
                                     <td> {!! $doctor->link ?? 'No link' !!} </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('admin.doctors.edit', $doctor->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('admin.main-page.doctors.edit', $doctor->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('admin.doctors.destroy', $doctor->id) }}" method="POST">
+                                        <form action="{{ route('admin.main-page.doctors.destroy', $doctor->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>

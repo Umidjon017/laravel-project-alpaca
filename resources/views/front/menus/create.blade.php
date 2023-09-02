@@ -5,14 +5,14 @@
 @endpush
 
 @section('content')
-    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Меню', 'pageUrl'=>route('admin.menus.index')])
+    @include('admin.partials.breadcrumb', ['subPage'=>'Создать', 'page'=>'Меню', 'pageUrl'=>route('admin.main-page.menus.index')])
 
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">{{__('Добавить Меню')}}</h6>
-                    <form action="{{ route('admin.menus.store') }}" method="POST" class="forms-sample" enctype="multipart/form-data">
+                    <form action="{{ route('admin.main-page.menus.store') }}" method="POST" class="forms-sample" enctype="multipart/form-data">
                         @csrf
                         @include('front.menus._form')
                     </form>

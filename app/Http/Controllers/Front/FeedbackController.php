@@ -56,7 +56,7 @@ class FeedbackController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.feedback.index')->with('success', 'Feedback added successfully!');
+        return redirect()->route('admin.main-page.feedback.index')->with('success', 'Feedback added successfully!');
     }
 
     public function edit(Feedback $feedback): View
@@ -98,7 +98,7 @@ class FeedbackController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.feedback.index')->with('success', 'Feedback edited successfully!');
+        return redirect()->route('admin.main-page.feedback.index')->with('success', 'Feedback edited successfully!');
     }
 
     public function destroy(Feedback $feedback): RedirectResponse

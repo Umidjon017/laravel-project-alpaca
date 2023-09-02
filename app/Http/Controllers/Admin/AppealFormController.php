@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreAppealFormRequest;
-use App\Http\Requests\UpdateAppealFormRequest;
+use App\Http\Requests\Admin\StoreAppealFormRequest;
+use App\Http\Requests\Admin\UpdateAppealFormRequest;
 use App\Models\Admin\AppealForm;
 
 class AppealFormController extends Controller

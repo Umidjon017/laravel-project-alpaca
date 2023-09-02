@@ -50,7 +50,7 @@ class ForDoctorController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.doctors.index')->with('success', 'For doctor added successfully!');
+        return redirect()->route('admin.main-page.doctors.index')->with('success', 'For doctor added successfully!');
     }
 
     public function edit(ForDoctor $doctor)
@@ -87,7 +87,7 @@ class ForDoctorController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.doctors.index')->with('success', 'For doctor edited successfully!');
+        return redirect()->route('admin.main-page.doctors.index')->with('success', 'For doctor edited successfully!');
     }
 
     public function destroy(ForDoctor $doctor)

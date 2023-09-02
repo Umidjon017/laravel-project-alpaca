@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h6 class="card-title">{{ __('Отзывы наших клиентов страницу') }}</h6>
-                        <a href="{{ route('admin.feedback.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
+                        <a href="{{ route('admin.main-page.feedback.create') }}" class="btn btn-success"> {{ __('Добавить') }}</a>
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
@@ -30,14 +30,14 @@
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
                                     <td><img src="{{asset(feedback_file_path() . $feedback->image)}}" alt="Feedback image" width="100"> </td>
-                                    <td> {!! $feedback->getTranslatedAttributes(session('locale_id'))->full_name ?? 'No name' !!} </td>
-                                    <td> {!! $feedback->getTranslatedAttributes(session('locale_id'))->text ?? 'No text' !!} </td>
-                                    <td> {!! $feedback->getTranslatedAttributes(session('locale_id'))->position ?? 'No position' !!} </td>
+                                    <td> {!! $feedback->translatable()->full_name ?? 'No name' !!} </td>
+                                    <td> {!! $feedback->translatable()->text ?? 'No text' !!} </td>
+                                    <td> {!! $feedback->translatable()->position ?? 'No position' !!} </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('admin.feedback.edit', $feedback->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('admin.main-page.feedback.edit', $feedback->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('admin.feedback.destroy', $feedback->id) }}" method="POST">
+                                        <form action="{{ route('admin.main-page.feedback.destroy', $feedback->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>

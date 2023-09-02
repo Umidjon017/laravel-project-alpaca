@@ -13,17 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('appeal_translations', function (Blueprint $table) {
+        Schema::create('our_partner_translations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('appeal_id')->constrained('appeals')->cascadeOnDelete();
+            $table->foreignId('our_partner_id')->constrained('our_partners')->cascadeOnDelete();
             $table->foreignId('localization_id')->constrained('localizations')->cascadeOnDelete();
             $table->string('title');
-            $table->text('description');
-            $table->string('theme')->nullable();
-            $table->string('email')->nullable();
-            $table->string('name')->nullable();
-            $table->text('comment')->nullable();
-            $table->string('link')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appeal_translations');
+        Schema::dropIfExists('our_partner_translations');
     }
 };

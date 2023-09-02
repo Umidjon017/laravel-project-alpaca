@@ -10,6 +10,7 @@ use App\Models\Front\ForIt;
 use App\Models\Front\ForLeader;
 use App\Models\Front\ForMarketology;
 use App\Models\Front\Menu;
+use App\Models\Front\OurPartner;
 use App\Models\Front\OurPartnerLogo;
 use App\Models\Front\OurPhilosophy;
 use App\Models\Front\Recommendation;
@@ -27,12 +28,13 @@ class HomeController extends Controller
         $its = ForIt::with('translations')->get();
         $marketologies = ForMarketology::with('translations')->get();
         $feedbacks = Feedback::with('translations')->get();
-        $partners = OurPartnerLogo::all();
+        $partners = OurPartner::with('translations')->get();
+        $partner_logos = OurPartnerLogo::all();
         $recommendations = Recommendation::with('translations')->get();
 
         return view('front.index', compact(
             'menus', 'banners', 'ourPhilosophy', 'doctors', 'leaders', 'its', 'marketologies',
-            'feedbacks', 'partners', 'recommendations'
+            'feedbacks', 'partners', 'partner_logos', 'recommendations'
         ));
     }
 

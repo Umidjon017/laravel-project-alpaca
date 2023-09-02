@@ -10,7 +10,7 @@ class AppealTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['appeal_id', 'localization_id', 'title', 'description'];
+    protected $fillable = ['appeal_id', 'localization_id', 'title', 'description', 'theme', 'email', 'name', 'comment', 'link'];
 
     public function appeal(): BelongsTo
     {

@@ -57,7 +57,7 @@ class OurPhilosophyController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.philosophy.index')->with('success', 'Our Philosophy added successfully!');
+        return redirect()->route('admin.main-page.philosophy.index')->with('success', 'Our Philosophy added successfully!');
     }
 
     public function edit(OurPhilosophy $philosophy)
@@ -100,7 +100,7 @@ class OurPhilosophyController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.philosophy.index')->with('success', 'Our Philosophy edited successfully!');
+        return redirect()->route('admin.main-page.philosophy.index')->with('success', 'Our Philosophy edited successfully!');
     }
 
     public function destroy(OurPhilosophy $philosophy)

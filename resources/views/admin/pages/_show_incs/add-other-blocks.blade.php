@@ -46,7 +46,7 @@
                     <h6 class="mb-1"> {{__('Добавить блок Наши клиенты')}} </h6>
 
                     <div>
-                        @if(count($page->ourClients) > 0)
+                        @if(count($page->ourClients) > 0 || count($page->ourClientsLogo) > 0)
                             <a href="{{ route('admin.clients.show', ['id' => $page->id]) }}"
                            class="btn btn-primary"> {{ __('Посмотреть') }} </a>
                         @endif

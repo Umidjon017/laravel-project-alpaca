@@ -7,6 +7,7 @@ use App\Http\Requests\Front\StoreBannerRequest;
 use App\Http\Requests\Front\UpdateBannerRequest;
 use App\Models\Front\Banner;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
@@ -19,14 +20,14 @@ class BannerController extends Controller
         return view('front.banners.index', compact('banners'));
     }
 
-    public function create()
+    public function create(): View
     {
         $localizations = Cache::get('localizations');
 
         return view('front.banners.create', compact('localizations'));
     }
 
-    public function store(StoreBannerRequest $request)
+    public function store(StoreBannerRequest $request): RedirectResponse
     {
         try{
             DB::transaction(function() use ($request) {
@@ -50,17 +51,17 @@ class BannerController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.banners.index')->with('success', 'Banner added successfully!');
+        return redirect()->route('admin.main-page.banners.index')->with('success', 'Banner added successfully!');
     }
 
-    public function edit(Banner $banner)
+    public function edit(Banner $banner): View
     {
         $localizations = Cache::get('localizations');
 
         return view('front.banners.edit', compact('banner', 'localizations'));
     }
 
-    public function update(UpdateBannerRequest $request, Banner $banner)
+    public function update(UpdateBannerRequest $request, Banner $banner): RedirectResponse
     {
         try {
             DB::transaction(function() use ($request, $banner){
@@ -86,10 +87,10 @@ class BannerController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('admin.banners.index')->with('success', 'Banner edited successfully!');
+        return redirect()->route('admin.main-page.banners.index')->with('success', 'Banner edited successfully!');
     }
 
-    public function destroy(Banner $banner)
+    public function destroy(Banner $banner): RedirectResponse
     {
         $banner->delete();
         $banner->deleteImage();
