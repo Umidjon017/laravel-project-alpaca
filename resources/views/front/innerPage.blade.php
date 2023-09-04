@@ -21,7 +21,7 @@
                     <p class="for__subtitle">
                         {!! $info->translatable()->description !!}
                     </p>
-                    <a href="{{$info->link}}" class="for1__btn">Подробнее</a>
+                    <a href="{{$info->link}}" class="for1__btn">{{ $info->translatable()->link_title }}</a>
                 </div>
                 <div class="for1__left_img">
                     <img src="{{asset(info_file_path().$info->image)}}" alt="">
@@ -113,7 +113,7 @@
                     {!! $recommend->translatable()->description !!}
                 </p>
                 <a href="{{$recommend->link}}" class="use__now__btn">
-                    Попробовать бесплатно
+                    {{ $recommend->translatable()->link_title }}
                 </a>
             </div>
             <div class="use__now__img">

@@ -24,7 +24,8 @@ class UpdateBannerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'link' => 'required',
+            'try_link' => 'required',
+            'more_link' => 'required',
             'translations' => 'required',
         ];
     }
@@ -32,7 +33,8 @@ class UpdateBannerRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'link' => 'Link is required',
+            'try_link' => 'Try button\'s link is required',
+            'more_link' => 'More buttons\'s link is required',
             'translations.*.title.required' => 'Title is required',
             'translations.*.description.required' => 'Description is required',
         ];

@@ -16,7 +16,7 @@ class BannerSeeder extends Seeder
     public function run()
     {
         $items = [
-            ['link' => '#', 'image' => '1692881623_hero.png', 'order_id' => 1],
+            ['try_link' => '#', 'more_link' => '#', 'image' => '1692881623_hero.png', 'order_id' => 1],
         ];
 
         foreach ($items as $item) {

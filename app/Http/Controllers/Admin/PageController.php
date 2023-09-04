@@ -18,13 +18,14 @@ use App\Models\Admin\TextBlock;
 use App\Models\Admin\VideoPlayer;
 use App\Models\Localization;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $pages = Page::with('translations', 'galleries', 'infos', 'comments', 'textBlocks', 'checkBoxes',
             'videoPlayers', 'ourClients', 'ourClientsLogo', 'directSpeeches', 'recommendationBlocks', 'appeals')
@@ -34,14 +35,14 @@ class PageController extends Controller
         return view('admin.pages.index', compact('pages'));
     }
 
-    public function create()
+    public function create(): View
     {
         $localizations = Cache::get('localizations');
 
         return view('admin.pages.create', compact('localizations'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         try{
           DB::transaction(function() use ($request) {
@@ -91,11 +92,11 @@ class PageController extends Controller
 //          'videos', 'clients', 'directSpeeches', 'checkboxBlocks', 'recommendationBlocks'));
 //    }
 
-    public function show(Page $page)
+    public function show(Page $page): View
     {
       $localizations = Cache::get('localizations');
         $relatedData = [
-            'infos', 'comments', 'appeals', 'textBlocks',
+            'infos', 'comments', 'appeals', 'textBlocks', 'appeals',
             'ourClients', 'directSpeeches', 'checkBoxes', 'recommendationBlocks'
         ];
 
@@ -105,10 +106,10 @@ class PageController extends Controller
 
         $page->load('galleries', 'videoPlayers');
 
-        $appeals = Appeal::where('page_id', $page->id)->with('translations')->get();
-        $videos = VideoPlayer::where('page_id', $page->id)->get();
+//        $appeals = Appeal::where('page_id', $page->id)->with('translations')->get();
+//        $videos = VideoPlayer::where('page_id', $page->id)->get();
 
-        return view('admin.pages.show', compact('localizations', 'page', 'appeals', 'videos'));
+        return view('admin.pages.show', compact('localizations', 'page'));
     }
 
     public function edit(Page $page): View
@@ -118,7 +119,7 @@ class PageController extends Controller
         return view('admin.pages.edit', compact('localizations', 'page'));
     }
 
-    public function update(UpdatePageRequest $request, Page $page)
+    public function update(UpdatePageRequest $request, Page $page): RedirectResponse
     {
         try {
             DB::transaction(function() use ($request, $page){
@@ -150,7 +151,7 @@ class PageController extends Controller
         return redirect()->route('admin.pages.index')->with('success', 'Page edited successfully!');
     }
 
-    public function destroy(Page $page)
+    public function destroy(Page $page): RedirectResponse
     {
         if ($page->image == null) {
             $this->deletePageWithRelations($page);

@@ -20,6 +20,7 @@
                                 <th> {{ __('Электронная почта') }} </th>
                                 <th> {{ __('Имя') }} </th>
                                 <th> {{ __('Текст') }} </th>
+                                <th> {{ __('Дата создания') }} </th>
                                 <th> {{ __('Статус') }} </th>
                                 <th class="w-25"> {{ __('Действие') }} </th>
                             </tr>
@@ -31,6 +32,7 @@
                                     <td> {!! $appeal->email ?? 'No email' !!} </td>
                                     <td> {!! $appeal->name ?? 'No name' !!} </td>
                                     <td> {!! $appeal->text ?? 'No text' !!} </td>
+                                    <td> {{ $appeal->created_at->format('d.m.Y H:i') }} </td>
                                     <td>
                                         @if ($appeal->status == 1)
                                             <span class="badge bg-success fs-6"> {{ __('Активный') }} </span>

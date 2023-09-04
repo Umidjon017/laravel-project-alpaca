@@ -11,8 +11,8 @@
                         {!! preg_replace('/К слову, alpaca - это не лама!/i', '<b>К слову, alpaca - это не лама!</b>', $banner->translatable()->description) !!}
                     </p>
                 <div class="hero__btn">
-                    <a href="#">Попробовать бесплатно</a>
-                    <a href="{{ $banner->link }}">Узнать больше</a>
+                    <a href="{{ $banner->try_link }}">{{ $banner->translatable()->try_link_title }}</a>
+                    <a href="{{ $banner->more_link }}"> {{ $banner->translatable()->more_link_title }} </a>
                 </div>
             </div>
             <div class="hero__img">

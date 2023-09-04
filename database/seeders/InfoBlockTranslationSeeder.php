@@ -22,6 +22,7 @@ class InfoBlockTranslationSeeder extends Seeder
                 'title' => 'Alpaca для врача',
                 'description' => 'Экономьте время на рутинных задачах и сосредоточьтесьна самом главном - заботе о здоровье ваших пациентов',
                 'body' => NULL,
+                'link_title' => 'Подробнее'
             ],
             [
                 'info_block_id' => 1,
@@ -29,6 +30,7 @@ class InfoBlockTranslationSeeder extends Seeder
                 'title' => 'Alpaca для врача',
                 'description' => 'Экономьте время на рутинных задачах и сосредоточьтесьна самом главном - заботе о здоровье ваших пациентов',
                 'body' => NULL,
+                'link_title' => 'Подробнее ir'
             ],
         ];
 

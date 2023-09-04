@@ -44,6 +44,7 @@ class ForItController extends Controller
                         'title'=>$value['title'],
                         'description'=>$value['description'],
                         'body'=>$value['body'],
+                        'link_title'=>$value['link_title'],
                     ]);
                 }
             });
@@ -80,6 +81,7 @@ class ForItController extends Controller
                         'title'=>$value['title'],
                         'description'=>$value['description'],
                         'body'=>$value['body'],
+                        'link_title'=>$value['link_title'],
                     ]);
                 }
             });

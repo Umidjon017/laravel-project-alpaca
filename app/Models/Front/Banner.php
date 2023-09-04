@@ -11,7 +11,7 @@ class Banner extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['link', 'image', 'order_id'];
+    protected $fillable = ['try_link', 'more_link', 'image', 'order_id'];
 
     const FILE_PATH = 'front/images/banners/';
 

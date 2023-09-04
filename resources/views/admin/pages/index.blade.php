@@ -27,7 +27,7 @@
                         @foreach ($pages as $page)
                         <tr>
                           <td> {{ $loop->iteration }} </td>
-                          <td> {!! $page->getTranslatedAttributes(session('locale_id'))->title ?? 'No title' !!} </td>
+                          <td> {!! $page->translatable()->title ?? 'No title' !!} </td>
                           <td> {!! $page->slug ?? 'No slug' !!} </td>
                           <td class="d-flex align-items-center">
                             <a href="{{ route('admin.pages.show', $page->id) }}" class="btn btn-primary" style="margin-right: 10px;">

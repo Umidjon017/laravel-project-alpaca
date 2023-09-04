@@ -16,7 +16,12 @@
                                class="btn btn-primary"> {{ __('Посмотреть') }} </a>
                         @endif
 
-                        <a href="{{ route('admin.infos.create', ['id' => $page->id]) }}" class="btn btn-success">{{ __('Добавить') }}</a>
+                        @if($page->infos->isEmpty())
+                            <a href="{{ route('admin.infos.create', ['id' => $page->id]) }}"
+                               class="btn btn-success">{{ __('Добавить') }}</a>
+                        @else
+                            <button type="button" class="btn btn-secondary" disabled> {{ __('Добавить') }}</button>
+                        @endif
                     </div>
                 </div>
                 {{-- Info Block End --}}
@@ -124,7 +129,7 @@
                                class="btn btn-primary"> {{ __('Посмотреть') }} </a>
                         @endif
 
-                        @if($videos->isEmpty())
+                        @if($page->videoPlayers->isEmpty())
                             <a href="{{ route('admin.videos.create', ['id' => $page->id]) }}"
                                class="btn btn-success">{{ __('Добавить') }}</a>
                         @else
@@ -146,8 +151,12 @@
                            class="btn btn-primary"> {{ __('Посмотреть') }} </a>
                         @endif
 
-                        <a href="{{ route('admin.direct_speech.create', ['id' => $page->id]) }}"
-                           class="btn btn-success"> {{ __('Добавить') }} </a>
+                        @if($page->directSpeeches->isEmpty())
+                            <a href="{{ route('admin.direct_speech.create', ['id' => $page->id]) }}"
+                               class="btn btn-success"> {{ __('Добавить') }} </a>
+                        @else
+                            <button type="button" class="btn btn-secondary" disabled> {{ __('Добавить') }}</button>
+                        @endif
                     </div>
                 </div>
                 {{-- DirectSpeech Block End --}}
@@ -164,7 +173,7 @@
                                class="btn btn-primary"> {{ __('Посмотреть') }} </a>
                         @endif
 
-                        @if($appeals->isEmpty())
+                        @if($page->appeals->isEmpty())
                             <a href="{{ route('admin.appeals.create', ['id' => $page->id]) }}"
                                class="btn btn-success"> {{ __('Добавить') }} </a>
                         @else
@@ -186,8 +195,12 @@
                            class="btn btn-primary"> {{ __('Посмотреть') }} </a>
                         @endif
 
-                        <a href="{{ route('admin.recommendation-block.create', ['id' => $page->id]) }}"
-                           class="btn btn-success"> {{ __('Добавить') }} </a>
+                        @if($page->recommendationBlocks->isEmpty())
+                            <a href="{{ route('admin.recommendation-block.create', ['id' => $page->id]) }}"
+                               class="btn btn-success"> {{ __('Добавить') }} </a>
+                        @else
+                            <button type="button" class="btn btn-secondary" disabled> {{ __('Добавить') }}</button>
+                        @endif
                     </div>
                 </div>
                 {{-- Recommendation Block End --}}

@@ -10,7 +10,7 @@ class InfoBlockTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['info_block_id', 'localization_id', 'title', 'description', 'body'];
+    protected $fillable = ['info_block_id', 'localization_id', 'title', 'description', 'body', 'link_title'];
 
     public function info(): BelongsTo
     {

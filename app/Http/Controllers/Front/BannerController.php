@@ -44,6 +44,8 @@ class BannerController extends Controller
                         'localization_id'=>$key,
                         'title'=>$value['title'],
                         'description'=>$value['description'],
+                        'try_link_title'=>$value['try_link_title'],
+                        'more_link_title'=>$value['more_link_title'],
                     ]);
                 }
             });
@@ -79,6 +81,8 @@ class BannerController extends Controller
                         'localization_id'=>$key,
                         'title'=>$value['title'],
                         'description'=>$value['description'],
+                        'try_link_title'=>$value['try_link_title'],
+                        'more_link_title'=>$value['more_link_title'],
                     ]);
                 }
             });

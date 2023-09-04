@@ -26,6 +26,15 @@
             </div>
 
             <ul class="nav">
+            @foreach($menus as $menu)
+                @foreach($menu->parent as $menuItem)
+                    @if($menuItem->parent_id == 0)
+                        @include('front.menus.submenu', ['item' => $menuItem])
+                    @endif
+                @endforeach
+            @endforeach
+            </ul>
+{{--            <ul class="nav">--}}
 {{--                <li class="nav__li nav__dropdown">--}}
 {{--                    <span class="nav__dropdown__open">--}}
 {{--                      Клиники--}}
@@ -42,14 +51,7 @@
 {{--                <li class="nav__li"><a href="#">Модули</a></li>--}}
 {{--                <li class="nav__li"><a href="#">Цены</a></li>--}}
 {{--                <li class="nav__li"><a href="#">О нас</a></li>--}}
-            @foreach($menus as $menu)
-                @foreach($menu->parent as $menuItem)
-                    @if($menuItem->parent_id == 0)
-                        @include('front.menus.submenu', ['item' => $menuItem])
-                    @endif
-                @endforeach
-            @endforeach
-            </ul>
+{{--            </ul>--}}
 
             <div>
                 @foreach(\Illuminate\Support\Facades\Cache::get('localizations') as $locale)

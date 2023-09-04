@@ -18,10 +18,27 @@
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label">{{ __('Описание') }}(*)</label>
                     <textarea class="form-control @error('translations.*.description') is-invalid @enderror" name="translations[{{ $locale->id }}][description]" rows="4"> {{ old('translations.1.description') ?? (isset($banner) ? $banner->getTranslatedAttributes($locale->id)->description : '') }} </textarea>
                     @error('translations.*.description')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{ __('Заголовок ссылки для кнопки «Попробовать»') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][try_link_title]" class="form-control @error('translations.*.try_link_title') is-invalid @enderror" value="{{ old('translations.1.try_link_title') ?? (isset($banner) ? $banner->getTranslatedAttributes($locale->id)->try_link_title : '') }}" placeholder="Введите название" required>
+                    @error('translations.*.try_link_title')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{ __('Заголовок ссылки для кнопки «Подробнее»') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][more_link_title]" class="form-control @error('translations.*.more_link_title') is-invalid @enderror" value="{{ old('translations.1.more_link_title') ?? (isset($banner) ? $banner->getTranslatedAttributes($locale->id)->more_link_title : '') }}" placeholder="Введите название" required>
+                    @error('translations.*.more_link_title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
@@ -44,9 +61,19 @@
     </div>
 
     <div class="mt-3">
-        <label class="form-label" for="link"> {{ __('Добавить ссылку') }} (*) </label>
-        <input type="text" id="link" name="link" class="form-control" value="{{ old('link') ?? (isset($banner) ? $banner->link : '') }}" required/>
-        @error('link')
+        <label class="form-label" for="try_link"> {{ __('Добавьте ссылку на кнопку «Попробовать»') }} (*) </label>
+        <input type="text" id="try_link" name="try_link" class="form-control" value="{{ old('try_link') ?? (isset($banner) ? $banner->try_link : '') }}" required/>
+        @error('try_link')
+        <div class="alert alert-danger">
+            {{ $message }}
+        </div>
+        @enderror
+    </div>
+
+    <div class="mt-3">
+        <label class="form-label" for="more_link"> {{ __('Добавьте ссылку на кнопку «Подробнее»') }} (*) </label>
+        <input type="text" id="more_link" name="more_link" class="form-control" value="{{ old('more_link') ?? (isset($banner) ? $banner->more_link : '') }}" required/>
+        @error('more_link')
         <div class="alert alert-danger">
             {{ $message }}
         </div>

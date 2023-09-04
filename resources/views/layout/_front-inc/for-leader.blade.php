@@ -9,7 +9,7 @@
         <p class="for__subtitle">
             {!! $leader->translatable()->description !!}
         </p>
-        <a href="{{ $leader->link }}" class="for2__btn">Подробнее</a>
+        <a href="{{ $leader->link }}" class="for2__btn">{{ $leader->translatable()->link_title }}</a>
     </div>
     <div class="for2__right_img">
         <img src="{{asset(leaders_file_path() . $leader->image)}}" alt="">

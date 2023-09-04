@@ -10,7 +10,7 @@ class ForDoctorTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['for_doctor_id', 'localization_id', 'title', 'description', 'body'];
+    protected $fillable = ['for_doctor_id', 'localization_id', 'title', 'description', 'body', 'link_title'];
 
     public function forDoctor(): BelongsTo
     {

@@ -43,6 +43,7 @@ class ForDoctorController extends Controller
                         'title'=>$value['title'],
                         'description'=>$value['description'],
                         'body'=>$value['body'],
+                        'link_title'=>$value['link_title'],
                     ]);
                 }
             });
@@ -79,6 +80,7 @@ class ForDoctorController extends Controller
                         'title'=>$value['title'],
                         'description'=>$value['description'],
                         'body'=>$value['body'],
+                        'link_title'=>$value['link_title'],
                     ]);
                 }
             });

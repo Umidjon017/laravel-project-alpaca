@@ -18,14 +18,25 @@
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label">{{ __('Описание') }}</label>
                     <textarea class="form-control" name="translations[{{ $locale->id }}][description]" rows="4"> @isset($info) {{ $info->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label">{{ __('Контент') }}</label>
                     <textarea class="form-control ckeditor" name="translations[{{ $locale->id }}][body]" rows="10"> @isset($info) {{ $info->getTranslatedAttributes($locale->id)->body }} @endisset </textarea>
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{ __('Название ссылки') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][link_title]" class="form-control @error('translations.*.link_title') is-invalid @enderror" value="{{ old('translations.1.link_title') ?? (isset($info) ? $info->getTranslatedAttributes($locale->id)->link_title : '') }}" placeholder="Введите название" required>
+                    @error('translations.*.link_title')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 @isset($id)
                 <input type="hidden" name="page_id" value="{{ $id->id }}" />
                 @endisset

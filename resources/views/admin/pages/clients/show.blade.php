@@ -14,7 +14,7 @@
         'pageUrl'=>route('admin.pages.index'),
 
         'subPage2'=>'page_id',
-        'page2'=>isset($client->page_id),
+        'page2'=>$client->page->translatable()->title,
         'pageUrl2'=>route('admin.pages.show', isset($client->page_id))
     ])
 
@@ -22,7 +22,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{ __('Идентификатор страницы:') }} {{ isset($client->page_id) }}</h6>
+                    <h6 class="card-title">{{ __('Название страницы:') }} {{ $client->page->translatable()->title }}</h6>
 
                     <div class="raw">
                         <div class="d-flex justify-content-evenly flex-wrap">

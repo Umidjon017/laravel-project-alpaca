@@ -42,6 +42,7 @@ class RecommendationController extends Controller
                         'localization_id'=>$key,
                         'title'=>$value['title'],
                         'description'=>$value['description'],
+                        'link_title'=>$value['link_title'],
                     ]);
                 }
             });
@@ -77,6 +78,7 @@ class RecommendationController extends Controller
                         'localization_id'=>$key,
                         'title'=>$value['title'],
                         'description'=>$value['description'],
+                        'link_title'=>$value['link_title'],
                     ]);
                 }
             });

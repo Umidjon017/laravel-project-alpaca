@@ -9,7 +9,7 @@
         <p class="for__subtitle">
             {!! $marketology->translatable()->description !!}
         </p>
-        <a href="{{ $marketology->link }}" class="for2__btn">Подробнее</a>
+        <a href="{{ $marketology->link }}" class="for2__btn">{{ $marketology->translatable()->link_title }}</a>
     </div>
     <div class="for2__right_img">
         <img src="{{ asset(marketology_file_path() . $marketology->image) }}" alt="">

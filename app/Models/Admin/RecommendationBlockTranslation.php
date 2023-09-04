@@ -10,7 +10,7 @@ class RecommendationBlockTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['recom_block_id', 'localization_id', 'title', 'description'];
+    protected $fillable = ['recom_block_id', 'localization_id', 'title', 'description', 'link_title'];
 
     public function recommendationBlock(): BelongsTo
     {

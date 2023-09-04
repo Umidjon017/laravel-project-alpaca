@@ -41,6 +41,7 @@ class InfoBlockController extends Controller
                         'title'=>$value['title'],
                         'description'=>$value['description'],
                         'body'=>$value['body'],
+                        'link_title'=>$value['link_title'],
                     ]);
                 }
             });
@@ -84,6 +85,7 @@ class InfoBlockController extends Controller
                         'title'=>$value['title'],
                         'description'=>$value['description'],
                         'body'=>$value['body'],
+                        'link_title'=>$value['link_title'],
                     ]);
                 }
             });

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('localization_id')->constrained('localizations')->cascadeOnDelete();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+            $table->string('link_title')->nullable();
             $table->timestamps();
         });
     }

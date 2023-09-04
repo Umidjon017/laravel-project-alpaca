@@ -9,7 +9,7 @@
             {!! $recommendation->translatable()->description !!}
         </p>
         <a href="{{ $recommendation->link }}" class="use__now__btn">
-            Попробовать бесплатно
+            {{ $recommendation->translatable()->link_title }}
         </a>
     </div>
     <div class="use__now__img">

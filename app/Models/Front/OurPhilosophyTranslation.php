@@ -10,7 +10,7 @@ class OurPhilosophyTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['our_philosophy', 'localization_id', 'title', 'description', 'additional'];
+    protected $fillable = ['our_philosophy', 'localization_id', 'title', 'description', 'additional', 'link_title'];
 
     public function ourPhilosophy(): BelongsTo
     {

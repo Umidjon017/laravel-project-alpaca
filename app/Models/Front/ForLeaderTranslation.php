@@ -10,7 +10,7 @@ class ForLeaderTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['for_leader_id', 'localization_id', 'title', 'description', 'body'];
+    protected $fillable = ['for_leader_id', 'localization_id', 'title', 'description', 'body', 'link_title'];
 
     public function forLeader(): BelongsTo
     {

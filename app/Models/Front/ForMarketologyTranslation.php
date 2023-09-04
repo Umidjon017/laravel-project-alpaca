@@ -10,7 +10,7 @@ class ForMarketologyTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['for_marketology_id', 'localization_id', 'title', 'description', 'body'];
+    protected $fillable = ['for_marketology_id', 'localization_id', 'title', 'description', 'body', 'link_title'];
 
     public function forMarketology(): BelongsTo
     {

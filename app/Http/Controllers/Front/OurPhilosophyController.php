@@ -50,6 +50,7 @@ class OurPhilosophyController extends Controller
                         'title'=>$value['title'],
                         'description'=>$value['description'],
                         'additional'=>$value['additional'],
+                        'link_title'=>$value['link_title'],
                     ]);
                 }
             });
@@ -92,6 +93,7 @@ class OurPhilosophyController extends Controller
                         'title'=>$value['title'],
                         'description'=>$value['description'],
                         'additional'=>$value['additional'],
+                        'link_title'=>$value['link_title'],
                     ]);
                 }
             });

@@ -9,10 +9,10 @@
     @if($item->children->count() > 0)
     <ul class="nav__dropdown__menu">
         @foreach($item->children as $subItem)
-            @include('front.menus.submenu', ['item' => $subItem])
-{{--            <li>--}}
-{{--                <a href="{{route('home.page', $subItem->link)}}"> {!! $subItem->translatable()->menu_title !!} </a>--}}
-{{--            </li>--}}
+{{--            @include('front.menus.submenu', ['item' => $subItem])--}}
+            <li>
+                <a href="{{route('home.page', $subItem->link)}}"> {!! $subItem->translatable()->menu_title !!} </a>
+            </li>
         @endforeach
     </ul>
     @endif

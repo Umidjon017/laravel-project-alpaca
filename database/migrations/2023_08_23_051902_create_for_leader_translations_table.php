@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->longText('body')->nullable();
+            $table->string('link_title')->nullable();
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@ class RecommendationTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['recommendation_id', 'localization_id', 'title', 'description'];
+    protected $fillable = ['recommendation_id', 'localization_id', 'title', 'description', 'link_title'];
 
     public function forMarketology(): BelongsTo
     {

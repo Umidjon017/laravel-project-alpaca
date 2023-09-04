@@ -11,7 +11,7 @@ class BannerTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['banner_id', 'localization_id', 'title', 'description'];
+    protected $fillable = ['banner_id', 'localization_id', 'title', 'description', 'try_link_title', 'more_link_title'];
 
     public function banner(): BelongsTo
     {

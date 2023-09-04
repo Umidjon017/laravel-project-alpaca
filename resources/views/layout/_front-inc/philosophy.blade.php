@@ -10,7 +10,7 @@
     <p class="filasofiya__subtitle">
         {!! nl2br(strip_tags($philosophy->translatable()->description)) !!}
     </p>
-    <a href="{{ $philosophy->link }}" class="filasofiya__btn">Узнать подробнее</a>
+    <a href="{{ $philosophy->link }}" class="filasofiya__btn">{{ $philosophy->translatable()->link_title }}</a>
     <div class="filasofiya__items">
         @php
             $icons = explode(',', $philosophy->icon);

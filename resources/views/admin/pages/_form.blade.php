@@ -32,30 +32,30 @@
 
 <div class="mt-3">
     <label for="image" class="form-label">{{ __('Изображений') }}</label>
-    <input type="file" name="Изображений" multiple class="form-control" @isset($page) {{ $page->image }} @endisset>
+    <input type="file" name="image" multiple class="form-control" @isset($page) {{ $page->image }} @endisset>
 </div>
 
-<div class="mt-3 form-group">
-    <label class="form-label">{{__('Order blocks (*)')}}</label>
-    <select class="js-example-basic-multiple w-100" multiple data-width="100%"  data-placeholder="Select order blocks" name="order_blocks[]">
-        <option value="galleries" @isset($page) {{ $page->order_blocks == 'galleries' ? "selected" : '' }} @endisset>galleries</option>
-        <option value="infos" @isset($page) {{ $page->order_blocks == 'infos' ? "selected" : '' }} @endisset>infos</option>
-        <option value="comments" @isset($page) {{ $page->order_blocks == 'comments' ? "selected" : '' }} @endisset>comments</option>
-        <option value="textBlocks" @isset($page) {{ $page->order_blocks == 'textBlocks' ? "selected" : '' }} @endisset>textBlocks</option>
-        <option value="checkBoxes" @isset($page) {{ $page->order_blocks == 'checkBoxes' ? "selected" : '' }} @endisset>checkBoxes</option>
-        <option value="videoPlayers" @isset($page) {{ $page->order_blocks == 'videoPlayers' ? "selected" : '' }} @endisset>videoPlayers</option>
-        <option value="ourClients" @isset($page) {{ $page->order_blocks == 'ourClients' ? "selected" : '' }} @endisset>ourClients</option>
-        <option value="ourClientsLogo" @isset($page) {{ $page->order_blocks == 'ourClientsLogo' ? "selected" : '' }} @endisset>ourClientsLogo</option>
-        <option value="directSpeeches" @isset($page) {{ $page->order_blocks == 'directSpeeches' ? "selected" : '' }} @endisset>directSpeeches</option>
-        <option value="recommendationBlocks" @isset($page) {{ $page->order_blocks == 'recommendationBlocks' ? "selected" : '' }} @endisset>recommendationBlocks</option>
-        <option value="appeals" @isset($page) {{ $page->order_blocks == 'appeals' ? "selected" : '' }} @endisset>appeals</option>
-    </select>
-    @error('order_blocks')
-    <div class="alert alert-danger">
-        {{ $message }}
-    </div>
-    @enderror
-</div>
+{{--<div class="mt-3 form-group">--}}
+{{--    <label class="form-label">{{__('Order blocks (*)')}}</label>--}}
+{{--    <select class="js-example-basic-multiple w-100" multiple data-width="100%"  data-placeholder="Select order blocks" name="order_blocks[]">--}}
+{{--        <option value="galleries" @isset($page) {{ $page->order_blocks == 'galleries' ? "selected" : '' }} @endisset>galleries</option>--}}
+{{--        <option value="infos" @isset($page) {{ $page->order_blocks == 'infos' ? "selected" : '' }} @endisset>infos</option>--}}
+{{--        <option value="comments" @isset($page) {{ $page->order_blocks == 'comments' ? "selected" : '' }} @endisset>comments</option>--}}
+{{--        <option value="textBlocks" @isset($page) {{ $page->order_blocks == 'textBlocks' ? "selected" : '' }} @endisset>textBlocks</option>--}}
+{{--        <option value="checkBoxes" @isset($page) {{ $page->order_blocks == 'checkBoxes' ? "selected" : '' }} @endisset>checkBoxes</option>--}}
+{{--        <option value="videoPlayers" @isset($page) {{ $page->order_blocks == 'videoPlayers' ? "selected" : '' }} @endisset>videoPlayers</option>--}}
+{{--        <option value="ourClients" @isset($page) {{ $page->order_blocks == 'ourClients' ? "selected" : '' }} @endisset>ourClients</option>--}}
+{{--        <option value="ourClientsLogo" @isset($page) {{ $page->order_blocks == 'ourClientsLogo' ? "selected" : '' }} @endisset>ourClientsLogo</option>--}}
+{{--        <option value="directSpeeches" @isset($page) {{ $page->order_blocks == 'directSpeeches' ? "selected" : '' }} @endisset>directSpeeches</option>--}}
+{{--        <option value="recommendationBlocks" @isset($page) {{ $page->order_blocks == 'recommendationBlocks' ? "selected" : '' }} @endisset>recommendationBlocks</option>--}}
+{{--        <option value="appeals" @isset($page) {{ $page->order_blocks == 'appeals' ? "selected" : '' }} @endisset>appeals</option>--}}
+{{--    </select>--}}
+{{--    @error('order_blocks')--}}
+{{--    <div class="alert alert-danger">--}}
+{{--        {{ $message }}--}}
+{{--    </div>--}}
+{{--    @enderror--}}
+{{--</div>--}}
 
 <div class="mt-3">
     <label class="form-label">{{ __('Мета заголовок') }}</label>

@@ -6,7 +6,7 @@
         <p class="for__subtitle">
             {!! $doctor->translatable()->description !!}
         </p>
-        <a href="{{ $doctor->link }}" class="for1__btn">Подробнее</a>
+        <a href="{{ $doctor->link }}" class="for1__btn">{{ $doctor->translatable()->link_title }}</a>
     </div>
     <div class="for1__left_img">
         <img src="{{ asset(doctors_file_path() . $doctor->image) }}" alt="">
