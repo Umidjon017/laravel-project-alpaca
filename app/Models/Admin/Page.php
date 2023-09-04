@@ -11,7 +11,7 @@ class Page extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['image', 'slug', 'order_blocks', 'meta_title', 'meta_description', 'meta_keywords'];
+    protected $fillable = ['image', 'slug', 'meta_title', 'meta_description', 'meta_keywords'];
 
     const FILE_PATH = 'admin/images/pages/';
 
@@ -104,5 +104,10 @@ class Page extends Model
     public function appeals(): HasMany
     {
         return $this->hasMany(Appeal::class, 'page_id');
+    }
+
+    public function rules(): HasMany
+    {
+        return $this->hasMany(OurRule::class, 'page_id');
     }
 }

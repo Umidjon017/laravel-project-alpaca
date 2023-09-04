@@ -26,6 +26,7 @@
   <!-- end plugin css -->
 
   @stack('plugin-styles')
+    @livewireStyles
 
   <!-- common css -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
@@ -64,7 +65,7 @@
     <!-- common js -->
     <script src="{{ asset('assets/js/template.js') }}"></script>
     <!-- end common js -->
-
+    @livewireScripts
     @stack('custom-scripts')
 </body>
 </html>

@@ -11,7 +11,7 @@ class AppealFormController extends Controller
 {
     public function index()
     {
-        $appeals = AppealForm::all();
+        $appeals = AppealForm::paginate(10);
 
         return view('admin.appeal_form.index', compact('appeals'));
     }
@@ -35,7 +35,7 @@ class AppealFormController extends Controller
         $data = $request->all();
         $appeal_form->update($data);
 
-        return redirect()->route('admin.appeal_form.index')->with('success', 'Appeal Form edited successfully!');
+        return redirect()->route('admin.appeal-form.index')->with('success', 'Appeal Form edited successfully!');
     }
 
 

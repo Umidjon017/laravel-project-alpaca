@@ -41,10 +41,10 @@
                                         @endif
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="{{ route('admin.appeal_form.edit', $appeal->id) }}" class="btn btn-success" style="margin-right: 10px;">
+                                        <a href="{{ route('admin.appeal-form.edit', $appeal->id) }}" class="btn btn-success" style="margin-right: 10px;">
                                             {{__('Редактировать')}}
                                         </a>
-                                        <form action="{{ route('admin.appeal_form.destroy', $appeal->id) }}" method="POST">
+                                        <form action="{{ route('admin.appeal-form.destroy', $appeal->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Удалить')}}</button>
@@ -56,6 +56,13 @@
                         </table>
                     </div>
                 </div>
+
+                <div class="card-footer text-right">
+                    <div class="d-flex justify-content-right pagination">
+                        {!! $appeals->links() !!}
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

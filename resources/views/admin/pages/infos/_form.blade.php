@@ -50,6 +50,11 @@
 </div>
 
 <div class="mt-3">
+    <label for="order_id" class="form-label">{{ __('Порядок номер блока') }}</label>
+    <input type="number" name="order_id" class="form-control" @isset($info) value="{{ $info->order_id }}" @endisset>
+</div>
+
+<div class="mt-3">
     <label for="link" class="form-label">{{ __('Ссылка') }}</label>
     <input type="text" name="link" class="form-control" @isset($info) value="{{ $info->link }}" @endisset>
 </div>

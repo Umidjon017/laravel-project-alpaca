@@ -50,6 +50,13 @@
                                                     <h6> {{ __('Заголовок') }} </h6>
                                                     <p class="mb-1"> {!! $checkboxBlock->translatable()->title !!} </p>
                                                 </div>
+
+                                                <hr>
+
+                                                <div>
+                                                    <h6> {{ __('Порядок номер блока') }} </h6>
+                                                    <p class="mb-1"> {!! $checkboxBlock->order_id !!} </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

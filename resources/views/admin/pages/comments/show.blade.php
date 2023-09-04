@@ -68,6 +68,13 @@
                                                 <hr>
 
                                                 <div class="me-3">
+                                                    <h6 class="mb-1">{{ __('Порядок номер блока') }}</h6>
+                                                    <p class="mb-1"> {!! $comment->order_id !!} </p>
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="me-3">
                                                     <h6 class="mb-1">{{ __('Логотип') }}</h6>
                                                     <img src="{{ asset(comment_file_path().$comment->logo) }}" alt=""
                                                          width="200">

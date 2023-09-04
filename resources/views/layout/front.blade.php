@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('front/style/css/video.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 
+    @livewireStyles
+
     @stack('css')
 
     <!-- swiper -->
@@ -29,7 +31,6 @@
     @stack('custom-css')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 </head>
 <!--bodyni classiga " rtl__on " qoshiladi-->
 <body class="@if(\Illuminate\Support\Facades\App::getLocale() == '2') rtl__on @endif" @if(request()->routeIs('home.page*')) id="other__pages" @endif>
@@ -48,6 +49,8 @@
 
 <script src="{{ asset('front/js/script.js') }}"></script>
 <script src="{{ asset('front/js/video.js') }}"></script>
+
+@livewireScripts
 
 @stack('js')
 

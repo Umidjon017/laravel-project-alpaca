@@ -10,6 +10,8 @@
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить информационный блок')}} </h6>
 
+                    @livewire('update-info-order-id', ['id' => $page->id])
+
                     <div>
                         @if(count($page->infos) > 0)
                             <a href="{{ route('admin.infos.show', ['id' => $page->id]) }}"
@@ -32,6 +34,8 @@
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить блок комментариев')}} </h6>
 
+{{--                    @livewire('update-comment-order-id', ['id' => $page->id])--}}
+
                     <div>
                         @if(count($page->comments) > 0)
                             <a href="{{ route('admin.comments.show', ['id' => $page->id]) }}"
@@ -49,6 +53,8 @@
                 {{-- OurClients Block Start --}}
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить блок Наши клиенты')}} </h6>
+
+                    @livewire('update-our-client-order-id', ['id' => $page->id])
 
                     <div>
                         @if(count($page->ourClients) > 0 || count($page->ourClientsLogo) > 0)
@@ -68,6 +74,8 @@
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить текстовый блок')}} </h6>
 
+                    @livewire('update-text-block-order-id', ['id' => $page->id])
+
                     <div>
                         @if(count($page->textBlocks) > 0)
                             <a href="{{ route('admin.texts.show', ['id' => $page->id]) }}"
@@ -84,6 +92,8 @@
                 {{-- Checkbox Block Start --}}
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить блок чечкбокса')}} </h6>
+
+                    @livewire('update-checkbox-block-order-id', ['id' => $page->id])
 
                     <div>
                         @if(count($page->checkBoxes) > 0)
@@ -102,6 +112,8 @@
                 {{-- Gallery Block Start --}}
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить блок Галерея')}} </h6>
+
+                    @livewire('update-gallery-order-id', ['id' => $page->id])
 
                     <div>
                         @if(count($page->galleries) > 0)
@@ -122,6 +134,8 @@
                 {{-- VideoPlayer Block Start --}}
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить блок видео')}} </h6>
+
+                    @livewire('update-video-player-order-id', ['id' => $page->id])
 
                     <div>
                         @if(count($page->videoPlayers) > 0)
@@ -145,6 +159,8 @@
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить блок прямой речи')}} </h6>
 
+                    @livewire('update-direct-speech-order-id', ['id' => $page->id])
+
                     <div>
                         @if(count($page->directSpeeches) > 0)
                             <a href="{{ route('admin.direct_speech.show', ['id' => $page->id]) }}"
@@ -167,6 +183,8 @@
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить блок заявки')}} </h6>
 
+                    @livewire('update-appeal-order-id', ['id' => $page->id])
+
                     <div>
                         @if(count($page->appeals) > 0)
                             <a href="{{ route('admin.appeals.show', ['id' => $page->id]) }}"
@@ -188,6 +206,8 @@
                 {{-- Recommendation Block Start --}}
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить блок Рекомендации')}} </h6>
+
+                    @livewire('update-recommendation-block-order-id', ['id' => $page->id])
 
                     <div>
                         @if(count($page->recommendationBlocks) > 0)

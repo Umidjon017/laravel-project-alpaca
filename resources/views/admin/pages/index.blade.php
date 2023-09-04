@@ -48,6 +48,13 @@
                     </table>
                   </div>
                 </div>
+
+                <div class="card-footer text-right">
+                    <div class="d-flex justify-content-right pagination">
+                        {!! $pages->links() !!}
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

@@ -50,9 +50,19 @@
                                                     <h6> {{ __('Заголовок') }} </h6>
                                                     <p class="mb-1"> {!! $text->translatable()->title !!} </p>
                                                 </div>
+
+                                                <hr>
+
                                                 <div class="mb-3">
                                                     <h6> {{ __('Текст') }} </h6>
                                                     <p class="mb-1"> {!! $text->translatable()->text !!} </p>
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="mb-1">
+                                                    <h6> {{ __('Порядок номер блока') }} </h6>
+                                                    <p class="mb-1"> {!! $text->order_id !!} </p>
                                                 </div>
                                             </div>
                                         </div>

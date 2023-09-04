@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\InfoBlockController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\OurClientController;
 use App\Http\Controllers\Admin\OurClientLogoController;
+use App\Http\Controllers\Admin\OurRuleController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\RecommendationBlockController;
 use App\Http\Controllers\Admin\TextBlockController;
@@ -94,7 +95,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/{id}/appeals/show', [AppealController::class, 'show'])->name('appeals.show');
     Route::resource('/appeals', AppealController::class)->except('create', 'show');
     // Appeal Form
-    Route::Resource('/appeal_form', AppealFormController::class)->except('show');
+    Route::Resource('/appeal-form', AppealFormController::class)->except('show');
+    // Our Rules
+    Route::resource('/rules', OurRuleController::class)->only('store', 'update', 'edit', 'destroy');
     // Recommendation Block
     Route::get('/{id}/recommendation-block/create', [RecommendationBlockController::class, 'create'])->name('recommendation-block.create');
     Route::get('/{id}/recommendation-block/show', [RecommendationBlockController::class, 'show'])->name('recommendation-block.show');

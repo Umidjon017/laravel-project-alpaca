@@ -4,18 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdatePageRequest;
-use App\Models\Admin\Appeal;
-use App\Models\Admin\CheckboxBlock;
-use App\Models\Admin\Comment;
-use App\Models\Admin\DirectSpeech;
-use App\Models\Admin\Gallery;
-use App\Models\Admin\InfoBlock;
-use App\Models\Admin\OurClient;
-use App\Models\Admin\OurClientLogo;
 use App\Models\Admin\Page;
-use App\Models\Admin\RecommendationBlock;
-use App\Models\Admin\TextBlock;
-use App\Models\Admin\VideoPlayer;
 use App\Models\Localization;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -30,7 +19,7 @@ class PageController extends Controller
         $pages = Page::with('translations', 'galleries', 'infos', 'comments', 'textBlocks', 'checkBoxes',
             'videoPlayers', 'ourClients', 'ourClientsLogo', 'directSpeeches', 'recommendationBlocks', 'appeals')
             ->latest()
-            ->get();
+            ->paginate(10);
 
         return view('admin.pages.index', compact('pages'));
     }
@@ -47,7 +36,6 @@ class PageController extends Controller
         try{
           DB::transaction(function() use ($request) {
               $data = $request->all();
-              $data['order_blocks'] = implode(',', $request->order_blocks);
 
               $localizationId = Localization::first()->id;
               $data['slug'] = \Str::slug($request->translations[$localizationId]['title']);
@@ -73,25 +61,6 @@ class PageController extends Controller
         return redirect('admin/pages/'.$request->page_id)->with('success', 'Page created successfully !');
     }
 
-//    public function show(Page $page)
-//    {
-//      $localizations = Cache::get('localizations');
-//      $galleries = Gallery::where('page_id', $page->id)->get();
-//      $infos = InfoBlock::where('page_id', $page->id)->with('translations')->get();
-//      $comments = Comment::where('page_id', $page->id)->with('translations')->get();
-//      $appeals = Appeal::where('page_id', $page->id)->with('translations')->get();
-//      $texts = TextBlock::where('page_id', $page->id)->with('translations')->get();
-//      $videos = VideoPlayer::where('page_id', $page->id)->get();
-//      $clients = OurClient::where('page_id', $page->id)->with('translations')->get();
-//      $directSpeeches = DirectSpeech::where('page_id', $page->id)->with('translations')->get();
-//      $checkboxBlocks = CheckboxBlock::where('page_id', $page->id)->with('translations')->get();
-//      $recommendationBlocks = RecommendationBlock::where('page_id', $page->id)->with('translations')->get();
-//
-//      return view('admin.pages.show', compact(
-//          'localizations','page', 'galleries', 'infos', 'comments', 'appeals', 'texts',
-//          'videos', 'clients', 'directSpeeches', 'checkboxBlocks', 'recommendationBlocks'));
-//    }
-
     public function show(Page $page): View
     {
       $localizations = Cache::get('localizations');
@@ -103,11 +72,7 @@ class PageController extends Controller
         foreach ($relatedData as $relation) {
             $page->load($relation, $relation . '.translations');
         }
-
         $page->load('galleries', 'videoPlayers');
-
-//        $appeals = Appeal::where('page_id', $page->id)->with('translations')->get();
-//        $videos = VideoPlayer::where('page_id', $page->id)->get();
 
         return view('admin.pages.show', compact('localizations', 'page'));
     }
@@ -153,13 +118,8 @@ class PageController extends Controller
 
     public function destroy(Page $page): RedirectResponse
     {
-        if ($page->image == null) {
-            $this->deletePageWithRelations($page);
-        } else {
-            $this->deletePageWithRelations($page);
-            $page->deleteImage();
-
-        }
+        $this->deletePageWithRelations($page);
+        $page->deleteImage();
 
         return redirect()->back()->with('success', 'Page deleted successfully');
     }

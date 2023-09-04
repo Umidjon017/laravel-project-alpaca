@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
       OurPhilosophyTranslation::class,
         AppealSeeder::class,
         AppealTranslationSeeder::class,
+        OurRuleSeeder::class,
+        OurRuleTranslationSeeder::class,
         BannerSeeder::class,
         BannerTranslationSeeder::class,
         CheckboxSeeder::class,

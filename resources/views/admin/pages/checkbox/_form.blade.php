@@ -30,6 +30,11 @@
     </div>
 </div>
 
+<div class="mt-3">
+    <label for="order_id" class="form-label">{{ __('Порядок номер блока') }}</label>
+    <input type="number" name="order_id" class="form-control" @isset($checkbox) value="{{ $checkbox->order_id }}" @endisset>
+</div>
+
 <div class="d-flex justify-content-between mt-3">
     <button type="submit" class="btn btn-primary me-2"> @if(isset($checkbox)) {{ __('Save') }} @else {{ __('Add') }} @endif </button>
 </div>

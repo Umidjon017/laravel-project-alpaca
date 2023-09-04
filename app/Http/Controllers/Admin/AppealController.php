@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAppealRequest;
 use App\Http\Requests\Admin\UpdateAppealRequest;
 use App\Models\Admin\Appeal;
+use App\Models\Admin\OurRule;
 use App\Models\Admin\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
@@ -51,9 +52,11 @@ class AppealController extends Controller
 
     public function show(Page $id): View
     {
+        $localizations = Cache::get('localizations');
         $appeals = Appeal::where('page_id', $id->id)->with('translations')->get();
+        $rules = OurRule::where('page_id', $id->id)->with('translations')->get();
 
-        return view('admin.pages.appeals.show', compact('appeals', 'id'));
+        return view('admin.pages.appeals.show', compact('appeals', 'rules', 'id', 'localizations'));
     }
 
     public function edit(Appeal $appeal): View

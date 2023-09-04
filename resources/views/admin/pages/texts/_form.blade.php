@@ -39,8 +39,13 @@
     </div>
 </div>
 
+<div class="mt-3">
+    <label for="order_id" class="form-label">{{ __('Порядок номер блока') }}</label>
+    <input type="number" name="order_id" class="form-control" @isset($text) value="{{ $text->order_id }}" @endisset>
+</div>
+
 <div class="d-flex justify-content-between mt-3">
-    <button type="submit" class="btn btn-primary me-2"> @isset($text) {{ __('Save') }} @endisset {{ __('Add') }} </button>
+    <button type="submit" class="btn btn-primary me-2"> @if(isset($text)) {{ __('Сохранить') }} @else {{ __('Добавить') }} @endif </button>
 </div>
 
 @push('plugin-scripts')

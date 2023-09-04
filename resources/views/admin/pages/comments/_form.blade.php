@@ -41,6 +41,11 @@
     </div>
 </div>
 
+<div class="mt-3">
+    <label for="order_id" class="form-label">{{ __('Порядок номер блока') }}</label>
+    <input type="number" name="order_id" class="form-control" @isset($comment) value="{{ $comment->order_id }}" @endisset>
+</div>
+
 <div class="mt-3 mb-3">
     <label for="logo" class="form-label">{{ __('Логотип') }}</label>
     <input type="file" name="logo" class="form-control" @isset($comment) value="{{ $comment->logo }}" @endisset>

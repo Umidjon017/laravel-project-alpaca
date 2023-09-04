@@ -25,8 +25,8 @@
               <span class="link-title">{{ __('Страницы') }}</span>
             </a>
         </li>
-        <li class="nav-item {{ active_class(['admin/appeal_form*']) }}">
-            <a href="{{ route('admin.appeal_form.index') }}" class="nav-link">
+        <li class="nav-item {{ active_class(['admin/appeal-form*']) }}">
+            <a href="{{ route('admin.appeal-form.index') }}" class="nav-link">
               <i data-feather="loader"></i>
               <span class="link-title">{{ __('Заявки') }}</span>
             </a>
