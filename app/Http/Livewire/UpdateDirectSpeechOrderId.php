@@ -22,7 +22,7 @@ class UpdateDirectSpeechOrderId extends Component
     public function render(): View
     {
         if(! empty($this->directSpeechOrderId)){
-            DirectSpeech::where('page_id', $this->directSpeech->id)->update(['order_id'=>$this->directSpeechOrderId]);
+            DirectSpeech::where('page_id', $this->directSpeech->page_id)->update(['order_id'=>$this->directSpeechOrderId]);
         }
 
         return view('livewire.update-direct-speech-order-id');

@@ -32,7 +32,7 @@
 
                         @isset($gallery)
                             <div class="col-12">
-                                <img src="{{asset(gallery_file_path() . $gallery->image)}}" alt="Gallery image">
+                                <img src="{{asset(gallery_file_path() . $gallery->image)}}" alt="Изображение галереи">
                             </div>
                         @endisset
                     </div>

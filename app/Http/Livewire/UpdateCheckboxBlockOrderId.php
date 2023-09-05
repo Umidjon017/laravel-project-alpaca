@@ -22,7 +22,7 @@ class UpdateCheckboxBlockOrderId extends Component
     public function render(): View
     {
         if(! empty($this->checkboxBlockOrderId)){
-            CheckboxBlock::where('page_id', $this->checkboxBlock->id)->update(['order_id'=>$this->checkboxBlockOrderId]);
+            CheckboxBlock::where('page_id', $this->checkboxBlock->page_id)->update(['order_id'=>$this->checkboxBlockOrderId]);
         }
 
         return view('livewire.update-checkbox-block-order-id');

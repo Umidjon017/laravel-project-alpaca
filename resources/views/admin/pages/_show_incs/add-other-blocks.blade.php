@@ -34,7 +34,7 @@
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить блок комментариев')}} </h6>
 
-{{--                    @livewire('update-comment-order-id', ['id' => $page->id])--}}
+                    @livewire('update-comment-order-id', ['id' => $page->id])
 
                     <div>
                         @if(count($page->comments) > 0)

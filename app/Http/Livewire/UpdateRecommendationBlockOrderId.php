@@ -22,7 +22,7 @@ class UpdateRecommendationBlockOrderId extends Component
     public function render(): View
     {
         if(! empty($this->recommendationBlockOrderId)){
-            RecommendationBlock::where('page_id', $this->recommendationBlock->id)->update(['order_id'=>$this->recommendationBlockOrderId]);
+            RecommendationBlock::where('page_id', $this->recommendationBlock->page_id)->update(['order_id'=>$this->recommendationBlockOrderId]);
         }
 
         return view('livewire.update-recommendation-block-order-id');

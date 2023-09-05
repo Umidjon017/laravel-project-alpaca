@@ -7,6 +7,7 @@ use App\Models\Admin\InfoBlock;
 use App\Models\Admin\OurClientLogo;
 use App\Models\Admin\OurRule;
 use App\Models\Admin\Page;
+use App\Models\Admin\PriceBlock;
 use App\Models\Admin\RecommendationBlock;
 use App\Models\Admin\VideoPlayer;
 use App\Models\Front\Banner;
@@ -136,6 +137,12 @@ if(!function_exists('recommendations_file_path')) {
 if(!function_exists('recommendations_admin_file_path')) {
     function recommendations_admin_file_path(): string {
         return '/' . RecommendationBlock::FILE_PATH;
+    }
+}
+
+if(!function_exists('prices_file_path')) {
+    function prices_file_path(): string {
+        return '/' . PriceBlock::FILE_PATH;
     }
 }
 

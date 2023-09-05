@@ -22,7 +22,7 @@ class UpdateTextBlockOrderId extends Component
     public function render(): View
     {
         if(! empty($this->textBlockOrderId)){
-            TextBlock::where('page_id', $this->textBlock->id)->update(['order_id'=>$this->textBlockOrderId]);
+            TextBlock::where('page_id', $this->textBlock->page_id)->update(['order_id'=>$this->textBlockOrderId]);
         }
 
         return view('livewire.update-text-block-order-id');

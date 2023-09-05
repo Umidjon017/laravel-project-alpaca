@@ -13,7 +13,7 @@
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Полное имя') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][full_name]" class="form-control @error('translations.*.full_name') is-invalid @enderror" @isset($comment) value="{{ $comment->getTranslatedAttributes($locale->id)->full_name }}" @endisset placeholder="Enter full_name">
+                    <input type="text" name="translations[{{ $locale->id }}][full_name]" class="form-control @error('translations.*.full_name') is-invalid @enderror" @isset($comment) value="{{ $comment->getTranslatedAttributes($locale->id)->full_name }}" @endisset placeholder="Введите полное имя">
                     @error('translations.*.full_name')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
@@ -24,7 +24,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Позиция') }}</label>
-                    <input type="text" name="translations[{{ $locale->id }}][position]" class="form-control @error('translations.*.position') is-invalid @enderror" @isset($comment) value="{{ $comment->getTranslatedAttributes($locale->id)->position }}" @endisset placeholder="Enter position">
+                    <input type="text" name="translations[{{ $locale->id }}][position]" class="form-control @error('translations.*.position') is-invalid @enderror" @isset($comment) value="{{ $comment->getTranslatedAttributes($locale->id)->position }}" @endisset placeholder="Введите позицию">
                     @error('translations.*.position')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
@@ -65,5 +65,5 @@
 @endisset
 
 <div class="d-flex justify-content-between mt-3">
-    <button type="submit" class="btn btn-primary me-2"> @if(isset($comment)) {{ __('Save') }} @else {{ __('Add') }} @endif </button>
+    <button type="submit" class="btn btn-primary me-2"> @if(isset($comment)) {{ __('Сохранить') }} @else {{ __('Добавить') }} @endif </button>
 </div>

@@ -22,7 +22,7 @@ class UpdateOurClientOrderId extends Component
     public function render(): View
     {
         if(! empty($this->ourClientBlockOrderId)){
-            OurClient::where('page_id', $this->ourClientBlock->id)->update(['order_id'=>$this->ourClientBlockOrderId]);
+            OurClient::where('page_id', $this->ourClientBlock->page_id)->update(['order_id'=>$this->ourClientBlockOrderId]);
         }
 
         return view('livewire.update-our-client-order-id');

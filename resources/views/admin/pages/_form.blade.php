@@ -31,11 +31,6 @@
 </div>
 
 <div class="mt-3">
-    <label class="form-label">{{ __('Order') }}</label>
-    <input type="text" name="order_id" class="form-control" @isset($page) value="{{ $page->order_id }}" @endisset placeholder="Введите Мета-заголовок">
-</div>
-
-<div class="mt-3">
     <label for="image" class="form-label">{{ __('Изображений') }}</label>
     <input type="file" name="image" multiple class="form-control" @isset($page) {{ $page->image }} @endisset>
 </div>

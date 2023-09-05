@@ -22,7 +22,7 @@ class UpdateAppealOrderId extends Component
     public function render(): View
     {
         if(! empty($this->appealOrderId)){
-            Appeal::where('page_id', $this->appeal->id)->update(['order_id'=>$this->appealOrderId]);
+            Appeal::where('page_id', $this->appeal->page_id)->update(['order_id'=>$this->appealOrderId]);
         }
 
         return view('livewire.update-appeal-order-id');

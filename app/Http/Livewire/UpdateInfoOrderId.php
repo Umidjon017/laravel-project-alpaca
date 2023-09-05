@@ -22,7 +22,7 @@ class UpdateInfoOrderId extends Component
     public function render(): View
     {
         if(! empty($this->infoBlockOrderId)){
-            InfoBlock::where('page_id', $this->infoBlock->id)->update(['order_id'=>$this->infoBlockOrderId]);
+            InfoBlock::where('page_id', $this->infoBlock->page_id)->update(['order_id'=>$this->infoBlockOrderId]);
         }
 
         return view('livewire.update-info-order-id');

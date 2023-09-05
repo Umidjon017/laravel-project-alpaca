@@ -22,7 +22,7 @@ class UpdateVideoPlayerOrderId extends Component
     public function render(): View
     {
         if(! empty($this->videoPlayerOrderId)){
-            VideoPlayer::where('page_id', $this->videoPlayer->id)->update(['order_id'=>$this->videoPlayerOrderId]);
+            VideoPlayer::where('page_id', $this->videoPlayer->page_id)->update(['order_id'=>$this->videoPlayerOrderId]);
         }
 
         return view('livewire.update-video-player-order-id');

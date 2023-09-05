@@ -22,7 +22,7 @@ class UpdateGalleryOrderId extends Component
     public function render(): View
     {
         if(! empty($this->galleryOrderId)){
-            Gallery::where('page_id', $this->gallery->id)->update(['order_id'=>$this->galleryOrderId]);
+            Gallery::where('page_id', $this->gallery->page_id)->update(['order_id'=>$this->galleryOrderId]);
         }
 
         return view('livewire.update-gallery-order-id');

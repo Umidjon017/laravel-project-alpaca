@@ -22,7 +22,7 @@ class UpdateCommentOrderId extends Component
     public function render(): View
     {
         if(! empty($this->commentBlockOrderId)){
-            Comment::where('page_id', $this->commentBlock->id)->update(['order_id'=>$this->commentBlockOrderId]);
+            Comment::where('page_id', $this->commentBlock->page_id)->update(['order_id'=>$this->commentBlockOrderId]);
         }
 
         return view('livewire.update-comment-order-id');

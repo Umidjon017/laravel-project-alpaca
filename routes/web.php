@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\OurClientController;
 use App\Http\Controllers\Admin\OurClientLogoController;
 use App\Http\Controllers\Admin\OurRuleController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\PriceBlockController;
 use App\Http\Controllers\Admin\RecommendationBlockController;
 use App\Http\Controllers\Admin\TextBlockController;
 use App\Http\Controllers\Admin\VideoPlayerController;
@@ -102,6 +103,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/{id}/recommendation-block/create', [RecommendationBlockController::class, 'create'])->name('recommendation-block.create');
     Route::get('/{id}/recommendation-block/show', [RecommendationBlockController::class, 'show'])->name('recommendation-block.show');
     Route::resource('/recommendation-block', RecommendationBlockController::class)->except('index', 'create', 'show');
+    // Price Block
+    Route::resource('/price-block', PriceBlockController::class)->except('index', 'create', 'show');
 
     // For Frontend
     Route::prefix('main-page')->name('main-page.')->group(function () {
