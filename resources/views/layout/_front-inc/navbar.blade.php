@@ -1,58 +1,5 @@
 @push('custom-css')
-<style>
-    .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 1;
-    }
-
-    .modal-content {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        position: relative;
-        width: 27%;
-        margin: 10% auto;
-    }
-
-    .close {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        padding: 10px;
-        cursor: pointer;
-        border-radius: 15px;
-        background: var(--primary-blue, #092D46);
-        height: 7%;
-        width: 8%;
-        color: var(--white, #FFF);
-        font-family: Inter;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 18px;
-        outline: none;
-        border: none;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
-    .form__title {
-        color: var(--black, #1F2128);
-        text-align: center;
-        font-family: Inter;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 30px;
-        margin-bottom: 30px;
-    }
-</style>
+    <link rel="stylesheet" href="{{ asset('front/style/css/modal.css') }}">
 @endpush
 
 <!-- Navbar Start -->
@@ -99,7 +46,7 @@
             </div>
 
             <div class="demo">
-                <button type="button" id="myButton" onclick="openModal()">
+                <button type="button" id="modal__btn">
                     {{ app()->getLocale()==1 ? 'Запросить демо версию' : 'Request Demo Version' }}
                 </button>
 
@@ -117,27 +64,5 @@
 <!-- Navbar End -->
 
 @push('custom-js')
-    <script>
-        // Get references to the modal and close button
-        const modal = document.getElementById('myModal');
-        const closeButton = document.querySelector('.close');
-
-        // Function to open the modal
-        function openModal() {
-            modal.style.display = 'block';
-        }
-
-        // Function to close the modal
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        // Event listeners
-        closeButton.addEventListener('click', closeModal);
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
-    </script>
+    <script src="{{ asset('front/js/modal.js') }}"></script>
 @endpush

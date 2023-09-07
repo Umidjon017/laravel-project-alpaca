@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Admin\Appeal;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
@@ -10,6 +11,12 @@ class AppealFormButton extends Component
     public $email;
     public $name;
     public $text;
+    public array|object $appeal;
+
+    public function mount()
+    {
+        $this->appeal = Appeal::with('translations')->first();
+    }
 
     protected $rules = [
         'email' => 'required|email',

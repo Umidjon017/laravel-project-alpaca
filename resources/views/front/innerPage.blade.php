@@ -271,7 +271,7 @@
                     <div class="contact__form">
                         <p class="form__title">{!! $appeal->translatable()->theme !!}</p>
 
-                        @livewire('appeal-form')
+                        @livewire('appeal-form', ['page_id' => $route->id])
 
                         @foreach($route->rules as $rule)
                         <p class="form__text">

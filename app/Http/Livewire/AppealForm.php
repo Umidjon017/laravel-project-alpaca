@@ -2,16 +2,23 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Admin\Appeal;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class AppealForm extends Component
 {
-    public $email;
-    public $name;
-    public $text;
+    public string $email;
+    public string $name;
+    public string $text;
+    public array|object $appeal;
 
-    protected $rules = [
+    public function mount($page_id)
+    {
+        $this->appeal = Appeal::where('page_id', $page_id)->with('translations')->first();
+    }
+
+    protected array $rules = [
         'email' => 'required|email',
         'name' => 'required|min:3',
         'text'  => 'required',
@@ -29,8 +36,6 @@ class AppealForm extends Component
         \App\Models\Admin\AppealForm::create($validated);
 
         session()->flash('success', 'Спасибо, Ваша заявка принята !');
-
-        $this->reset();
     }
 
     public function render(): View
