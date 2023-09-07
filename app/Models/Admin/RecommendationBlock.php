@@ -14,7 +14,7 @@ class RecommendationBlock extends Model
 
     protected $fillable = ['page_id', 'link', 'image', 'order_id'];
 
-    const FILE_PATH = 'admin/images/recommendation-block/';
+    const FILE_PATH = 'admin/images/pages/recommendation-block/';
 
     public function getImagePath(): string
     {

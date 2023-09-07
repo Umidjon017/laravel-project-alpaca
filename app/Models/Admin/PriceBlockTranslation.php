@@ -10,7 +10,7 @@ class PriceBlockTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['price_block_id', 'localization_id', 'title', 'excepted_options', 'ignored_options', 'for_month', 'link_title'];
+    protected $fillable = ['price_block_id', 'localization_id', 'title', 'excepted_options', 'ignored_options', 'package_period', 'link_title'];
 
     public function priceBlock(): BelongsTo
     {

@@ -66,7 +66,7 @@ class PageController extends Controller
       $localizations = Cache::get('localizations');
         $relatedData = [
             'infos', 'comments', 'appeals', 'textBlocks', 'appeals',
-            'ourClients', 'directSpeeches', 'checkBoxes', 'recommendationBlocks'
+            'ourClients', 'directSpeeches', 'checkBoxes', 'recommendationBlocks', 'prices', 'bannerBlocks',
         ];
 
         foreach ($relatedData as $relation) {

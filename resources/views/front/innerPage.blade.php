@@ -1,4 +1,3 @@
-{{--@dd($route->textBlocks->pluck('order_id')->toArray()[0])--}}
 <x-front-layout>
 
     <x-slot name="title">
@@ -12,6 +11,36 @@
     </x-slot>
 
     @for($i = 1; $i < 10; $i++)
+
+        <!-- Banner Start -->
+        @if(count($route->bannerBlocks) > 0)
+            @if($i == $route->bannerBlocks->pluck('order_id')->toArray()[0])
+                <div class="hero__container">
+                    <div class="container">
+                        <div class="hero">
+                            @foreach($route->bannerBlocks as $bannerBlock)
+                                <div class="hero__text">
+                                    <h1 class="hero__title">
+                                        {!! preg_replace('/медицинского/i', '<span>медицинского</span>', $bannerBlock->translatable()->title) !!}
+                                    </h1>
+                                    <p>
+                                        {!! preg_replace('/К слову, alpaca - это не лама!/i', '<b>К слову, alpaca - это не лама!</b>', $bannerBlock->translatable()->description) !!}
+                                    </p>
+                                    <div class="hero__btn">
+                                        <a href="{{ $bannerBlock->try_link }}">{{ $bannerBlock->translatable()->try_link_title }}</a>
+                                        <a href="{{ $bannerBlock->more_link }}"> {{ $bannerBlock->translatable()->more_link_title }} </a>
+                                    </div>
+                                </div>
+                                <div class="hero__img">
+                                    <img src="{{asset(banner_block_file_path() . $bannerBlock->image)}}" alt="">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endif
+        <!-- Banner End -->
 
         <!-- Info Start -->
         @if(count($route->infos) > 0)
@@ -228,7 +257,7 @@
         <!-- Contact Start -->
         @if(count($route->appeals) > 0)
             @if($i == $route->appeals->pluck('order_id')->toArray()[0])
-                <div class="contact">
+                <div class="contact" id="appeals">
                     <div class="contact__text">
                         @foreach($route->appeals as $index => $appeal)
                         <p class="contact__title">
@@ -241,6 +270,7 @@
                     </div>
                     <div class="contact__form">
                         <p class="form__title">{!! $appeal->translatable()->theme !!}</p>
+
                         @livewire('appeal-form')
 
                         @foreach($route->rules as $rule)
@@ -259,77 +289,43 @@
         @endif
         <!-- Contact End -->
 
-    @endfor
-
         <!-- Price Start -->
-        <div class="price__container">
-            <div class="price">
-                <div class="price__card p_light">
-                    <p class="price__title">
-                        Light
-                        <img src="{{ asset('front/assets/image/circle1.png') }}" alt="">
-                    </p>
-                    <div class="price__list">
-                        <p class="price__item">Schedule</p>
-                        <p class="price__item">VoIP integration (phones)</p>
-                        <p class="price__item">Calltracking integration</p>
-                        <p class="price__item">EHR</p>
-                        <p class="price__item">Custom protocols</p>
-                        <p class="price__item">Payment service integration</p>
-                        <p class="price__item">Reception</p>
-                        <p class="price__item price_no">Automated task management (reminders, algorithms)</p>
-                        <p class="price__item price_no">Consultant’s cabinet</p>
-                        <p class="price__item price_no">VPS hosting in Israel</p>
-                        <p class="price__item price_no">Profitability analyses</p>
+        @if(count($route->prices) > 0)
+            @if($i == $route->prices->pluck('order_id')->toArray()[0])
+                <div class="price__container">
+                    <div class="price">
+                        @foreach($route->prices as $index => $price)
+                            @php
+                                $excepted_options = explode(', ', $price->translatable()->excepted_options);
+                                $ignored_options = explode(', ', $price->translatable()->ignored_options);
+                            @endphp
+                        <div class="price__card p_light">
+                            <p class="price__title">
+                                {!! $price->translatable()->title !!}
+                                <img src="{{ asset(prices_file_path() . $price->icon) }}" alt="">
+                            </p>
+                            <div class="price__list">
+                                @foreach($excepted_options as $exOption)
+                                    <p class="price__item">{!! $exOption !!}</p>
+                                @endforeach
+
+                                @foreach($ignored_options as $ignOption)
+                                    @if($ignOption != null)
+                                        <p class="price__item price_no">{!! $ignOption !!}</p>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <p class="price__money">{{ $price->price }}₽ <span>/ месяц</span></p>
+                            <a href="#" class="price__btn">Купить</a>
+                        </div>
+                        @endforeach
                     </div>
-                    <p class="price__money">3200₽ <span>/ месяц</span></p>
-                    <a href="#" class="price__btn">Купить</a>
                 </div>
-                <div class="price__card p_infinity">
-                    <p class="price__title">
-                        Infinity
-                        <img src="{{ asset('front/assets/image/circle2.png') }}" alt="">
-                    </p>
-                    <div class="price__list">
-                        <p class="price__item">Schedule</p>
-                        <p class="price__item">VoIP integration (phones)</p>
-                        <p class="price__item">Calltracking integration</p>
-                        <p class="price__item">EHR</p>
-                        <p class="price__item">Custom protocols</p>
-                        <p class="price__item">Payment service integration</p>
-                        <p class="price__item">Reception</p>
-                        <p class="price__item">Automated task management (reminders, algorithms)</p>
-                        <p class="price__item">Consultant’s cabinet</p>
-                        <p class="price__item">VPS hosting in Israel</p>
-                        <p class="price__item">Profitability analyses</p>
-                    </div>
-                    <p class="price__money">6800₽ <span>/ месяц</span></p>
-                    <a href="#" class="price__btn">Купить</a>
-                </div>
-                <div class="price__card p_smart">
-                    <p class="price__title">
-                        Smart
-                        <img src="{{ asset('front/assets/image/circle3.png') }}" alt="">
-                    </p>
-                    <div class="price__list">
-                        <p class="price__item">Schedule</p>
-                        <p class="price__item">VoIP integration (phones)</p>
-                        <p class="price__item">Calltracking integration</p>
-                        <p class="price__item">EHR</p>
-                        <p class="price__item">Custom protocols</p>
-                        <p class="price__item">Payment service integration</p>
-                        <p class="price__item">Reception</p>
-                        <p class="price__item">Automated task management (reminders, algorithms)</p>
-                        <p class="price__item">Consultant’s cabinet</p>
-                        <p class="price__item price_no">VPS hosting in Israel</p>
-                        <p class="price__item price_no">Profitability analyses</p>
-                    </div>
-                    <p class="price__money">4500₽ <span>/ месяц</span></p>
-                    <a href="#" class="price__btn">Купить</a>
-                </div>
-            </div>
-        </div>
+            @endif
+        @endif
         <!-- Price End -->
+
+    @endfor
 
     <x-slot name="footer">
         <!-- Footer Start -->

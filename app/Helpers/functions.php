@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Admin\BannerBlock;
 use App\Models\Admin\Comment;
 use App\Models\Admin\DirectSpeech;
 use App\Models\Admin\Gallery;
@@ -83,6 +84,12 @@ if(!function_exists('direct_speech_file_path')) {
 if(!function_exists('banner_file_path')) {
     function banner_file_path(): string {
         return '/' . Banner::FILE_PATH;
+    }
+}
+
+if(!function_exists('banner_block_file_path')) {
+    function banner_block_file_path(): string {
+        return '/' . BannerBlock::FILE_PATH;
     }
 }
 

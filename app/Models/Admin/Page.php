@@ -110,4 +110,14 @@ class Page extends Model
     {
         return $this->hasMany(OurRule::class, 'page_id');
     }
+
+    public function prices(): HasMany
+    {
+        return $this->hasMany(PriceBlock::class, 'page_id');
+    }
+
+    public function bannerBlocks(): HasMany
+    {
+        return $this->hasMany(BannerBlock::class, 'page_id');
+    }
 }

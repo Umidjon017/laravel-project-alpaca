@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('price_block_translations', function (Blueprint $table) {
+        Schema::create('banner_block_translations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('price_block_id')->constrained('price_blocks')->cascadeOnDelete();
+            $table->foreignId('banner_block_id')->constrained('banner_blocks')->cascadeOnDelete();
             $table->foreignId('localization_id')->constrained('localizations')->cascadeOnDelete();
             $table->string('title');
-            $table->string('excepted_options');
-            $table->string('ignored_options')->nullable();
-            $table->string('package_period');
-            $table->string('link_title');
+            $table->text('description');
+            $table->string('try_link_title');
+            $table->string('more_link_title');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('price_block_translations');
+        Schema::dropIfExists('banner_block_translations');
     }
 };

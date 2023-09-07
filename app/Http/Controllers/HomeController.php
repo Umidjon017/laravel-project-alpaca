@@ -43,13 +43,11 @@ class HomeController extends Controller
         $menus = Menu::where('status', 1)->with('parent.children')->orderBy('order_id')->get();
         $route = Page::where('slug', $page)->with('translations', 'galleries', 'infos', 'comments',
             'textBlocks', 'checkBoxes', 'videoPlayers', 'ourClients', 'ourClientsLogo', 'directSpeeches',
-            'recommendationBlocks', 'appeals', 'rules')->first();
+            'recommendationBlocks', 'appeals', 'rules', 'prices', 'bannerBlocks')->first();
 
         if (! $route) {
             abort(404);
         }
-
-//        dd($route->infos->pluck('order_id')->toArray());
 
         return view('front.innerPage', compact('menus','route'));
     }

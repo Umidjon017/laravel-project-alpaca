@@ -8,27 +8,27 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\App;
 
-class PriceBlock extends Model
+class BannerBlock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'icon', 'price', 'link', 'order_id'];
+    protected $fillable = ['page_id', 'try_link', 'more_link', 'image', 'order_id'];
 
-    const FILE_PATH = 'admin/images/pages/price-block/';
+    const FILE_PATH = 'admin/images/pages/banner-blocks/';
 
     public function getImagePath(): string
     {
-        return public_path(prices_file_path()) . $this->icon;
+        return public_path(banner_block_file_path()) . $this->image;
     }
 
-    public function isPhotoExists(): bool
+    public function isImageExists(): bool
     {
         return file_exists($this->getImagePath());
     }
 
     public function deleteImage(): bool
     {
-        if ($this->isPhotoExists()) {
+        if ($this->isImageExists()) {
             @unlink($this->getImagePath());
         }
         else {
@@ -49,7 +49,7 @@ class PriceBlock extends Model
 
     public function translations(): HasMany
     {
-        return $this->hasMany(PriceBlockTranslation::class, 'price_block_id');
+        return $this->hasMany(BannerBlockTranslation::class);
     }
 
     public function page(): BelongsTo

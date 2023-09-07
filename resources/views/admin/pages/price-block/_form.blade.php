@@ -13,26 +13,36 @@
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Заголовок') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($price_block) value="{{ $price_block->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Введите название">
+                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" value="{{ old('translations.1.title') ?? (isset($price_block) ? $price_block->getTranslatedAttributes($locale->id)->title : '') }}"  placeholder="Введите название">
                     @error('translations.*.title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">{{ __('excepted_options') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][excepted_options]" class="form-control @error('translations.*.excepted_options') is-invalid @enderror" @isset($price_block) value="{{ $price_block->getTranslatedAttributes($locale->id)->excepted_options }}" @endisset placeholder="Введите название">
+                    <label class="form-label">{{ __('Ожидаемые варианты') }}(*)</label>
+                    <input type="text" name="translations[{{ $locale->id }}][excepted_options]" class="form-control @error('translations.*.excepted_options') is-invalid @enderror" value="{{ old('translations.1.excepted_options') ?? (isset($price_block) ? $price_block->getTranslatedAttributes($locale->id)->excepted_options : '') }}"  placeholder="Введите название">
                     @error('translations.*.excepted_options')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">{{ __('ignored_options') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][ignored_options]" class="form-control @error('translations.*.ignored_options') is-invalid @enderror" @isset($price_block) value="{{ $price_block->getTranslatedAttributes($locale->id)->ignored_options }}" @endisset placeholder="Введите название">
+                    <label class="form-label">{{ __('Игнорируемые варианты') }}</label>
+                    <input type="text" name="translations[{{ $locale->id }}][ignored_options]" class="form-control @error('translations.*.ignored_options') is-invalid @enderror" value="{{ old('translations.1.ignored_options') ?? (isset($price_block) ? $price_block->getTranslatedAttributes($locale->id)->ignored_options : '') }}"  placeholder="Введите название">
                     @error('translations.*.ignored_options')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
+                </div>
+
+                <div class="row">
+                    <div class="mb-3">
+                        <label class="form-label">{{ __('Ценовой период') }}(*)</label>
+                        <input type="text" name="translations[{{ $locale->id }}][package_period]" class="form-control @error('translations.*.package_period') is-invalid @enderror" value="{{ old('translations.1.package_period') ?? (isset($price_block) ? $price_block->getTranslatedAttributes($locale->id)->package_period : '') }}"  placeholder="Введите название. Например: месяц ">
+                        @error('translations.*.package_period')
+                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="mb-3">
@@ -41,25 +51,6 @@
                     @error('translations.*.link_title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
-                </div>
-
-                <div class="row">
-                    <div class="col-6">
-                        <div class="mt-3">
-                            <label for="order_id" class="form-label">{{ __('Порядок номер блока') }}</label>
-                            <input type="number" name="order_id" class="form-control" @isset($price_block) value="{{ $price_block->order_id }}" @endisset>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label class="form-label">{{ __('for_month') }}(*)</label>
-                            <input type="text" name="translations[{{ $locale->id }}][for_month]" class="form-control @error('translations.*.for_month') is-invalid @enderror" @isset($price_block) value="{{ $price_block->getTranslatedAttributes($locale->id)->for_month }}" @endisset placeholder="Введите название">
-                            @error('translations.*.for_month')
-                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
                 </div>
 
                 @isset($id)
@@ -75,13 +66,23 @@
 </div>
 
 <div class="mt-3">
-    <label for="link" class="form-label">{{ __('Ссылка') }}</label>
-    <input type="text" name="link" class="form-control" @isset($price_block) value="{{ $price_block->link }}" @endisset>
+    <label for="price" class="form-label">{{ __('Price') }} ( ₽ *)</label>
+    <input type="number" name="price" class="form-control" value="{{old('price') ?? (isset($price_block) ? $price_block->price : '') }}" >
+</div>
+
+<div class="mt-3">
+    <label for="order_id" class="form-label">{{ __('Порядок номер блока') }}</label>
+    <input type="number" name="order_id" class="form-control" value="{{old('order_id') ?? (isset($price_block) ? $price_block->order_id : '') }}" >
+</div>
+
+<div class="mt-3">
+    <label for="link" class="form-label">{{ __('Ссылка') }} (*)</label>
+    <input type="text" name="link" class="form-control" value="{{old('link') ?? (isset($price_block) ? $price_block->link : '') }}" >
 </div>
 
 <div class="mt-3 mb-3">
-    <label for="image" class="form-label">{{ __('Изображение') }}</label>
-    <input type="file" name="image" class="form-control" @isset($price_block) value="{{ $price_block->image }}" @endisset>
+    <label for="icon" class="form-label">{{ __('Изображение') }}</label>
+    <input type="file" name="icon" class="form-control" value="{{old('icon') ?? (isset($price_block) ? $price_block->icon : '') }}" >
 </div>
 
 @isset($price_block)

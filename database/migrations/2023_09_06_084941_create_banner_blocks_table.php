@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('price_blocks', function (Blueprint $table) {
+        Schema::create('banner_blocks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('page_id')->constrained('pages')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('icon');
-            $table->integer('price');
-            $table->string('link');
+            $table->string('try_link');
+            $table->string('more_link');
+            $table->string('image');
             $table->integer('order_id')->default(1);
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('price_blocks');
+        Schema::dropIfExists('banner_blocks');
     }
 };

@@ -59,6 +59,8 @@ class DatabaseSeeder extends Seeder
         TextBlockSeeder::class,
         TextBlockTranslationSeeder::class,
         VideoPlayerSeeder::class,
+        PriceBlockSeeder::class,
+        PriceBlockTranslationSeeder::class
     ]);
   }
 }

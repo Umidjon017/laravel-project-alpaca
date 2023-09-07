@@ -11,9 +11,9 @@ class UpdatePriceBlockRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,27 @@ class UpdatePriceBlockRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'translations.*.title' => 'required',
+            'translations.*.excepted_options' => 'required',
+            'translations.*.package_period' => 'required',
+            'translations.*.link_title' => 'required',
+            'price' => 'required',
+            'link' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'translations.*.title' => 'Title field is required',
+            'translations.*.excepted_options' => 'Excepted options field is required',
+            'translations.*.package_period' => 'Price period field is required',
+            'translations.*.link_title' => 'Link title field is required',
+            'price' => 'Price field is required',
+            'link' => 'Link field is required',
         ];
     }
 }

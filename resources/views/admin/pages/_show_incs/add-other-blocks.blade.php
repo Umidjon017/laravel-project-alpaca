@@ -6,6 +6,31 @@
             </div>
             <div class="card-body">
 
+                {{-- Banner Block Start --}}
+                <div class="d-flex justify-content-between">
+                    <h6 class="mb-1"> {{__('Добавить баннер блок')}} </h6>
+
+                    @livewire('update-banner-block-order-id', ['id' => $page->id])
+
+                    <div>
+                        @if(count($page->bannerBlocks) > 0)
+                            <a href="{{ route('admin.banner-block.show', ['id' => $page->id]) }}"
+                               class="btn btn-primary"> {{ __('Посмотреть') }} </a>
+                        @endif
+
+                        @if($page->bannerBlocks->isEmpty())
+                            <a href="{{ route('admin.banner-block.create', ['id' => $page->id]) }}"
+                               class="btn btn-success">{{ __('Добавить') }}</a>
+                        @else
+                            <button type="button" class="btn btn-secondary" disabled> {{ __('Добавить') }}</button>
+                        @endif
+                    </div>
+                </div>
+                {{-- Banner Block End --}}
+
+                <hr>
+
+
                 {{-- Info Block Start --}}
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-1"> {{__('Добавить информационный блок')}} </h6>
@@ -224,6 +249,26 @@
                     </div>
                 </div>
                 {{-- Recommendation Block End --}}
+
+                <hr>
+
+                {{-- Price Block Start --}}
+                <div class="d-flex justify-content-between">
+                    <h6 class="mb-1"> {{__('Добавить ценовой блок')}} </h6>
+
+                    @livewire('update-price-block-order-id', ['id' => $page->id])
+
+                    <div>
+                        @if(count($page->prices) > 0)
+                            <a href="{{ route('admin.price-block.show', ['id' => $page->id]) }}"
+                               class="btn btn-primary"> {{ __('Посмотреть') }} </a>
+                        @endif
+
+                        <a href="{{ route('admin.price-block.create', ['id' => $page->id]) }}"
+                           class="btn btn-success"> {{ __('Добавить') }} </a>
+                    </div>
+                </div>
+                {{-- Price Block End --}}
 
             </div>
         </div>

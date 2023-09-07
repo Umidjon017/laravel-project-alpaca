@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-    @foreach($prices as $price) @endforeach
+    @foreach($bannerBlocks as $bannerBlock) @endforeach
 
     @include('admin.partials.breadcrumb', [
         'subPage'=>'Посмотреть',
@@ -14,25 +14,25 @@
         'pageUrl'=>route('admin.pages.index'),
 
         'subPage2'=>'page_id',
-        'page2'=>$price->page->translatable()->title,
-        'pageUrl2'=>route('admin.pages.show', $price->page_id)
+        'page2'=>$bannerBlock->page->translatable()->title,
+        'pageUrl2'=>route('admin.pages.show', $bannerBlock->page_id)
     ])
 
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{ __('Название страницы:') }} {!! $price->page->translatable()->title !!}</h6>
+                    <h6 class="card-title">{{ __('Название страницы:') }} {!! $bannerBlock->page->translatable()->title !!}</h6>
 
                     <div class="raw">
                         <div class="d-flex justify-content-evenly flex-wrap">
-                            @foreach ($prices as $price)
-                                <div class="col-4">
+                            @foreach ($bannerBlocks as $bannerBlock)
+                                <div class="col-6">
                                     <div class="card mt-3 me-3">
                                         <div class="card-header">
                                             <div class="card-title">
-                                                <h6> {{ __('Ценовой блок') }} {{ $loop->iteration }}</h6>
-                                                <form action="{{ route('admin.price-block.destroy', $price->id) }}"
+                                                <h6> {{ __('Блок баннеры') }} {{ $loop->iteration }}</h6>
+                                                <form action="{{ route('admin.banner-block.destroy', $bannerBlock->id) }}"
                                                       method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -40,71 +40,50 @@
                                                         {{ __('Удалить') }}
                                                     </button>
                                                 </form>
-                                                <a href="{{ route('admin.price-block.edit', $price->id) }}"
+                                                <a href="{{ route('admin.banner-block.edit', $bannerBlock->id) }}"
                                                    class="btn btn-success btn-sm float-end text-capitalize">{{ __('Редактировать') }}</a>
                                             </div>
                                         </div>
                                         <div class="card-body">
                                             <div class="example">
                                                 <div>
-                                                    <h6> {{ __('Заголовок') }} </h6>
-                                                    <p class="mb-1"> {!! $price->translatable()->title !!} </p>
+                                                    <h6> {{ __('Полное имя') }} </h6>
+                                                    <p class="mb-1"> {!! $bannerBlock->translatable()->title !!} </p>
                                                 </div>
 
                                                 <hr>
 
                                                 <div>
-                                                    <h6> {{ __('Ожидаемые варианты') }} </h6>
-                                                    <p class="mb-1"> {!! $price->translatable()->excepted_options !!} </p>
+                                                    <h6> {{ __('позиция') }} </h6>
+                                                    <p class="mb-1"> {!! $bannerBlock->translatable()->description !!} </p>
                                                 </div>
 
                                                 <hr>
 
                                                 <div>
-                                                    <h6> {{ __('Игнорируемые варианты') }} </h6>
-                                                    <p class="mb-1"> {!! $price->translatable()->ignored_options !!} </p>
+                                                    <h6> {{ __('Текст') }} </h6>
+                                                    <p class="mb-1"> {!! $bannerBlock->translatable()->try_link_title !!} </p>
                                                 </div>
 
                                                 <hr>
 
                                                 <div>
-                                                    <h6> {{ __('Ценовой период') }} </h6>
-                                                    <p class="mb-1"> {!! $price->translatable()->package_period !!} </p>
+                                                    <h6> {{ __('Текст') }} </h6>
+                                                    <p class="mb-1"> {!! $bannerBlock->translatable()->more_link_title !!} </p>
                                                 </div>
 
                                                 <hr>
 
-                                                <div>
-                                                    <h6> {{ __('Название ссылки') }} </h6>
-                                                    <p class="mb-1"> {!! $price->translatable()->link_title !!} </p>
-                                                </div>
-
-                                                <hr>
-
-                                                <div>
-                                                    <h6> {{ __('Цена') }} </h6>
-                                                    <p class="mb-1"> {!! $price->price !!} </p>
-                                                </div>
-
-                                                <hr>
-
-                                                <div>
-                                                    <h6> {{ __('Порядок номер блока') }} </h6>
-                                                    <p class="mb-1"> {!! $price->order_id !!} </p>
-                                                </div>
-
-                                                <hr>
-
-                                                <div>
-                                                    <h6> {{ __('Ссылка') }} </h6>
-                                                    <p class="mb-1"> {!! $price->link !!} </p>
+                                                <div class="me-3">
+                                                    <h6 class="mb-1">{{ __('Порядок номер блока') }}</h6>
+                                                    <p class="mb-1"> {!! $bannerBlock->order_id !!} </p>
                                                 </div>
 
                                                 <hr>
 
                                                 <div class="me-3">
                                                     <h6 class="mb-1">{{ __('Изображение') }}</h6>
-                                                    <img src="{{ asset(prices_file_path().$price->icon) }}" alt=""
+                                                    <img src="{{ asset(banner_block_file_path().$bannerBlock->image) }}" alt=""
                                                          width="200">
                                                 </div>
                                             </div>

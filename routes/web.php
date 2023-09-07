@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AppealController;
 use App\Http\Controllers\Admin\AppealFormController;
+use App\Http\Controllers\Admin\BannerBlockController;
 use App\Http\Controllers\Admin\CheckboxBlockController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DirectSpeechController;
@@ -104,7 +105,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/{id}/recommendation-block/show', [RecommendationBlockController::class, 'show'])->name('recommendation-block.show');
     Route::resource('/recommendation-block', RecommendationBlockController::class)->except('index', 'create', 'show');
     // Price Block
+    Route::get('/{id}/price-block/create', [PriceBlockController::class, 'create'])->name('price-block.create');
+    Route::get('/{id}/price-block/show', [PriceBlockController::class, 'show'])->name('price-block.show');
     Route::resource('/price-block', PriceBlockController::class)->except('index', 'create', 'show');
+    // Banner Block
+    Route::get('/{id}/banner-block/create', [BannerBlockController::class, 'create'])->name('banner-block.create');
+    Route::get('/{id}/banner-block/show', [BannerBlockController::class, 'show'])->name('banner-block.show');
+    Route::resource('/banner-block', BannerBlockController::class)->except('index', 'create', 'show');
 
     // For Frontend
     Route::prefix('main-page')->name('main-page.')->group(function () {
