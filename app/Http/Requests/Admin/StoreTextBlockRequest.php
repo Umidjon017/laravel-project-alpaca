@@ -24,14 +24,18 @@ class StoreTextBlockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'translations' => 'required',
+            'translations.*.title' => 'required',
+            'translations.*.text' => 'required',
+            'order_id' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'translations.*.text' => 'The text field is required.'
+            'translations.*.title' => 'Title is required',
+            'translations.*.text' => 'Text is required',
+            'order_id' => 'Order is required'
         ];
     }
 }

@@ -24,7 +24,9 @@ class StoreAppealRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'translations' => 'required|array',
+            'translations.*.title' => 'required|string',
+            'translations.*.description' => 'required',
+            'order_id' =>   'required|integer',
         ];
     }
 
@@ -33,6 +35,8 @@ class StoreAppealRequest extends FormRequest
         return [
             'translations.*.title.required' => 'Title is required',
             'translations.*.description' => 'Description is required',
+            'order_id.required' => 'Order is required',
+            'order_id.integer' => 'Order must be integer',
         ];
     }
 }

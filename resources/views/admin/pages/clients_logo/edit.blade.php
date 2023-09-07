@@ -31,7 +31,7 @@
 
                             <div class="mt-3">
                                 <label class="form-label" for="link"> {{ __('Добавить ссылку') }} (*) </label>
-                                <input type="text" id="link" name="link" class="form-control" value="{{$clientLogo->link}}"/>
+                                <input type="text" id="link" name="link" class="form-control @error('link') is-invalid @enderror" value="{{$clientLogo->link}}"/>
                                 @error('link')
                                 <div class="alert alert-danger">
                                     {{ $message }}

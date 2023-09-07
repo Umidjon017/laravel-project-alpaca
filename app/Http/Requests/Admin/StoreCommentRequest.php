@@ -24,8 +24,9 @@ class StoreCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'translations.*.text' => 'required',
             'translations.*.full_name' => 'required',
+            'translations.*.text' => 'required',
+            'order_id' => 'required',
             'logo' => 'nullable',
             'image' => 'nullable',
         ];
@@ -34,8 +35,9 @@ class StoreCommentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'translations.*.text' => 'Text is required',
             'translations.*.full_name' => 'Full name is required',
+            'translations.*.text' => 'Text is required',
+            'order_id' => 'Order is required'
         ];
     }
 }

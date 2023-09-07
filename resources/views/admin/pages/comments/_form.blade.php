@@ -13,18 +13,21 @@
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Полное имя') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][full_name]" class="form-control @error('translations.*.full_name') is-invalid @enderror" @isset($comment) value="{{ $comment->getTranslatedAttributes($locale->id)->full_name }}" @endisset placeholder="Введите полное имя">
+                    <input type="text" name="translations[{{ $locale->id }}][full_name]" class="form-control @error('translations.*.full_name') is-invalid @enderror" value="{{ old('translations.1.full_name') ?? (isset($comment) ? $comment->getTranslatedAttributes($locale->id)->full_name : '') }}" placeholder="Введите полное имя">
                     @error('translations.*.full_name')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Текст') }}</label>
-                    <textarea class="form-control" name="translations[{{ $locale->id }}][text]" rows="4"> @isset($comment) {{ $comment->getTranslatedAttributes($locale->id)->text }} @endisset </textarea>
+                    <textarea class="form-control @error('translations.*.text') is-invalid @enderror" name="translations[{{ $locale->id }}][text]" rows="4"> {{ old('translations.1.text') ?? (isset($comment) ? $comment->getTranslatedAttributes($locale->id)->text : '') }} </textarea>
+                    @error('translations.*.text')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Позиция') }}</label>
-                    <input type="text" name="translations[{{ $locale->id }}][position]" class="form-control @error('translations.*.position') is-invalid @enderror" @isset($comment) value="{{ $comment->getTranslatedAttributes($locale->id)->position }}" @endisset placeholder="Введите позицию">
+                    <input type="text" name="translations[{{ $locale->id }}][position]" class="form-control @error('translations.*.position') is-invalid @enderror" value="{{ old('translations.1.position') ?? (isset($comment) ? $comment->getTranslatedAttributes($locale->id)->position : '') }}" placeholder="Введите позицию">
                     @error('translations.*.position')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
@@ -43,17 +46,17 @@
 
 <div class="mt-3">
     <label for="order_id" class="form-label">{{ __('Порядок номер блока') }}</label>
-    <input type="number" name="order_id" class="form-control" @isset($comment) value="{{ $comment->order_id }}" @endisset>
+    <input type="number" name="order_id" class="form-control" value="{{ old('order_id') ?? (isset($comment) ? $comment->order_id : '') }}">
 </div>
 
 <div class="mt-3 mb-3">
     <label for="logo" class="form-label">{{ __('Логотип') }}</label>
-    <input type="file" name="logo" class="form-control" @isset($comment) value="{{ $comment->logo }}" @endisset>
+    <input type="file" name="logo" class="form-control" value="{{ old('logo') ?? (isset($comment) ? $comment->logo : '') }}">
 </div>
 
 <div class="mt-3 mb-3">
     <label for="image" class="form-label">{{ __('Изображение') }}</label>
-    <input type="file" name="image" class="form-control" @isset($comment) value="{{ $comment->image }}" @endisset>
+    <input type="file" name="image" class="form-control" value="{{ old('image') ?? (isset($comment) ? $comment->image : '') }}">
 </div>
 
 @isset($comment)

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCheckboxBlockRequest extends FormRequest
+class UpdateUserFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,21 @@ class StoreCheckboxBlockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'order_id' => 'required',
-            'translations.*.title' => 'required',
+            'email' => 'required',
+            'name' => 'required',
+            'password' => 'required',
+            'retype_password' => 'required|same:password',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'order_id' => 'Order id is required',
-            'translations.*.title' => 'Title is required',
+            'email' => 'Email is required',
+            'name' => 'Name is required',
+            'password' => 'Text is required',
+            'retype_password.required' => 'The passwords must fill in the same',
+            'retype_password.same' => 'The passwords don\'t match',
         ];
     }
 }

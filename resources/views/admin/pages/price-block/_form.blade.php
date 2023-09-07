@@ -47,7 +47,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">{{ __('Название ссылки') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][link_title]" class="form-control @error('translations.*.link_title') is-invalid @enderror" value="{{ old('translations.1.link_title') ?? (isset($price_block) ? $price_block->getTranslatedAttributes($locale->id)->link_title : '') }}" placeholder="Введите название" required>
+                    <input type="text" name="translations[{{ $locale->id }}][link_title]" class="form-control @error('translations.*.link_title') is-invalid @enderror" value="{{ old('translations.1.link_title') ?? (isset($price_block) ? $price_block->getTranslatedAttributes($locale->id)->link_title : '') }}" placeholder="Введите название">
                     @error('translations.*.link_title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
@@ -69,26 +69,38 @@
     <div class="col-6">
         <div class="mt-3">
             <label for="price" class="form-label">{{ __('Цена') }} (*)</label>
-            <input type="number" name="price" class="form-control" value="{{old('price') ?? (isset($price_block) ? $price_block->price : '') }}" >
+            <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" value="{{old('price') ?? (isset($price_block) ? $price_block->price : '') }}" >
+            @error('price')
+            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
     <div class="col-6">
         <div class="mt-3">
             <label for="symbol" class="form-label">{{ __('Символ') }} (*)</label>
-            <input type="text" name="symbol" class="form-control" value="{{old('symbol') ?? (isset($price_block) ? $price_block->symbol : '') }}" >
+            <input type="text" name="symbol" class="form-control @error('symbol') is-invalid @enderror" value="{{old('symbol') ?? (isset($price_block) ? $price_block->symbol : '') }}" >
+            @error('symbol')
+            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 </div>
 
 <div class="mt-3">
     <label for="order_id" class="form-label">{{ __('Порядок номер блока') }}</label>
-    <input type="number" name="order_id" class="form-control" value="{{old('order_id') ?? (isset($price_block) ? $price_block->order_id : '') }}" >
+    <input type="number" name="order_id" class="form-control @error('order_id') is-invalid @enderror" value="{{old('order_id') ?? (isset($price_block) ? $price_block->order_id : '') }}" >
+    @error('order_id')
+    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+    @enderror
 </div>
 
 <div class="mt-3">
     <label for="link" class="form-label">{{ __('Ссылка') }} (*)</label>
-    <input type="text" name="link" class="form-control" value="{{old('link') ?? (isset($price_block) ? $price_block->link : '') }}" >
+    <input type="text" name="link" class="form-control @error('link') is-invalid @enderror" value="{{old('link') ?? (isset($price_block) ? $price_block->link : '') }}" >
+    @error('link')
+    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+    @enderror
 </div>
 
 <div class="mt-3 mb-3">

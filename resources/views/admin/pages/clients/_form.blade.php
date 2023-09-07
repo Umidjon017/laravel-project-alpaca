@@ -13,14 +13,14 @@
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Заголовок') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($client) value="{{ $client->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Введите название">
+                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" value="{{ old('translations.1.title') ?? (isset($client) ? $client->getTranslatedAttributes($locale->id)->title : '') }}" placeholder="Введите название">
                     @error('translations.*.title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Описание (*)') }}</label>
-                    <textarea class="form-control @error('translations.*.description') is-invalid @enderror" name="translations[{{ $locale->id }}][description]" rows="4"> @isset($client) {{ $client->getTranslatedAttributes($locale->id)->description }} @endisset </textarea>
+                    <textarea class="form-control @error('translations.*.description') is-invalid @enderror" name="translations[{{ $locale->id }}][description]" rows="4"> {{ old('translations.1.description') ?? (isset($client) ? $client->getTranslatedAttributes($locale->id)->description : '') }} </textarea>
                     @error('translations.*.description')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror

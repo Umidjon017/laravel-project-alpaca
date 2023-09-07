@@ -13,21 +13,24 @@
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Полное имя (*)') }}</label>
-                    <input type="text" name="translations[{{ $locale->id }}][full_name]" class="form-control @error('translations.*.full_name') is-invalid @enderror" @isset($directSpeech) value="{{ $directSpeech->getTranslatedAttributes($locale->id)->full_name }}" @endisset placeholder="Enter full_name">
+                    <input type="text" name="translations[{{ $locale->id }}][full_name]" class="form-control @error('translations.*.full_name') is-invalid @enderror" value="{{ old('translations.1.full_name') ?? (isset($directSpeech) ? $directSpeech->getTranslatedAttributes($locale->id)->full_name : '') }}" placeholder="Enter full_name">
                     @error('translations.*.full_name')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Текст (*)') }}</label>
-                    <textarea class="form-control ckeditor @error('translations.*.text') is-invalid @enderror" name="translations[{{ $locale->id }}][text]" rows="10"> @isset($directSpeech) {{ $directSpeech->getTranslatedAttributes($locale->id)->text }} @endisset </textarea>
+                    <textarea class="form-control ckeditor @error('translations.*.text') is-invalid @enderror" name="translations[{{ $locale->id }}][text]" rows="10"> {{ old('translations.1.text') ?? (isset($directSpeech) ? $directSpeech->getTranslatedAttributes($locale->id)->text : '') }} </textarea>
                     @error('translations.*.text')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Позиция') }}</label>
-                    <input type="text" name="translations[{{ $locale->id }}][position]" class="form-control @error('translations.*.position') is-invalid @enderror" @isset($directSpeech) value="{{ $directSpeech->getTranslatedAttributes($locale->id)->position }}" @endisset placeholder="Enter position">
+                    <input type="text" name="translations[{{ $locale->id }}][position]" class="form-control @error('translations.*.position') is-invalid @enderror" value="{{ old('translations.1.position') ?? (isset($directSpeech) ? $directSpeech->getTranslatedAttributes($locale->id)->position : '') }}" placeholder="Enter position">
+                    @error('translations.*.position')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
                 </div>
                 @isset($id)
                     <input type="hidden" name="page_id" value="{{ $id->id }}" />

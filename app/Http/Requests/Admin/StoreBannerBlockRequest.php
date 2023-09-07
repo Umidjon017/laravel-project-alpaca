@@ -24,19 +24,31 @@ class StoreBannerBlockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'link' => 'required',
-            'image' => 'required',
-            'translations' => 'required',
+            'try_link' => 'required',
+            'more_link' => 'required',
+            'order_id' => 'required',
+            'image' => 'required|image|mimes:png,jpeg,jpg,webp,svg|max:2048',
+            'translations.*.title' => 'required',
+            'translations.*.description' => 'required',
+            'translations.*.try_link_title' => 'required',
+            'translations.*.more_link_title' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'image' => 'Image is required',
-            'link' => 'Link is required',
-            'translations.*.title.required' => 'Title is required',
-            'translations.*.description.required' => 'Description is required',
+            'try_link' => 'Link is required',
+            'more_link' => 'Link is required',
+            'order_id' => 'Order is required',
+            'image.required' => 'Image is required',
+            'image.image' => 'Image must be an image',
+            'image.mimes' => 'Image format is required',
+            'image.max' => 'Image size is required',
+            'translations.*.title' => 'Title is required',
+            'translations.*.description' => 'Description is required',
+            'translations.*.try_link_title' => 'Description is required',
+            'translations.*.more_link_title' => 'Description is required',
         ];
     }
 }

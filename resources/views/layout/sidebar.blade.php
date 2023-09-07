@@ -85,6 +85,15 @@
             </a>
         </li>
 
+        {{-- Profile --}}
+        <li class="nav-item nav-category">{{ __('Профиль') }}</li>
+        <li class="nav-item {{ active_class(['admin/users*']) }}">
+            <a href="{{ route('admin.users.index') }}" class="nav-link">
+                <i data-feather="loader"></i>
+                <span class="link-title">{{ __('Профиль') }}</span>
+            </a>
+        </li>
+
     </ul>
   </div>
 </nav>

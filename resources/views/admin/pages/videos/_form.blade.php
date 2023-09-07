@@ -3,12 +3,10 @@
         {{ __('Введите ссылку на видео (*)') }}
     </label>
     <div id="video-player" class="video-player-preview">
-        <input type="text" name="video_url" class="form-control" @isset($video) value="{{$video->video_url}}" @endisset required />
+        <input type="text" name="video_url" class="form-control @error('video_url') is-invalid @enderror" value="{{ old('video_url') ?? (isset($video) ? $video->video_url : '') }}" />
     </div>
     @error('video_url')
-    <div class="alert alert-danger">
-        {{ $message }}
-    </div>
+    <div class="alert alert-danger"> {{ $message }} </div>
     @enderror
 </div>
 

@@ -1,23 +1,23 @@
 <div class="example">
     <div class="mb-3">
         <label class="form-label">{{ __('Электронная почта') }}(*)</label>
-        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" @isset($appeal_form) value="{{ $appeal_form->email }}" @endisset placeholder="Введите Электронная почта">
+        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') ?? (isset($appeal_form) ? $appeal_form->email : '') }}" placeholder="Введите Электронная почта">
         @error('email')
-        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+        <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>
     <div class="mb-3">
         <label class="form-label">{{ __('Имя') }}(*)</label>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" @isset($appeal_form) value="{{ $appeal_form->name }}" @endisset placeholder="Введите Имя">
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') ?? (isset($appeal_form) ? $appeal_form->name : '') }}" placeholder="Введите Имя">
         @error('name')
-        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+        <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>
     <div class="mb-3">
         <label class="form-label">{{ __('Текст') }}</label>
-        <textarea class="form-control" name="text" rows="4"> @isset($appeal_form) {{ $appeal_form->text }} @endisset </textarea>
+        <textarea class="form-control" name="text" rows="4" value="{{ old('text') }}"> @isset($appeal_form) {{ $appeal_form->text }} @endisset </textarea>
         @error('text')
-        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+        <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>
 

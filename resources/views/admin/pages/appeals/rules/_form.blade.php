@@ -41,12 +41,18 @@
 
 <div class="mt-3">
     <label for="file_personal_data" class="form-label">{{ __('Файл для согласования персональных данных') }}</label>
-    <input type="file" name="file_personal_data" class="form-control" @isset($role) {{ $role->file_personal_data }} @endisset>
+    <input type="file" name="file_personal_data" class="form-control @error('file_personal_data') is-invalid @enderror" @isset($role) {{ $role->file_personal_data }} @endisset>
+    @error('file_personal_data')
+    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+    @enderror
 </div>
 
 <div class="mt-3">
     <label for="file_personal_policy" class="form-label">{{ __('Файл для согласования политики обработки персональных данных') }}</label>
-    <input type="file" name="file_personal_data_policy" class="form-control" @isset($role) {{ $role->file_personal_data_policy }} @endisset>
+    <input type="file" name="file_personal_data_policy" class="form-control @error('file_personal_data_policy') is-invalid @enderror" @isset($role) {{ $role->file_personal_data_policy }} @endisset>
+    @error('file_personal_data_policy')
+    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+    @enderror
 </div>
 
 <div class="d-flex justify-content-between mt-3">

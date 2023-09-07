@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Comment;
-use App\Models\Admin\Gallery;
 use App\Models\Admin\OurRule;
 use App\Models\Admin\Page;
 use Illuminate\Contracts\View\View;

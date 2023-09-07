@@ -13,7 +13,7 @@
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Заголовок') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" @isset($checkbox) value="{{ $checkbox->getTranslatedAttributes($locale->id)->title }}" @endisset placeholder="Enter title">
+                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" value="{{ old('translations.1.title') ?? (isset($checkbox) ? $checkbox->getTranslatedAttributes($locale->id)->title : '') }}" placeholder="Enter title">
                     @error('translations.*.title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
@@ -32,7 +32,10 @@
 
 <div class="mt-3">
     <label for="order_id" class="form-label">{{ __('Порядок номер блока') }}</label>
-    <input type="number" name="order_id" class="form-control" @isset($checkbox) value="{{ $checkbox->order_id }}" @endisset>
+    <input type="number" name="order_id" class="form-control @error('order_id') is-invalid @enderror" value="{{ old('order_id') ?? (isset($checkbox) ? $checkbox->order_id : '') }}">
+    @error('order_id')
+    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+    @enderror
 </div>
 
 <div class="d-flex justify-content-between mt-3">

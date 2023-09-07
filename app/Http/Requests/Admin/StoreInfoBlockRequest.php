@@ -24,9 +24,23 @@ class StoreInfoBlockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'translations' => 'nullable',
-            'link' => 'nullable',
+            'order_id' => 'required',
+            'translations.*.title' => 'required',
+            'translations.*.description' => 'required',
+            'translations.*.body' => 'required',
+            'translations.*.link_title' => 'required',
             'image' => 'nullable'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'order_id' => 'Order id is required',
+            'translations.*.title' => 'Title is required',
+            'translations.*.description' => 'Description is required',
+            'translations.*.body' => 'Body is required',
+            'translations.*.link_title' => 'Link title is required',
         ];
     }
 }

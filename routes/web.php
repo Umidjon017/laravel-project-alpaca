@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PriceBlockController;
 use App\Http\Controllers\Admin\RecommendationBlockController;
 use App\Http\Controllers\Admin\TextBlockController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VideoPlayerController;
 use App\Http\Controllers\Front\BannerController;
 use App\Http\Controllers\Front\FeedbackController;
@@ -53,11 +54,13 @@ Route::get('/page/{slug}', [HomeController::class, 'page'])->name('home.page');
 
 Auth::routes();
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Dashboard
     Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
     // Localization
     Route::resource('/localizations', LocalizationController::class)->except('create', 'edit', 'show');
+    // Users
+    Route::resource('/users', UserController::class)->only('index', 'edit', 'update');
     // Pages
     Route::resource('/pages', PageController::class);
     // Info Block

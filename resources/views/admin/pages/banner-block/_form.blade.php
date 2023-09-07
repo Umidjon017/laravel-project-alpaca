@@ -13,7 +13,7 @@
             <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $locale->name }}" role="tabpanel" aria-labelledby="{{$locale->name}}-tab">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Заголовок') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" value="{{ old('translations.1.title') ?? (isset($bannerBlock) ? $bannerBlock->getTranslatedAttributes($locale->id)->title : '') }}" placeholder="Введите название" required>
+                    <input type="text" name="translations[{{ $locale->id }}][title]" class="form-control @error('translations.*.title') is-invalid @enderror" value="{{ old('translations.1.title') ?? (isset($bannerBlock) ? $bannerBlock->getTranslatedAttributes($locale->id)->title : '') }}" placeholder="Введите название">
                     @error('translations.*.title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
@@ -29,7 +29,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">{{ __('Заголовок ссылки для кнопки «Попробовать»') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][try_link_title]" class="form-control @error('translations.*.try_link_title') is-invalid @enderror" value="{{ old('translations.1.try_link_title') ?? (isset($bannerBlock) ? $bannerBlock->getTranslatedAttributes($locale->id)->try_link_title : '') }}" placeholder="Введите название" required>
+                    <input type="text" name="translations[{{ $locale->id }}][try_link_title]" class="form-control @error('translations.*.try_link_title') is-invalid @enderror" value="{{ old('translations.1.try_link_title') ?? (isset($bannerBlock) ? $bannerBlock->getTranslatedAttributes($locale->id)->try_link_title : '') }}" placeholder="Введите название">
                     @error('translations.*.try_link_title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
@@ -37,7 +37,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">{{ __('Заголовок ссылки для кнопки «Подробнее»') }}(*)</label>
-                    <input type="text" name="translations[{{ $locale->id }}][more_link_title]" class="form-control @error('translations.*.more_link_title') is-invalid @enderror" value="{{ old('translations.1.more_link_title') ?? (isset($bannerBlock) ? $bannerBlock->getTranslatedAttributes($locale->id)->more_link_title : '') }}" placeholder="Введите название" required>
+                    <input type="text" name="translations[{{ $locale->id }}][more_link_title]" class="form-control @error('translations.*.more_link_title') is-invalid @enderror" value="{{ old('translations.1.more_link_title') ?? (isset($bannerBlock) ? $bannerBlock->getTranslatedAttributes($locale->id)->more_link_title : '') }}" placeholder="Введите название">
                     @error('translations.*.more_link_title')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
@@ -56,7 +56,7 @@
 
     <div class="mt-3">
         <label class="form-label" for="image-upload"> {{ __('Загрузите или перетащите сюда свои логотипы') }} (*) </label>
-        <input type="file" id="image-preview" name="image" class="form-control" value="{{ old('image') ?? (isset($bannerBlock) ? $bannerBlock->image : '') }}"/>
+        <input type="file" id="image-preview" name="image" class="form-control @error('image') is-invalid @enderror" value="{{ old('image') ?? (isset($bannerBlock) ? $bannerBlock->image : '') }}"/>
         @error('image')
         <div class="alert alert-danger">
             {{ $message }}
@@ -66,7 +66,7 @@
 
     <div class="mt-3">
         <label class="form-label" for="try_link"> {{ __('Добавьте ссылку на кнопку «Попробовать»') }} (*) </label>
-        <input type="text" id="try_link" name="try_link" class="form-control" value="{{ old('try_link') ?? (isset($bannerBlock) ? $bannerBlock->try_link : '') }}" required/>
+        <input type="text" id="try_link" name="try_link" class="form-control @error('try_link') is-invalid @enderror" value="{{ old('try_link') ?? (isset($bannerBlock) ? $bannerBlock->try_link : '') }}"/>
         @error('try_link')
         <div class="alert alert-danger">
             {{ $message }}
@@ -76,7 +76,7 @@
 
     <div class="mt-3">
         <label class="form-label" for="more_link"> {{ __('Добавьте ссылку на кнопку «Подробнее»') }} (*) </label>
-        <input type="text" id="more_link" name="more_link" class="form-control" value="{{ old('more_link') ?? (isset($bannerBlock) ? $bannerBlock->more_link : '') }}" required/>
+        <input type="text" id="more_link" name="more_link" class="form-control @error('more_link') is-invalid @enderror" value="{{ old('more_link') ?? (isset($bannerBlock) ? $bannerBlock->more_link : '') }}"/>
         @error('more_link')
         <div class="alert alert-danger">
             {{ $message }}
