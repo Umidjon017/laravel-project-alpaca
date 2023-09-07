@@ -1,7 +1,11 @@
 <div class="contact__form">
-@php
-    $disabled = $errors->any() || empty($this->name) || empty($this->email);
-@endphp
+    @php
+        $disabled = $errors->any() || empty($this->name) || empty($this->email);
+    @endphp
+
+    <p class="form__title">
+        {{ app()->getLocale()==1 ? 'Оставьте заявку прямо сейчас' : 'Leave a request right now' }}
+    </p>
 
     {{-- Alert --}}
     <x-alerts.message />
@@ -37,31 +41,13 @@
         </x-buttons.primary>
     </form>
 
-</div>
+    {{--            @foreach($route->rules as $rule)--}}
+    {{--                <p class="form__text">--}}
+    {{--                    <a href="{{ asset(rules_file_path().$rule->file_personal_data) }}">{!! $rule->translatable()->agreement_personal_data !!}</a>--}}
+    {{--                </p> <br>--}}
 
-<div class="my__modal">
-    <div class="modal__close"></div>
-    <div class="modal__container">
-        <div class="modal__close__x">
-            <span></span>
-            <span></span>
-        </div>
-        <div class="contact__form">
-            <p class="form__title">Оставьте заявку прямо сейчас</p>
-            <form action="">
-                <input type="email" placeholder="Электронная почта">
-                <input type="text" placeholder="Имя">
-                <textarea cols="30" rows="10" placeholder="Комментарий"></textarea>
-                <button>Попробовать бесплатно</button>
-            </form>
-            <p class="form__text">
-                Нажимая на эту кнопку,
-                <a href="#">Вы даете согласие на обработку своих персональных данных</a>
-            </p>
-            <p class="form__text">
-                и соглашаетесь с
-                <a href="">Политикой обработки персональных данных</a>
-            </p>
-        </div>
-    </div>
+    {{--                <p class="form__text">--}}
+    {{--                    <a href="{{ asset(rules_file_path().$rule->file_personal_data_policy) }}">{!! $rule->translatable()->agreement_personal_data_policy !!}</a>--}}
+    {{--                </p>--}}
+    {{--            @endforeach--}}
 </div>
