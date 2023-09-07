@@ -12,7 +12,7 @@ class PriceBlock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'icon', 'price', 'link', 'order_id'];
+    protected $fillable = ['page_id', 'icon', 'price', 'symbol', 'link', 'order_id'];
 
     const FILE_PATH = 'admin/images/pages/price-block/';
 

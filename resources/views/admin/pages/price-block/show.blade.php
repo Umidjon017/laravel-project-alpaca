@@ -83,7 +83,7 @@
 
                                                 <div>
                                                     <h6> {{ __('Цена') }} </h6>
-                                                    <p class="mb-1"> {!! $price->price !!} </p>
+                                                    <p class="mb-1"> {!! $price->price !!} {!! $price->symbol !!}</p>
                                                 </div>
 
                                                 <hr>

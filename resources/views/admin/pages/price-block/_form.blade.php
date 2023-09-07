@@ -65,9 +65,20 @@
     </div>
 </div>
 
-<div class="mt-3">
-    <label for="price" class="form-label">{{ __('Price') }} ( ₽ *)</label>
-    <input type="number" name="price" class="form-control" value="{{old('price') ?? (isset($price_block) ? $price_block->price : '') }}" >
+<div class="row">
+    <div class="col-6">
+        <div class="mt-3">
+            <label for="price" class="form-label">{{ __('Цена') }} (*)</label>
+            <input type="number" name="price" class="form-control" value="{{old('price') ?? (isset($price_block) ? $price_block->price : '') }}" >
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="mt-3">
+            <label for="symbol" class="form-label">{{ __('Символ') }} (*)</label>
+            <input type="text" name="symbol" class="form-control" value="{{old('symbol') ?? (isset($price_block) ? $price_block->symbol : '') }}" >
+        </div>
+    </div>
 </div>
 
 <div class="mt-3">

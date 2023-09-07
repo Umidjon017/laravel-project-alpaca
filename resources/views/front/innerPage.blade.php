@@ -315,7 +315,7 @@
                                     @endif
                                 @endforeach
                             </div>
-                            <p class="price__money">{{ $price->price }}₽ <span>/ месяц</span></p>
+                            <p class="price__money">{{ $price->price }} {{ $price->symbol }} <span>/ месяц</span></p>
                             <a href="#" class="price__btn">Купить</a>
                         </div>
                         @endforeach
